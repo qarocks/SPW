@@ -6,7 +6,7 @@
 	<property environment="env" />
 
 	<property name="test.home" value="${basedir}" />
-	<property name="test.jars" value="C:/selenium_files" />
+	<property name="test.jars" value="C:/Sparkweave-Selenium/JAR" />
 	<property name="test.dest" value="${test.home}/ant_build" />
 	<property name="test.src" value="${test.home}/src" />
 	<property name="ant.reports" value="${test.home}/ant_result" />
