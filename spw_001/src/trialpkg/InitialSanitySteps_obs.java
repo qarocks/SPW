@@ -19,7 +19,7 @@ public class InitialSanitySteps_obs {
 	@Before
 	public void setUp() throws Exception {
 		
-		System.setProperty("webdriver.firefox.bin","C:\\Mozilla Firefox\\firefox.exe");
+		System.setProperty("webdriver.firefox.bin","C:\\6.0.2\\Mozilla Firefox\\firefox.exe");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		selenium = new WebDriverBackedSelenium(driver, baseUrl);
