@@ -1,0 +1,32 @@
+package sanity_IE;
+
+import com.thoughtworks.selenium.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.Keys;
+
+import java.util.regex.Pattern;
+
+public class InitialSanity_IE extends SeleneseTestCase {
+	@Before
+	public void setUp() throws Exception {
+		selenium = new DefaultSelenium("localhost", 4444, "*iexplore", "http://192.168.1.129/");
+		selenium.start();
+	}
+
+	@Test
+	public void testUntitled() throws Exception {
+		selenium.open("/");
+		selenium.keyPressNative((String.valueOf((Object)(Keys.F12))));
+		selenium.altKeyDown();
+		selenium.keyPressNative((String.valueOf((Object)(Keys.NUMPAD7))));
+		selenium.altKeyUp();
+		selenium.type("id=id_username", "admin");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		selenium.stop();
+	}
+}

@@ -1,0 +1,41 @@
+package sanity_IE;
+
+import com.thoughtworks.selenium.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
+import java.util.regex.Pattern;
+
+public class InitialSanity_IE  {
+	
+	WebDriver driver;
+	@Before
+	public void setUp() throws Exception {
+		
+		driver=new InternetExplorerDriver();
+		//selenium = new DefaultSelenium("localhost", 4444, "*iexplore", "http://192.168.1.129/");
+		//selenium.start();
+	}
+
+	@Test
+	public void InitialSanityMain() throws Exception {
+		
+		driver.get("http://192.168.1.129");
+		driver.findElement(By.id("id_username")).sendKeys("admin");
+		//selenium.open("/");
+	    
+		//selenium.type("id=id_username", "admin");
+		
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		//selenium.stop();
+		driver.quit();
+	}
+}

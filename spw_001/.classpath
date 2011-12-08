@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="C:/Sparkweave-Selenium/new/selenium-server-standalone-2.7.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0"/>
 	<classpathentry kind="lib" path="C:/Sparkweave-Selenium/JAR/selenium-2.14.0/selenium-java-2.14.0.jar"/>
-	<classpathentry kind="lib" path="C:/Sparkweave-Selenium/JAR/selenium-2.14.0/selenium-java-2.14.0-srcs.jar"/>
+	<classpathentry kind="lib" path="C:/Sparkweave-Selenium/JAR/selenium-server-standalone-2.14.0.jar"/>
+	<classpathentry kind="lib" path="C:/Sparkweave-Selenium/JAR/selenium-ie-driver-2.0b3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
