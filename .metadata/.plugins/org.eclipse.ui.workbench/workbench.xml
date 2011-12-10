@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench progressCount="17" version="2.0">
 <workbenchAdvisor/>
-<window height="768" maximized="true" width="1024" x="458" y="79">
+<window height="768" maximized="true" width="1024" x="408" y="0">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -20,7 +20,7 @@
 <coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.browser.editor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ant.ui.internal.editor.AntEditor" itemType="typePlaceholder" x="-1" y="-1"/>
-<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
@@ -29,26 +29,10 @@
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-<part id="1"/>
-<part id="2"/>
-</presentation>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnComposePage.java" partName="PermsOnComposePage.java" path="C:/Users/Sneha/SPW/spw_001/src/sanity_ff/PermsOnComposePage.java" title="PermsOnComposePage.java" tooltip="spw_001/src/sanity_ff/PermsOnComposePage.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/spw_001/src/sanity_ff/PermsOnComposePage.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="1077" selectionOffset="42257" selectionTopPixel="15556"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="InitialSanitySteps.java" partName="InitialSanitySteps.java" path="C:/Users/Sneha/SPW/spw_001/src/sanity_ff/InitialSanitySteps.java" title="InitialSanitySteps.java" tooltip="spw_001/src/sanity_ff/InitialSanitySteps.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/spw_001/src/sanity_ff/InitialSanitySteps.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="158" selectionTopPixel="990"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Functions.java" partName="Functions.java" path="C:/Users/Sneha/SPW/spw_001/src/sanity_ff/Functions.java" title="Functions.java" tooltip="spw_001/src/sanity_ff/Functions.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/spw_001/src/sanity_ff/Functions.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="18060" selectionTopPixel="5656"/>
-</editor>
 </editors>
 <views>
 <view id="org.eclipse.jdt.junit.ResultView" partName="JUnit">
@@ -56,6 +40,10 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Errors"/>
+<category IMemento.internal.id="Warnings (59 items)"/>
+</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="447"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -99,7 +87,7 @@
 <view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -210,162 +198,7 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory>
-<editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/PermsOnComposePage.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/Functions.java"/>
-</editors>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="16658" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="4989" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5358" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="16218" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5358" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5259" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5358" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5308" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5358" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="16218" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5213" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="16794" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5261" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="16794" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5209" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="16980" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5213" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="17000" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5213" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="16172" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5213" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5213" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="16807" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5213" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="16975" y="27"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5162" y="49"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5156" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="16101" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5213" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="18911" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="18911" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="5497" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="11929" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="19895" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="11669" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="19895" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="11669" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="18355" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="11431" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="18060" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="11431" y="0"/>
-</item>
-<item active="true" historyLabel="PermsOnComposePage.java" index="0">
-<position info="not_deleted" x="1517" y="0"/>
-</item>
-</navigationHistory>
+<navigationHistory/>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
@@ -382,14 +215,20 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnReplyToAllPage.java" tooltip="spw_001/src/sanity_ff/PermsOnReplyToAllPage.java">
+<persistable path="/spw_001/src/sanity_ff/PermsOnReplyToAllPage.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnComposePage.java" tooltip="spw_001/src/sanity_ff/PermsOnComposePage.java">
+<persistable path="/spw_001/src/sanity_ff/PermsOnComposePage.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnReplyPage.java" tooltip="spw_001/src/sanity_ff/PermsOnReplyPage.java">
+<persistable path="/spw_001/src/sanity_ff/PermsOnReplyPage.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Functions.java" tooltip="spw_001/src/sanity_ff/Functions.java">
 <persistable path="/spw_001/src/sanity_ff/Functions.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="InitialSanitySteps.java" tooltip="spw_001/src/sanity_ff/InitialSanitySteps.java">
 <persistable path="/spw_001/src/sanity_ff/InitialSanitySteps.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnComposePage.java" tooltip="spw_001/src/sanity_ff/PermsOnComposePage.java">
-<persistable path="/spw_001/src/sanity_ff/PermsOnComposePage.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="InitialSanitySteps.java" tooltip="spw_001/src/sanity/InitialSanitySteps.java">
 <persistable path="/spw_001/src/sanity/InitialSanitySteps.java"/>
@@ -420,12 +259,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="InitialSanitySteps_obs.java" tooltip="spw_001/src/trialpkg/InitialSanitySteps_obs.java">
 <persistable path="/spw_001/src/trialpkg/InitialSanitySteps_obs.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.browser.editorSupport" name="index.html" tooltip="spw_001/ant_result/index.html">
-<persistable path="/spw_001/ant_result/index.html"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Functions.java" tooltip="spw_001/src/trialpkg/Functions.java">
-<persistable path="/spw_001/src/trialpkg/Functions.java"/>
 </file>
 </mruList>
 </workbench>
