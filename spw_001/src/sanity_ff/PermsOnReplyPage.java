@@ -1,7 +1,7 @@
 /*
 *************************************************MODIFICATION HISTORY************************************************************
 Sneha Motadoo 12/08/2010 Created initial script
-Purpose: To test permissions on Compose page
+Purpose: To test permissions on Reply page
 Desc: This script intends to test user permissions on the compose page
 Scope: Testing for only permissions and successful sending of mails will be done. Real world Inbox checking etc. is not part of this test suite.
 Requirements: 4 basic users with different permissions are needed to test.
