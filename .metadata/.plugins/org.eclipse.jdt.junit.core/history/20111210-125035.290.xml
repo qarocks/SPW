@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="PermsOnReplyPage" project="spw_001" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="sanity_ff.PermsOnReplyPage" time="29.467">
+    <testcase name="NonSecureNoattachs" classname="sanity_ff.PermsOnReplyPage" time="29.467"/>
+  </testsuite>
+</testrun>

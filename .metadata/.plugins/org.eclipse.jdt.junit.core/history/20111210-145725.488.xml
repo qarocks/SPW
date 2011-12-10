@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="PermsOnReplyPage" project="spw_001" tests="5" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="sanity_ff.PermsOnReplyPage" incomplete="true">
+    <testcase name="SecureNoattachs" classname="sanity_ff.PermsOnReplyPage" time="86.457"/>
+    <testcase name="NonSecureGreaterThan25mb" classname="sanity_ff.PermsOnReplyPage" time="6.268"/>
+    <testcase name="SecureLesserThan25mb" classname="sanity_ff.PermsOnReplyPage" incomplete="true"/>
+    <testcase name="NonSecureLesserThan25mb" classname="sanity_ff.PermsOnReplyPage" incomplete="true"/>
+    <testcase name="SecureGreaterThan25mb" classname="sanity_ff.PermsOnReplyPage" incomplete="true"/>
+  </testsuite>
+</testrun>

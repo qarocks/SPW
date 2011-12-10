@@ -1,0 +1,14 @@
+package sanity_ff;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class PermsOnReplyPage {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

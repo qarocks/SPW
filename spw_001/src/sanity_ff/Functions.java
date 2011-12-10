@@ -79,8 +79,58 @@ public static void SecureSend(Selenium selenium,WebDriver driver,String sender,S
 }//end of secureSend method
 
 
-public static void LFTSend(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
 
+public static String FindIdwithSubject(WebDriver driver,Selenium selenium,String subject)
+{
+	  int flag=0;
+	
+	String EmailId=null;
+	WebElement select = driver.findElement(By.xpath("//*[@id='EmailInbox']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			   List<WebElement> sub_sub_options = sub_sub_option.findElements(By.tagName("td"));
+			   System.out.println("The count for td is "+sub_sub_options.size());
+			   for (WebElement sub_sub_sub_option : sub_sub_options) {
+				   
+				   System.out.println("i was here!");
+				   System.out.println(""+sub_sub_sub_option.getText());
+				   
+				   if(sub_sub_sub_option.getText().contains(subject))
+					   
+				   {
+					   EmailId=sub_sub_option.getAttribute("id");
+					   flag=1;break;
+					   
+				   }
+				   
+				if(flag==1) break;
+				   
+				   
+			   }
+			   
+			   if(flag==1) break; 
+		   }
+		   if(flag==1) break;
+		   }
+		   
+	   
+	
+	return EmailId;
+	
+	
+
+
+}// end of FindIdwithSubject
+
+
+
+public static void LFTSend(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
+  
 	selenium.open(baseUrl);
 	selenium.type("id=id_username", sender);
 	selenium.type("id=id_password", senderPwd);
@@ -99,14 +149,15 @@ public static void LFTSend(Selenium selenium,WebDriver driver,String sender,Stri
 		
 		Runtime.getRuntime().exec("C:\\Users\\Sneha\\Desktop\\silver_autoit.exe");
 		
-		Thread.sleep(3000);
+		
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		WebElement ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+		Thread.sleep(2000);
 		ele.click();
 		
 		
-		
+		Thread.sleep(3000);
 		driver.findElement(By.id("addrin")).sendKeys(recipient);
 		
 		
@@ -146,6 +197,85 @@ public static void LFTSend(Selenium selenium,WebDriver driver,String sender,Stri
      driver.findElement(By.id("logout")).click();
 
 }//end of LFTsend method
+
+
+
+public static void LFTSendGreaterThan25mb(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
+	  
+	selenium.open(baseUrl);
+	selenium.type("id=id_username", sender);
+	selenium.type("id=id_password", senderPwd);
+	selenium.click("css=input[type=\"submit\"]");
+	
+	selenium.waitForPageToLoad("2000");
+
+	System.out.println("First: The page title is "+selenium.getTitle());
+	// code to upload file
+	
+	driver.findElement(By.linkText("Compose")).click();
+	
+		selenium.waitForPageToLoad("3000");
+		
+		
+		
+		Runtime.getRuntime().exec("C:\\Users\\Sneha\\Desktop\\silver_autoit_greaterthan25mb.exe");
+		
+		
+		
+		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+		WebElement ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+		Thread.sleep(2000);
+		ele.click();
+		
+		
+		Thread.sleep(3000);
+		driver.findElement(By.id("addrin")).sendKeys(recipient);
+		
+		
+		driver.findElement(By.id("id_subject")).sendKeys(subject);
+
+		
+		
+		
+		
+						
+			driver.findElement(By.id("addrsubmit")).click();
+		
+			
+			
+			driver.switchTo().frame("id_body_ifr");
+			
+			selenium.typeKeys("//body[@id='tinymce']", "Finally wohoooo!!");
+			 driver.switchTo().defaultContent();
+			
+			driver.findElement(By.id("submitter")).click();
+		
+		
+		
+		
+	// to check if mail was sent successfully
+     
+     String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
+     
+     Functions.MyWaitfunc(driver,success_str_xpath);
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Successfully sent the email")))
+			
+		System.out.println("SUCCESS:Mail successfully sent !");
+		else
+			{ System.out.println("FAIL:Mail NOT SENT !"); System.out.println(driver.findElement(By.xpath(success_str_xpath)).getText());Exception e1 = new Exception("This case FAILS");
+			throw e1;}
+	
+     driver.findElement(By.id("logout")).click();
+
+}//end of LFTSendGreaterThan25mb method
+
+
+
+
+
+
+
+
 
 
 public static void CreateLocalUser(WebDriver driver,String baseUrl,Selenium selenium,String adminPwd,String localUsername,String localUserPwd)throws Exception
