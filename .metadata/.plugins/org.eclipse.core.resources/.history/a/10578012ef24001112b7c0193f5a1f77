@@ -151,7 +151,7 @@ public static void SecureSendGreaterthan25MB(Selenium selenium,WebDriver driver,
 			
 	selenium.typeKeys("//body[@id='tinymce']", emailBody);
 	driver.switchTo().defaultContent();
-	Runtime.getRuntime().exec("C:\\Users\\Sneha\\Desktop\\silver_autoit_greaterthan25mb.exe");
+	Runtime.getRuntime().exec("C:\\Users\\Sneha\\Desktop\\silver_autoit.exe");
 	
 	
 	
@@ -178,11 +178,7 @@ public static void SecureSendGreaterthan25MB(Selenium selenium,WebDriver driver,
 	
      driver.findElement(By.id("logout")).click();
      
-}//end of secureSendGreaterthan25MB method
-
-
-
-
+}//end of secureSendlessthan25MB method
 public static String FindIdwithSubject(WebDriver driver,Selenium selenium,String subject)
 {
 	  int flag=0;
