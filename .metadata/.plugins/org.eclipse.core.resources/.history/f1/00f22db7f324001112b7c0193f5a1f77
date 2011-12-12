@@ -1,8 +1,8 @@
 /*
 *************************************************MODIFICATION HISTORY************************************************************
 Sneha Motadoo 12/08/2010 Created initial script
-Purpose: To test permissions on Reply To All page
-Desc: This script intends to test user permissions on the Reply to all page
+Purpose: To test permissions on Reply page
+Desc: This script intends to test user permissions on the compose page
 Scope: Testing for only permissions and successful sending of mails will be done. Real world Inbox checking etc. is not part of this test suite.
 Requirements: 4 basic users with different permissions are needed to test.
 sneha.qa.24@gmail.com: all perms
@@ -30,7 +30,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.thoughtworks.selenium.Selenium;
 
-public class PermsOnReplyToAllPage {
+public class PermsOnReplyPage {
 	private WebDriver driver;
 	private String baseUrl="http://192.168.1.130";
 	Selenium selenium;
@@ -64,8 +64,8 @@ public class PermsOnReplyToAllPage {
 		
 	
 		System.out.println("Testing user with LFT perms only");
-		subject="TC--81";
-		emailBody="TC--81";
+		subject="TC--57";
+		emailBody="TC--57";
 		
 		Functions.LFTSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -81,8 +81,8 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		
@@ -109,8 +109,8 @@ public class PermsOnReplyToAllPage {
 		
 		
 		System.out.println("Testing user with SECURE perms only");
-		subject="TC--82";
-		emailBody="TC--82";
+		subject="TC--58";
+		emailBody="TC--58";
 		Functions.LFTSend(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
@@ -125,8 +125,8 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		
@@ -150,8 +150,8 @@ public class PermsOnReplyToAllPage {
 
 		
 		System.out.println("Testing user with ALL perms");
-		subject="TC--83";
-		emailBody="TC--83";
+		subject="TC--59";
+		emailBody="TC--59";
 		Functions.LFTSend(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
@@ -166,8 +166,8 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		
@@ -192,8 +192,8 @@ public class PermsOnReplyToAllPage {
 		
 		
 		System.out.println("Testing user with NO perms");
-		subject="TC--84";
-		emailBody="TC--84";
+		subject="TC--60";
+		emailBody="TC--60";
 		Functions.LFTSend(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
@@ -208,8 +208,8 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		
@@ -240,8 +240,8 @@ public class PermsOnReplyToAllPage {
 		
 		
 		System.out.println("Testing user with LFT perms only");
-		subject="TC--85";
-		emailBody="TC--85";
+		subject="TC--61";
+		emailBody="TC--61";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -257,8 +257,8 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -286,8 +286,8 @@ public class PermsOnReplyToAllPage {
 	
 		
 		System.out.println("Testing user with SECURE perms only");
-		subject="TC--86";
-		emailBody="TC--86";
+		subject="TC--62";
+		emailBody="TC--62";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -303,8 +303,8 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -329,8 +329,8 @@ public class PermsOnReplyToAllPage {
 		
 		//***********************************************************************************
 		System.out.println("Testing user with ALL perms");
-		subject="TC--87";
-		emailBody="TC--87";
+		subject="TC--63";
+		emailBody="TC--63";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -346,8 +346,8 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -374,8 +374,8 @@ public class PermsOnReplyToAllPage {
 		
 		
 		System.out.println("Testing user with NO perms");
-		subject="TC--88";
-		emailBody="TC--88";
+		subject="TC--64";
+		emailBody="TC--64";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -391,8 +391,8 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -429,8 +429,8 @@ public class PermsOnReplyToAllPage {
 		
 		
 		System.out.println("Testing user with LFT perms only");
-		subject="TC--89";
-		emailBody="TC--89";
+		subject="TC--65";
+		emailBody="TC--65";
 		
 		Functions.LFTSendGreaterThan25mb(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -446,8 +446,8 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -488,8 +488,8 @@ public class PermsOnReplyToAllPage {
 		
 		
 		System.out.println("Testing user with SECURE perms only");
-		subject="TC--90";
-		emailBody="TC--90";
+		subject="TC--66";
+		emailBody="TC--66";
 		
 		Functions.LFTSendGreaterThan25mb(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -505,8 +505,8 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -544,8 +544,8 @@ public class PermsOnReplyToAllPage {
 		
 		
 		System.out.println("Testing user with ALL perms");
-		subject="TC--91";
-		emailBody="TC--91";
+		subject="TC--67";
+		emailBody="TC--67";
 		
 		Functions.LFTSendGreaterThan25mb(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -561,8 +561,8 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -599,8 +599,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		//***********************************************************************************
 		
 		System.out.println("Testing user with NO perms");
-		subject="TC--92";
-		emailBody="TC--92";
+		subject="TC--68";
+		emailBody="TC--68";
 		
 		Functions.LFTSendGreaterThan25mb(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -616,8 +616,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -661,8 +661,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 	
 		
 		System.out.println("Testing user with LFT perms only");
-		subject="TC--93";
-		emailBody="TC--93";
+		subject="TC--69";
+		emailBody="TC--69";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -678,8 +678,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -719,8 +719,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		System.out.println("Testing user with SECURE perms only");
-		subject="TC--94";
-		emailBody="TC--94";
+		subject="TC--70";
+		emailBody="TC--70";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -736,8 +736,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -774,8 +774,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		//***********************************************************************************
 		
 		System.out.println("Testing user with ALL perms");
-		subject="TC--95";
-		emailBody="TC--95";
+		subject="TC--71";
+		emailBody="TC--71";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -791,8 +791,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -829,8 +829,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		//***********************************************************************************
 		
 		System.out.println("Testing user with NO perms");
-		subject="TC--96";
-		emailBody="TC--96";
+		subject="TC--72";
+		emailBody="TC--72";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -846,8 +846,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -893,8 +893,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		System.out.println("Testing user with LFT perms only");
-		subject="TC--97";
-		emailBody="TC--97";
+		subject="TC--73";
+		emailBody="TC--73";
 		
 		Functions.LFTSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -910,8 +910,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -952,8 +952,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		System.out.println("Testing user with secure perms only");
-		subject="TC--98";
-		emailBody="TC--98";
+		subject="TC--74";
+		emailBody="TC--74";
 		
 		Functions.LFTSend(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -969,8 +969,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -1008,8 +1008,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		//***********************************************************************************
 		System.out.println("Testing user with ALL perms");
-		subject="TC--99";
-		emailBody="TC--99";
+		subject="TC--75";
+		emailBody="TC--75";
 		
 		Functions.LFTSend(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1025,8 +1025,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -1064,8 +1064,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		//***********************************************************************************
 		System.out.println("Testing user with NO perms");
-		subject="TC--100";
-		emailBody="TC--100";
+		subject="TC--76";
+		emailBody="TC--76";
 		
 		Functions.LFTSend(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1081,8 +1081,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -1128,8 +1128,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		System.out.println("Testing user with LFT perms only");
-		subject="TC--101";
-		emailBody="TC--101";
+		subject="TC--77";
+		emailBody="TC--77";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1145,8 +1145,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -1183,8 +1183,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		//***********************************************************************************
 		
 		System.out.println("Testing user with SECURE perms only");
-		subject="TC--102";
-		emailBody="TC--102";
+		subject="TC--78";
+		emailBody="TC--78";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1200,8 +1200,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -1237,8 +1237,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		//***********************************************************************************
 		System.out.println("Testing user with ALL perms");
-		subject="TC--103";
-		emailBody="TC--103";
+		subject="TC--79";
+		emailBody="TC--79";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1254,8 +1254,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
@@ -1296,8 +1296,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		System.out.println("Testing user with NO perms");
-		subject="TC--104";
-		emailBody="TC--104";
+		subject="TC--80";
+		emailBody="TC--80";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1313,8 +1313,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
+		assertEquals("Reply", driver.findElement(By.id("reply")).getText());
+		driver.findElement(By.id("reply")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));

@@ -30,9 +30,8 @@ public static void WaitForUpload(WebDriver driver) throws Exception{
 	
 	for (int second = 0;; second++) {
 		if (second >= 120) {fail("timeout");}
-		try { 
-			if(driver.findElement(By.cssSelector("span.plupload_total_status")).getText().equalsIgnoreCase("100%"))
-		       {Thread.sleep(2000);break;}
+		try { if (driver.findElement(By.cssSelector("span.plupload_total_status")).getText().equalsIgnoreCase("100%"))
+		       {break;}
 		
 		else
 		{continue;}

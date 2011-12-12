@@ -1,9 +1,9 @@
 /*
 *************************************************MODIFICATION HISTORY************************************************************
 Sneha Motadoo 12/08/2010 Created initial script
-Purpose: To test permissions on Reply To All page
-Desc: This script intends to test user permissions on the Reply to all page
-Scope: Testing for only permissions and successful sending of mails will be done. Real world Inbox checking etc. is not part of this test suite.
+Purpose: To test permissions on Compose page
+Desc: This script intends to test user permissions on the compose page
+Scope: Ignoreing for only permissions and successful sending of mails will be done. Real world Inbox checking etc. is not part of this test suite.
 Requirements: 4 basic users with different permissions are needed to test.
 sneha.qa.24@gmail.com: all perms
 muunni.24@gmail.com: no perms
@@ -30,17 +30,18 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.thoughtworks.selenium.Selenium;
 
-public class PermsOnReplyToAllPage {
+public class PermsOnCompose_DraftsPage {
 	private WebDriver driver;
 	private String baseUrl="http://192.168.1.130";
 	Selenium selenium;
 	private StringBuffer verificationErrors = new StringBuffer();
 	String user_allperms="sneha.qa.24@gmail.com",user_noperms="muunni.24@gmail.com",user_onlysecure="snehamtd002@yahoo.com",user_onlylft="snehamtd001@gmail.com";
 	String pwd_allusers="123abc";
-	String pathAutoItScript_lesserthan25mb="C:\\Users\\Sneha\\Desktop\\silver_autoit.exe";
+	String pathAutoItScript="C:\\Users\\Sneha\\Desktop\\silver_autoit.exe";
 	String pathAutoItScript_greaterthan25MB="C:\\Users\\Sneha\\Desktop\\silver_autoit_greaterthan25mb.exe";
-	WebElement ele=null;String subject,emailBody;
-	String emailId;
+	WebElement ele=null;String DraftId;
+	String subject;
+	
 	
 	
 	
@@ -53,21 +54,17 @@ public class PermsOnReplyToAllPage {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		selenium = new WebDriverBackedSelenium(driver, baseUrl);
 		
-		
 	}
 
 	
 	
 	
-	@Test
+	@Ignore
 	public void NonSecureNoattachs() throws Exception {
-		
 	
-		System.out.println("Testing user with LFT perms only");
-		subject="TC--81";
-		emailBody="TC--81";
 		
-		Functions.LFTSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
+		subject="TC--105";
+		System.out.println("Ignoreing user with LFT perms only");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -76,26 +73,57 @@ public class PermsOnReplyToAllPage {
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
-		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
 		Thread.sleep(2000);
 		
-		Functions.NoErrorMssg(driver, user_noperms);
-		Functions.NoErrorMssg(driver, user_onlysecure);
+		Functions.LftErrorMssg(driver, user_noperms);
+		Functions.LftErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
+		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys(subject);
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']",subject);
+		driver.switchTo().defaultContent();
+		driver.findElement(By.id("submitter")).click();
+		assertEquals("Large File Transfers must contain atleast one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
+		System.out.println("PASS:Permission checking passed for LFT user sending mail with no attachs and non-secure.");
+        Runtime.getRuntime().exec(pathAutoItScript);
+		
+		Thread.sleep(3000);
+		
+		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+		ele.click();
+		Thread.sleep(2000);
+		
+		
+		
+		driver.findElement(By.id("saver")).click(); Thread.sleep(3000);
+		driver.findElement(By.linkText("Drafts")).click();
+		Thread.sleep(3000);
+		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
+		driver.get(baseUrl+"/transfer/draft/"+DraftId);
+		selenium.waitForPageToLoad("3000");
+		assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
+		driver.findElement(By.id("massinsert")).click();
+		driver.findElement(By.id("massintext")).clear();
+		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
+		driver.findElement(By.xpath("//button[@type='button']")).click();
+		Thread.sleep(2000);
+		Functions.LftErrorMssg(driver, user_noperms);
+		Functions.LftErrorMssg(driver, user_onlysecure);
+		Functions.NoErrorMssg(driver, user_allperms);
+		Functions.NoErrorMssg(driver, user_onlylft);
+		
+		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
@@ -103,15 +131,10 @@ public class PermsOnReplyToAllPage {
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
+		// ************************************************************************
 		
-		
-		
-		
-		System.out.println("Testing user with SECURE perms only");
-		subject="TC--82";
-		emailBody="TC--82";
-		Functions.LFTSend(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
+		subject="TC--106";
+		System.out.println("Ignoreing user with Secure perms only");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -120,39 +143,68 @@ public class PermsOnReplyToAllPage {
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
-		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
-		Functions.NoErrorMssg(driver, user_noperms);
-		Functions.NoErrorMssg(driver, user_onlysecure);
+		Functions.LftErrorMssg(driver, user_noperms);
+		Functions.LftErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
+		 		   
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys(subject);
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']",subject);
+		driver.switchTo().defaultContent();
+       
+		driver.findElement(By.id("submitter")).click();
+		assertEquals("Large File Transfers must contain atleast one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
+		
+		 Runtime.getRuntime().exec(pathAutoItScript);
+			
+			Thread.sleep(3000);
+			
+			Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+			ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+			ele.click();
+			Thread.sleep(2000);
+			Functions.WaitForUpload(driver);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
+			driver.findElement(By.linkText("Drafts")).click();
+			Thread.sleep(3000);
+			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
+			driver.get(baseUrl+"/transfer/draft/"+DraftId);
+			selenium.waitForPageToLoad("3000");
+			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
+			driver.findElement(By.id("massinsert")).click();
+			driver.findElement(By.id("massintext")).clear();
+			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
+			driver.findElement(By.xpath("//button[@type='button']")).click();
+			Thread.sleep(2000);
+			
+			
+			Functions.LftErrorMssg(driver, user_noperms);
+			Functions.LftErrorMssg(driver, user_onlysecure);
+			Functions.NoErrorMssg(driver, user_allperms);
+			Functions.NoErrorMssg(driver, user_onlylft);
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
-		//*************************************************************
-
+	//*********************************************************
+	
 		
-		System.out.println("Testing user with ALL perms");
-		subject="TC--83";
-		emailBody="TC--83";
-		Functions.LFTSend(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
+		
+		subject="TC--107";
+		System.out.println("Ignoreing user with ALL perms");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -161,40 +213,67 @@ public class PermsOnReplyToAllPage {
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
-		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		Functions.NoErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
+		 		   
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys(subject);
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']",subject);
+		driver.switchTo().defaultContent();
+       
+		driver.findElement(By.id("submitter")).click();
+		assertEquals("Large File Transfers must contain atleast one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
+		
+		 Runtime.getRuntime().exec(pathAutoItScript);
+			
+			Thread.sleep(3000);
+			
+			Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+			ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+			ele.click();
+			Thread.sleep(2000);
+			Functions.WaitForUpload(driver);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
+			driver.findElement(By.linkText("Drafts")).click();
+			Thread.sleep(3000);
+			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
+			driver.get(baseUrl+"/transfer/draft/"+DraftId);
+			selenium.waitForPageToLoad("3000");
+			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
+			driver.findElement(By.id("massinsert")).click();
+			driver.findElement(By.id("massintext")).clear();
+			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
+			driver.findElement(By.xpath("//button[@type='button']")).click();
+			Thread.sleep(3000); // time for illegal recipients to show up in red
+			
+			Functions.NoErrorMssg(driver, user_noperms);
+			Functions.NoErrorMssg(driver, user_onlysecure);
+			Functions.NoErrorMssg(driver, user_allperms);
+			Functions.NoErrorMssg(driver, user_onlylft);
+			
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
-		//*************************************************************
 		
+	//*********************************************************
 		
-		
-		System.out.println("Testing user with NO perms");
-		subject="TC--84";
-		emailBody="TC--84";
-		Functions.LFTSend(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
+		subject="TC--108";
+		System.out.println("Ignoreing user with NO perms");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -203,47 +282,76 @@ public class PermsOnReplyToAllPage {
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
-		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
-		Functions.NoErrorMssg(driver, user_noperms);
-		Functions.NoErrorMssg(driver, user_onlysecure);
+		Functions.LftErrorMssg(driver, user_noperms);
+		Functions.LftErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
+		 		   
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys(subject);
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']",subject);
+		driver.switchTo().defaultContent();
+       
+		driver.findElement(By.id("submitter")).click();
+		assertEquals("Large File Transfers must contain atleast one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
+		
+		 Runtime.getRuntime().exec(pathAutoItScript);
+			
+			Thread.sleep(3000);
+			
+			Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+			ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+			ele.click();
+			Thread.sleep(2000);
+			Functions.WaitForUpload(driver);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
+			driver.findElement(By.linkText("Drafts")).click();
+			Thread.sleep(3000);
+			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
+			driver.get(baseUrl+"/transfer/draft/"+DraftId);
+			selenium.waitForPageToLoad("3000");
+			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
+			driver.findElement(By.id("massinsert")).click();
+			driver.findElement(By.id("massintext")).clear();
+			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
+			driver.findElement(By.xpath("//button[@type='button']")).click();
+			Thread.sleep(3000); // time for illegal recipients to show up in red
+			
+			Functions.LftErrorMssg(driver, user_noperms);
+			Functions.LftErrorMssg(driver, user_onlysecure);
+			Functions.NoErrorMssg(driver, user_allperms);
+			Functions.NoErrorMssg(driver, user_onlylft);
+			 		   
+			
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
-		//*************************************************************
+		
+		//******************************************************************
 		
 		
-	}// end of NonSecureNoattachs
+		
+		
+	}// end of Ignore
 	
 	@Test
 	public void SecureNoattachs() throws Exception {
+	
 		
-		
-		
-		System.out.println("Testing user with LFT perms only");
-		subject="TC--85";
-		emailBody="TC--85";
-		
-		Functions.SecureSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
+		System.out.println("Ignoreing user with LFT perms only");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -252,27 +360,29 @@ public class PermsOnReplyToAllPage {
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
+		driver.findElement(By.id("secure")).click();
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+
+		Thread.sleep(3000);
 		
 		Functions.SecureErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.SecureErrorMssg(driver, user_onlylft);
+		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--25");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC--25");
+		driver.switchTo().defaultContent();
+		
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
@@ -281,15 +391,11 @@ public class PermsOnReplyToAllPage {
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
-		
+		// ************************************************************************
 	
 		
-		System.out.println("Testing user with SECURE perms only");
-		subject="TC--86";
-		emailBody="TC--86";
 		
-		Functions.SecureSend(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
+		System.out.println("Ignoreing user with Secure perms only");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -298,27 +404,29 @@ public class PermsOnReplyToAllPage {
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
+		driver.findElement(By.id("secure")).click();
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+
+		Thread.sleep(3000);
 		
 		Functions.NoErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
+		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--26");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC--26");
+		driver.switchTo().defaultContent();
+		
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
@@ -327,12 +435,10 @@ public class PermsOnReplyToAllPage {
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
-		System.out.println("Testing user with ALL perms");
-		subject="TC--87";
-		emailBody="TC--87";
+		// ************************************************************************
 		
-		Functions.SecureSend(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
+		
+		System.out.println("Ignoreing user with ALL perms only");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -341,28 +447,30 @@ public class PermsOnReplyToAllPage {
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
+		driver.findElement(By.id("secure")).click();
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+
+		Thread.sleep(3000);
 		
 		Functions.NoErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--27");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC--27");
+		driver.switchTo().defaultContent();
+		
+		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
@@ -370,44 +478,43 @@ public class PermsOnReplyToAllPage {
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
+		// ************************************************************************
 		
+	
 		
-		System.out.println("Testing user with NO perms");
-		subject="TC--88";
-		emailBody="TC--88";
-		
-		Functions.SecureSend(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
+		System.out.println("Ignoreing user with NO perms");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
-		driver.findElement(By.id("id_username")).sendKeys(user_noperms);
+		driver.findElement(By.id("id_username")).sendKeys(user_allperms);
 		driver.findElement(By.id("id_password")).clear();
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
+		driver.findElement(By.id("secure")).click();
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+
+		Thread.sleep(3000);
 		
 		Functions.SecureErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.SecureErrorMssg(driver, user_onlylft);
 		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--28");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC--28");
+		driver.switchTo().defaultContent();
+		
+		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
@@ -415,24 +522,16 @@ public class PermsOnReplyToAllPage {
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
+		// ************************************************************************
 		
 		
-	}//end of SecureNoattachs
+	}// end of Ignore
 	
-	@Test
-	public void NonSecureGreaterThan25mb() throws Exception {
+	@Ignore
+	public void NonSecureGreater25MB() throws Exception {
 		
-		
-		
-		
-		
-		
-		System.out.println("Testing user with LFT perms only");
-		subject="TC--89";
-		emailBody="TC--89";
-		
-		Functions.LFTSendGreaterThan25mb(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
+	
+		System.out.println("Ignoreing user with LFT perms only");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -441,40 +540,39 @@ public class PermsOnReplyToAllPage {
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
-		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		//assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		
 		
-        Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
+		 Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
-		
+		Thread.sleep(3000);
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
-		Thread.sleep(2000);
 		ele.click();
+		Thread.sleep(2000);
 		
 		
-		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+
+		Thread.sleep(3000);
 		
 		Functions.NoErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
+		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--21");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC--21");
+		driver.switchTo().defaultContent();
+		
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
@@ -483,56 +581,55 @@ public class PermsOnReplyToAllPage {
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
+		// ************************************************************************
+	
 		
 		
 		
-		System.out.println("Testing user with SECURE perms only");
-		subject="TC--90";
-		emailBody="TC--90";
 		
-		Functions.LFTSendGreaterThan25mb(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
+		System.out.println("Ignoreing user with SECURE perms only");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
-		driver.findElement(By.id("id_username")).sendKeys(user_onlysecure);
+		driver.findElement(By.id("id_username")).sendKeys(user_onlylft);
 		driver.findElement(By.id("id_password")).clear();
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
-		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		//assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
-         Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		
 		
+		 Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
+		
+		Thread.sleep(3000);
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
-		Thread.sleep(2000);
 		ele.click();
+		Thread.sleep(2000);
 		
 		
-		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+
+		Thread.sleep(3000);
 		
 		Functions.LftErrorMssg(driver, user_noperms);
 		Functions.LftErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--22");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC--22");
+		driver.switchTo().defaultContent();
+		
+		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
@@ -540,14 +637,14 @@ public class PermsOnReplyToAllPage {
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
+		// ************************************************************************
 		
 		
-		System.out.println("Testing user with ALL perms");
-		subject="TC--91";
-		emailBody="TC--91";
 		
-		Functions.LFTSendGreaterThan25mb(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
+		
+		
+
+		System.out.println("Ignoreing user with ALL perms only");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -556,38 +653,39 @@ public class PermsOnReplyToAllPage {
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
-		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		//assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
-Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		
 		
+		 Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
+		
+		Thread.sleep(3000);
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
-		Thread.sleep(2000);
 		ele.click();
+		Thread.sleep(2000);
 		
 		
-		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+
+		Thread.sleep(3000);
 		
 		Functions.NoErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
+		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--23");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC--23");
+		driver.switchTo().defaultContent();
+		
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
@@ -596,13 +694,11 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
+		// ************************************************************************
 		
-		System.out.println("Testing user with NO perms");
-		subject="TC--92";
-		emailBody="TC--92";
 		
-		Functions.LFTSendGreaterThan25mb(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
+		
+		System.out.println("Ignoreing user with NO perms");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -611,39 +707,40 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
-		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		//assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
-Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		
 		
+		 Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
+		
+		Thread.sleep(3000);
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
-		Thread.sleep(2000);
 		ele.click();
+		Thread.sleep(2000);
 		
 		
-		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+
+		Thread.sleep(3000);
 		
 		Functions.LftErrorMssg(driver, user_noperms);
 		Functions.LftErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--24");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC--24");
+		driver.switchTo().defaultContent();
+		
+		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
@@ -651,20 +748,18 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
+		// ************************************************************************
 		
-	}//end of NonSecureGreaterThan25mb
-	
-	
-	@Test
-	public void SecureLesserThan25mb() throws Exception {
-	
 		
-		System.out.println("Testing user with LFT perms only");
-		subject="TC--93";
-		emailBody="TC--93";
 		
-		Functions.SecureSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
+	
+	}// end of Ignore
+	
+	@Ignore
+	public void SecureLesser25MB() throws Exception {
+		
+		
+		System.out.println("Ignoreing user with LFT perms only");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -673,38 +768,39 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
+		driver.findElement(By.id("secure")).click();
 		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
+		 Runtime.getRuntime().exec(pathAutoItScript);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
-        Runtime.getRuntime().exec(pathAutoItScript_lesserthan25mb);
-		
-		
+		Thread.sleep(3000);
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
-		Thread.sleep(2000);
 		ele.click();
+		Thread.sleep(2000);
 		
 		
-		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+
+		Thread.sleep(3000);
 		
 		Functions.SecureErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.SecureErrorMssg(driver, user_onlylft);
+		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--12");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC-12");
+		driver.switchTo().defaultContent();
+		
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
@@ -713,16 +809,10 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
+		// ************************************************************************
+	
 		
-		
-		
-		
-		System.out.println("Testing user with SECURE perms only");
-		subject="TC--94";
-		emailBody="TC--94";
-		
-		Functions.SecureSend(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
+		System.out.println("Ignoreing user with SECURE perms only");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -731,38 +821,39 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
+		driver.findElement(By.id("secure")).click();
 		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
+		 Runtime.getRuntime().exec(pathAutoItScript);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
-        Runtime.getRuntime().exec(pathAutoItScript_lesserthan25mb);
-		
-		
+		Thread.sleep(3000);
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
-		Thread.sleep(2000);
 		ele.click();
+		Thread.sleep(2000);
 		
 		
-		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+
+		Thread.sleep(3000);
 		
 		Functions.NoErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
+		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--11");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC-11");
+		driver.switchTo().defaultContent();
+		
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
@@ -771,13 +862,11 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
+		// ************************************************************************
+	
 		
-		System.out.println("Testing user with ALL perms");
-		subject="TC--95";
-		emailBody="TC--95";
 		
-		Functions.SecureSend(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
+		System.out.println("Ignoreing user with ALL perms");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -786,38 +875,39 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
+		driver.findElement(By.id("secure")).click();
 		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
+		 Runtime.getRuntime().exec(pathAutoItScript);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
-        Runtime.getRuntime().exec(pathAutoItScript_lesserthan25mb);
-		
-		
+		Thread.sleep(3000);
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
-		Thread.sleep(2000);
 		ele.click();
+		Thread.sleep(2000);
 		
 		
-		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+
+		Thread.sleep(3000);
 		
 		Functions.NoErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
+		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--10");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC-10");
+		driver.switchTo().defaultContent();
+		
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
@@ -826,13 +916,11 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
+		// ************************************************************************
 		
-		System.out.println("Testing user with NO perms");
-		subject="TC--96";
-		emailBody="TC--96";
+	
 		
-		Functions.SecureSend(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
+		System.out.println("Ignoreing user with NO perms");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -841,38 +929,39 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
+		driver.findElement(By.id("secure")).click();
 		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
+		 Runtime.getRuntime().exec(pathAutoItScript);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
-        Runtime.getRuntime().exec(pathAutoItScript_lesserthan25mb);
-		
-		
+		Thread.sleep(3000);
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
-		Thread.sleep(2000);
 		ele.click();
+		Thread.sleep(2000);
 		
 		
-		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+
+		Thread.sleep(3000);
 		
 		Functions.SecureErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.SecureErrorMssg(driver, user_onlylft);
+		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--09");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC-09");
+		driver.switchTo().defaultContent();
+		
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
@@ -881,22 +970,20 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
+		// ************************************************************************
 		
 		
-	}//  end of SecureLesserThan25mb
+		
+		
+		
+	}// end of Ignore
 	
+	@Ignore
+	public void NonSecureLesser25MB() throws Exception {
+		
 	
-	@Test
-	public void NonSecureLesserThan25mb() throws Exception {
 		
-		
-		
-		System.out.println("Testing user with LFT perms only");
-		subject="TC--97";
-		emailBody="TC--97";
-		
-		Functions.LFTSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
+		System.out.println("Ignoreing user with LFT perms only");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -905,40 +992,39 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
-		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		//assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		
 		
-        Runtime.getRuntime().exec(pathAutoItScript_lesserthan25mb);
+		 Runtime.getRuntime().exec(pathAutoItScript);
 		
-		
+		Thread.sleep(3000);
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
-		Thread.sleep(2000);
 		ele.click();
+		Thread.sleep(2000);
 		
 		
-		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+
+		Thread.sleep(3000);
 		
 		Functions.NoErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
+		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--16");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC-16");
+		driver.switchTo().defaultContent();
+		
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
@@ -947,15 +1033,12 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
+		// ************************************************************************
+	
+	
 		
 		
-		
-		System.out.println("Testing user with secure perms only");
-		subject="TC--98";
-		emailBody="TC--98";
-		
-		Functions.LFTSend(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
+		System.out.println("Ignoreing user with SECURE perms only");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -964,270 +1047,40 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
-		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		//assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		
 		
-        Runtime.getRuntime().exec(pathAutoItScript_lesserthan25mb);
+		 Runtime.getRuntime().exec(pathAutoItScript);
 		
-		
+		Thread.sleep(3000);
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
-		Thread.sleep(2000);
 		ele.click();
+		Thread.sleep(2000);
 		
 		
-		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
-		
-		Functions.NoErrorMssg(driver, user_noperms);
-		Functions.NoErrorMssg(driver, user_onlysecure);
-		Functions.NoErrorMssg(driver, user_allperms);
-		Functions.NoErrorMssg(driver, user_onlylft);
-		
-		driver.findElement(By.id("submitter")).click();
-		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
-		System.out.println("PASS:Mail successfully sent.");
-		driver.findElement(By.id("logout")).click();
-		
-		
-		//***********************************************************************************
-		System.out.println("Testing user with ALL perms");
-		subject="TC--99";
-		emailBody="TC--99";
-		
-		Functions.LFTSend(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
-		System.out.println("Navigating to base URL");
-		driver.get(baseUrl);
-		driver.findElement(By.id("id_username")).clear();
-		driver.findElement(By.id("id_username")).sendKeys(user_allperms);
-		driver.findElement(By.id("id_password")).clear();
-		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
-		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
-		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
-		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		//assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
-		
-		
-        Runtime.getRuntime().exec(pathAutoItScript_lesserthan25mb);
-		
-		
-		
-		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
-		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
-		Thread.sleep(2000);
-		ele.click();
-		
-		
+
 		Thread.sleep(3000);
-		driver.findElement(By.id("massinsert")).click();
-		driver.findElement(By.id("massintext")).clear();
-		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
-		
-		Functions.NoErrorMssg(driver, user_noperms);
-		Functions.NoErrorMssg(driver, user_onlysecure);
-		Functions.NoErrorMssg(driver, user_allperms);
-		Functions.NoErrorMssg(driver, user_onlylft);
-		
-		driver.findElement(By.id("submitter")).click();
-		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
-		System.out.println("PASS:Mail successfully sent.");
-		driver.findElement(By.id("logout")).click();
-		
-		
-		//***********************************************************************************
-		System.out.println("Testing user with NO perms");
-		subject="TC--100";
-		emailBody="TC--100";
-		
-		Functions.LFTSend(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
-		System.out.println("Navigating to base URL");
-		driver.get(baseUrl);
-		driver.findElement(By.id("id_username")).clear();
-		driver.findElement(By.id("id_username")).sendKeys(user_noperms);
-		driver.findElement(By.id("id_password")).clear();
-		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
-		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
-		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
-		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		//assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
-		
-		
-        Runtime.getRuntime().exec(pathAutoItScript_lesserthan25mb);
-		
-		
-		
-		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
-		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
-		Thread.sleep(2000);
-		ele.click();
-		
-		
-		Thread.sleep(3000);
-		driver.findElement(By.id("massinsert")).click();
-		driver.findElement(By.id("massintext")).clear();
-		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
-		
-		Functions.NoErrorMssg(driver, user_noperms);
-		Functions.NoErrorMssg(driver, user_onlysecure);
-		Functions.NoErrorMssg(driver, user_allperms);
-		Functions.NoErrorMssg(driver, user_onlylft);
-		
-		driver.findElement(By.id("submitter")).click();
-		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
-		System.out.println("PASS:Mail successfully sent.");
-		driver.findElement(By.id("logout")).click();
-		
-		
-		//***********************************************************************************
-		
-	}// end of NonSecureLesserThan25mb
-	
-	
-	@Test
-	public void SecureGreaterThan25mb() throws Exception {
-		
-		
-		System.out.println("Testing user with LFT perms only");
-		subject="TC--101";
-		emailBody="TC--101";
-		
-		Functions.SecureSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
-		System.out.println("Navigating to base URL");
-		driver.get(baseUrl);
-		driver.findElement(By.id("id_username")).clear();
-		driver.findElement(By.id("id_username")).sendKeys(user_onlylft);
-		driver.findElement(By.id("id_password")).clear();
-		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
-		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
-		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
-		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
-        Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
-		
-		
-		
-		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
-		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
-		Thread.sleep(2000);
-		ele.click();
-		
-		
-		Thread.sleep(3000);
-		driver.findElement(By.id("massinsert")).click();
-		driver.findElement(By.id("massintext")).clear();
-		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
-		
-		Functions.SecureErrorMssg(driver, user_noperms);
-		Functions.NoErrorMssg(driver, user_onlysecure);
-		Functions.NoErrorMssg(driver, user_allperms);
-		Functions.SecureErrorMssg(driver, user_onlylft);
-		
-		driver.findElement(By.id("submitter")).click();
-		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
-		System.out.println("PASS:Mail successfully sent.");
-		driver.findElement(By.id("logout")).click();
-		
-		
-		//***********************************************************************************
-		
-		System.out.println("Testing user with SECURE perms only");
-		subject="TC--102";
-		emailBody="TC--102";
-		
-		Functions.SecureSend(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
-		System.out.println("Navigating to base URL");
-		driver.get(baseUrl);
-		driver.findElement(By.id("id_username")).clear();
-		driver.findElement(By.id("id_username")).sendKeys(user_onlysecure);
-		driver.findElement(By.id("id_password")).clear();
-		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
-		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
-		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
-		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
-        Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
-		
-		
-		
-		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
-		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
-		Thread.sleep(2000);
-		ele.click();
-		
-		
-		Thread.sleep(3000);
-		driver.findElement(By.id("massinsert")).click();
-		driver.findElement(By.id("massintext")).clear();
-		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
 		
 		Functions.LftErrorMssg(driver, user_noperms);
 		Functions.LftErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--15");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC-15");
+		driver.switchTo().defaultContent();
+		
+		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
@@ -1235,12 +1088,13 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
-		System.out.println("Testing user with ALL perms");
-		subject="TC--103";
-		emailBody="TC--103";
+		// ************************************************************************
+	
 		
-		Functions.SecureSend(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
+		
+		
+		
+		System.out.println("Ignoreing user with ALL perms");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -1249,38 +1103,39 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
-		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
-		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
-        Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		
 		
+		 Runtime.getRuntime().exec(pathAutoItScript);
+		
+		Thread.sleep(3000);
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
-		Thread.sleep(2000);
 		ele.click();
+		Thread.sleep(2000);
 		
 		
-		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+
+		Thread.sleep(3000);
 		
 		Functions.NoErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
+		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--14");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC-14");
+		driver.switchTo().defaultContent();
+		
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
@@ -1289,17 +1144,232 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
+		// ************************************************************************
+		
+		System.out.println("Ignoreing user with NO perms");
+		System.out.println("Navigating to base URL");
+		driver.get(baseUrl);
+		driver.findElement(By.id("id_username")).clear();
+		driver.findElement(By.id("id_username")).sendKeys(user_onlysecure);
+		driver.findElement(By.id("id_password")).clear();
+		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
+		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
+		
+		
+		 Runtime.getRuntime().exec(pathAutoItScript);
+		
+		Thread.sleep(3000);
+		
+		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+		ele.click();
+		Thread.sleep(2000);
+		
+		
+		driver.findElement(By.id("massinsert")).click();
+		driver.findElement(By.id("massintext")).clear();
+		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
+		driver.findElement(By.xpath("//button[@type='button']")).click();
+
+		Thread.sleep(3000);
+		
+		Functions.LftErrorMssg(driver, user_noperms);
+		Functions.LftErrorMssg(driver, user_onlysecure);
+		Functions.NoErrorMssg(driver, user_allperms);
+		Functions.NoErrorMssg(driver, user_onlylft);
+		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--13");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC-13");
+		driver.switchTo().defaultContent();
+		
+		
+		driver.findElement(By.id("submitter")).click();
+		selenium.waitForPageToLoad("3000");
+		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		System.out.println("PASS:Mail successfully sent.");
+		driver.findElement(By.id("logout")).click();
+		
+		
+		// ************************************************************************
+		
+		
+		
+	}// end of Ignore
+	
+	@Ignore
+	public void SecureGreater25MB() throws Exception {
+		
+		
+	
+		System.out.println("Ignoreing user with LFT perms only");
+		System.out.println("Navigating to base URL");
+		driver.get(baseUrl);
+		driver.findElement(By.id("id_username")).clear();
+		driver.findElement(By.id("id_username")).sendKeys(user_onlylft);
+		driver.findElement(By.id("id_password")).clear();
+		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
+		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
+		
+		driver.findElement(By.id("secure")).click();
+		 Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
+		
+		Thread.sleep(3000);
+		
+		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+		ele.click();
+		Thread.sleep(2000);
+		
+		
+		driver.findElement(By.id("massinsert")).click();
+		driver.findElement(By.id("massintext")).clear();
+		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
+		driver.findElement(By.xpath("//button[@type='button']")).click();
+
+		Thread.sleep(3000);
+		
+		Functions.SecureErrorMssg(driver, user_noperms);
+		Functions.LftErrorMssg(driver, user_onlysecure);
+		Functions.NoErrorMssg(driver, user_allperms);
+		Functions.SecureErrorMssg(driver, user_onlylft);
+		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--20");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC-20");
+		driver.switchTo().defaultContent();
+		
+		
+		driver.findElement(By.id("submitter")).click();
+		selenium.waitForPageToLoad("3000");
+		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		System.out.println("PASS:Mail successfully sent.");
+		driver.findElement(By.id("logout")).click();
+		
+		
+		// ************************************************************************	
 		
 		
 		
 		
+		System.out.println("Ignoreing user with SECURE perms only");
+		System.out.println("Navigating to base URL");
+		driver.get(baseUrl);
+		driver.findElement(By.id("id_username")).clear();
+		driver.findElement(By.id("id_username")).sendKeys(user_onlysecure);
+		driver.findElement(By.id("id_password")).clear();
+		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
+		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		
-		System.out.println("Testing user with NO perms");
-		subject="TC--104";
-		emailBody="TC--104";
+		driver.findElement(By.id("secure")).click();
+		 Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
-		Functions.SecureSend(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
+		Thread.sleep(3000);
+		
+		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+		ele.click();
+		Thread.sleep(2000);
+		
+		
+		driver.findElement(By.id("massinsert")).click();
+		driver.findElement(By.id("massintext")).clear();
+		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
+		driver.findElement(By.xpath("//button[@type='button']")).click();
+
+		Thread.sleep(3000);
+		
+		Functions.LftErrorMssg(driver, user_noperms);
+		Functions.LftErrorMssg(driver, user_onlysecure);
+		Functions.NoErrorMssg(driver, user_allperms);
+		Functions.NoErrorMssg(driver, user_onlylft);
+		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--19");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC-19");
+		driver.switchTo().defaultContent();
+		
+		
+		driver.findElement(By.id("submitter")).click();
+		selenium.waitForPageToLoad("3000");
+		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		System.out.println("PASS:Mail successfully sent.");
+		driver.findElement(By.id("logout")).click();
+		
+		
+		// ************************************************************************	
+		
+		
+		
+		System.out.println("Ignoreing user with ALL perms");
+		System.out.println("Navigating to base URL");
+		driver.get(baseUrl);
+		driver.findElement(By.id("id_username")).clear();
+		driver.findElement(By.id("id_username")).sendKeys(user_allperms);
+		driver.findElement(By.id("id_password")).clear();
+		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
+		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
+		
+		driver.findElement(By.id("secure")).click();
+		 Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
+		
+		Thread.sleep(3000);
+		
+		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+		ele.click();
+		Thread.sleep(2000);
+		
+		
+		driver.findElement(By.id("massinsert")).click();
+		driver.findElement(By.id("massintext")).clear();
+		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
+		driver.findElement(By.xpath("//button[@type='button']")).click();
+
+		Thread.sleep(3000);
+		
+		Functions.NoErrorMssg(driver, user_noperms);
+		Functions.NoErrorMssg(driver, user_onlysecure);
+		Functions.NoErrorMssg(driver, user_allperms);
+		Functions.NoErrorMssg(driver, user_onlylft);
+		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--18");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC-18");
+		driver.switchTo().defaultContent();
+		
+		
+		driver.findElement(By.id("submitter")).click();
+		selenium.waitForPageToLoad("3000");
+		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		System.out.println("PASS:Mail successfully sent.");
+		driver.findElement(By.id("logout")).click();
+		
+		
+		// ************************************************************************	
+	
+		
+		System.out.println("Ignoreing user with NO perms");
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -1308,39 +1378,40 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
-		Thread.sleep(5000);// time for elements to load inside Inbox
-		emailId=Functions.FindIdwithSubject(driver, selenium,subject);
+		driver.findElement(By.linkText("Compose")).click();
+		assertEquals("Send Email", driver.findElement(By.id("heading")).getText());
 		
-		driver.get(baseUrl+"/transfer/email/view/"+emailId);
+		driver.findElement(By.id("secure")).click();
+		 Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
-		driver.findElement(By.id("reply-all")).click();
-		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
-		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
-		//System.out.println(""+driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked"));
-		assertEquals("true",driver.findElement(By.xpath("//*[@id='secure']")).getAttribute("checked")); // checking if reply to secure is secure by default.
-        Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
-		
-		
+		Thread.sleep(3000);
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
-		Thread.sleep(2000);
 		ele.click();
+		Thread.sleep(2000);
 		
 		
-		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(2000);
+
+		Thread.sleep(3000);
 		
 		Functions.LftAndSecureErrorMssg(driver, user_noperms);
 		Functions.LftErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.SecureErrorMssg(driver, user_onlylft);
 		
+		driver.findElement(By.id("id_subject")).clear();
+		driver.findElement(By.id("id_subject")).sendKeys("TC--17");
+		driver.switchTo().frame("id_body_ifr");
+		
+		selenium.typeKeys("//body[@id='tinymce']","TC-17");
+		driver.switchTo().defaultContent();
+		
+		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
@@ -1348,14 +1419,12 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		driver.findElement(By.id("logout")).click();
 		
 		
-		//***********************************************************************************
-		
-		
-		
-	}// end of SecureGreaterThan25mb
+		// ************************************************************************	
 	
-	
+	}// end of Ignore
 
+	
+	
 	@After
 	public void tearDown() throws Exception {
 		driver.quit();
@@ -1364,7 +1433,5 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 			fail(verificationErrorString);
 		}
 	}//end of tearDown
-	
-	
-	
-	}// end of PermsOnReplyPage class
+
+}// end of PermsOnComposePage class
