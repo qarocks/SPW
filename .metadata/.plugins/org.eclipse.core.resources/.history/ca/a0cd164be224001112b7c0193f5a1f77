@@ -81,7 +81,7 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -125,7 +125,7 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -166,7 +166,7 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -208,7 +208,7 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -257,7 +257,7 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -303,7 +303,7 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -346,7 +346,7 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -391,7 +391,7 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -446,7 +446,7 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -505,7 +505,7 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -561,7 +561,7 @@ public class PermsOnReplyToAllPage {
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -616,7 +616,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -678,7 +678,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -736,7 +736,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -791,7 +791,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -846,7 +846,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -910,7 +910,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -969,7 +969,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -1025,7 +1025,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -1081,7 +1081,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -1145,7 +1145,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -1200,7 +1200,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -1254,7 +1254,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
@@ -1313,7 +1313,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);
 		
-		assertEquals("Reply to All", driver.findElement(By.id("reply-all")).getText());
+		assertEquals("Reply", driver.findElement(By.id("reply-all")).getText());
 		driver.findElement(By.id("reply-all")).click();
 		assertEquals("Reply", driver.findElement(By.id("heading")).getText());
 		assertEquals("Re: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
