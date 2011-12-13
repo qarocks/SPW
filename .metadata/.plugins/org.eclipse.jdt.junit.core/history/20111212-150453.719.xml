@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testrun name="PermsOnCompose_DraftsPage" project="spw_001" tests="4" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="sanity_ff.PermsOnCompose_DraftsPage" incomplete="true">
-    <testcase name="NonSecureGreater25MB" classname="sanity_ff.PermsOnCompose_DraftsPage" incomplete="true"/>
-    <testcase name="SecureLesser25MB" classname="sanity_ff.PermsOnCompose_DraftsPage" incomplete="true"/>
-    <testcase name="NonSecureLesser25MB" classname="sanity_ff.PermsOnCompose_DraftsPage" incomplete="true"/>
-    <testcase name="SecureGreater25MB" classname="sanity_ff.PermsOnCompose_DraftsPage" incomplete="true"/>
-  </testsuite>
-</testrun>

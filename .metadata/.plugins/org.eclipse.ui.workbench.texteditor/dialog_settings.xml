@@ -3,36 +3,36 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="295" key="DIALOG_Y_ORIGIN"/>
-		<item value="380" key="DIALOG_HEIGHT"/>
 		<item value="806" key="DIALOG_X_ORIGIN"/>
+		<item value="380" key="DIALOG_HEIGHT"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
+		<item value="true" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="104" key="selection"/>
+		<item value="Test" key="selection"/>
 		<list key="findhistory">
-			<item value="80"/>
-			<item value="79"/>
-			<item value="78"/>
-			<item value="77"/>
-			<item value="76"/>
-			<item value="75"/>
-			<item value="74"/>
-			<item value="73"/>
+			<item value="Ignore"/>
+			<item value="Test"/>
+			<item value="TC--81"/>
+			<item value="TC--80"/>
+			<item value="TC--79"/>
+			<item value="TC--78"/>
+			<item value="TC--77"/>
+			<item value="TC--76"/>
 		</list>
 		<list key="replacehistory">
-			<item value="104"/>
-			<item value="103"/>
-			<item value="102"/>
-			<item value="101"/>
-			<item value="100"/>
-			<item value="99"/>
-			<item value="98"/>
-			<item value="97"/>
+			<item value="Test"/>
+			<item value="Ignore"/>
+			<item value="TC--175"/>
+			<item value="TC--176"/>
+			<item value="TC--174"/>
+			<item value="TC--173"/>
+			<item value="TC--172"/>
+			<item value="TC--171"/>
 		</list>
 	</section>
 </section>
