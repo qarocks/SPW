@@ -32,7 +32,7 @@ import com.thoughtworks.selenium.Selenium;
 
 public class PermsOnReplyToAll_DraftsPage {
 	private WebDriver driver;
-	private String baseUrl="http://192.168.1.130";
+	private String baseUrl=Functions.baseUrl;
 	Selenium selenium;
 	private StringBuffer verificationErrors = new StringBuffer();
 	String user_allperms="sneha.qa.24@gmail.com",user_noperms="muunni.24@gmail.com",user_onlysecure="snehamtd002@yahoo.com",user_onlylft="snehamtd001@gmail.com";
@@ -120,7 +120,7 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -186,7 +186,7 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -250,7 +250,7 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -312,7 +312,7 @@ public class PermsOnReplyToAll_DraftsPage {
 			
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -384,7 +384,7 @@ public class PermsOnReplyToAll_DraftsPage {
 			
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -450,7 +450,7 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -513,7 +513,7 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -577,7 +577,7 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -665,7 +665,7 @@ public class PermsOnReplyToAll_DraftsPage {
 			Functions.NoErrorMssg(driver, user_onlylft);
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -741,7 +741,7 @@ public class PermsOnReplyToAll_DraftsPage {
 			
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -817,7 +817,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -891,7 +891,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 			Functions.NoErrorMssg(driver, user_onlylft);
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -972,7 +972,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1050,7 +1050,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1124,7 +1124,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1201,7 +1201,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1287,7 +1287,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1368,7 +1368,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1444,7 +1444,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1522,7 +1522,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1606,7 +1606,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1682,7 +1682,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1756,7 +1756,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1836,7 +1836,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		

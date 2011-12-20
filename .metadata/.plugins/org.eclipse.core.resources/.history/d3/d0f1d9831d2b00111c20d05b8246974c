@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project []>
+<!-- build file created by sneha Motadoo -->
+<project name="myJUnitTests" default="usage" basedir=".">
+	<!-- ========== Initialize Property Variables =================================== -->
+	<property environment="env" />
+
+	<property name="test.home" value="${basedir}" />
+	<property name="test.jars" value="C:/Sparkweave-Selenium/JAR" />
+	<property name="test.dest" value="${test.home}/ant_build" />
+	<property name="test.src" value="${test.home}/src" />
+	<property name="ant.reports" value="${test.home}/ant_result" />
+
+	<path id="testcase.path">
+		<pathelement location="${test.dest}" />
+
+		<fileset dir="${test.jars}">
+			<include name="*.jar" />
+		</fileset>
+
+	</path>
+
+
+	<!--target name="start-selenium-server">
+	        <java jar="${test.home}/lib/selenium-server.jar"/>
+	    </target-->
+
+	<target name="setClassPath" unless="test.classpath">
+		<path id="classpath_jars">
+			<fileset dir="${test.jars}" includes="*.jar" />
+		</path>
+		<pathconvert pathsep=":" property="test.classpath" refid="classpath_jars" />
+	</target>
+
+	<!-- initialize everything-->
+	<target name="init" depends="setClassPath">
+		<!-- set time stamp-->
+		<tstamp>
+			<format property="start.time" pattern="MM/dd/yyyy hh:mm aa" />
+		</tstamp>
+		<condition property="ANT" value="${env.ANT_HOME}/bin/ant.bat" else="${env.ANT_HOME}/bin/ant">
+			<os family="windows" />
+		</condition>
+	</target>
+	
+	<!-- does nothing ... just an echo -->
+	<target name="nothing">
+		<echo message="just an echo." />
+	</target>
+
+	<!-- all -->
+	<target name="all">
+	</target>
+
+	<!-- clean -->
+	<target name="clean">
+		<echo message="Deleting old Build directory" />
+		<delete dir="${test.dest}" />
+	</target>
+
+	<!-- compile -->
+	<target name="compile" depends="init, clean">
+		<echo message="Initializing and cleaning 1st" />
+		<delete includeemptydirs="true" quiet="true">
+			<fileset dir="${test.dest}" includes="**/*" />
+		</delete>
+		<echo message="Compile1: Creating Build directory..." />
+		<mkdir dir="${test.dest}" />
+		<echo message="Compile1: Creating Result directory..." />
+		<mkdir dir="${ant.reports}" />
+		<echo message="classpath------: ${test.classpath}" />
+		<echo message="compiling..." />
+		<javac debug="true" destdir="${test.dest}" srcdir="${test.src}" target="1.5" classpath="${test.classpath}">
+		</javac>
+	</target>
+
+	<!-- build -->
+	<target name="build" depends="init">
+		<echo message="just an echo. but must have performed init before" />
+	</target>
+
+
+
+	<!-- this comes when you type ant alone in cmd in this test folder -->
+	<target name="usage">
+		<echo message="Ant run can now execute test." />
+	</target> 
+
+	<path id="test.c">
+		<fileset dir="${test.jars}" includes="*.jar" />
+	</path>
+	<!-- Main Ant Run properties-->
+	<target name="run">
+		<echo message="Should now start the actual test run." />
+		<delete includeemptydirs="true" quiet="true">
+			<fileset dir="${ant.reports}" includes="**/*" />
+		</delete>
+	<!--	<java jar="${test.jars}" fork="true" spawn="true" /> -->
+		<junit fork="yes" haltonfailure="no" printsummary="yes">
+		
+			<classpath refid="testcase.path" />
+			<formatter type="xml" />
+			<!-- Mention which Tests we want to run-->
+			<batchtest todir="${ant.reports}" fork="yes">
+				<fileset dir="${test.dest}">
+				<!--	<include name="myJUnit1.class" /> --> 
+				<!--	<include name="myJUnit21.class" /> --> 
+				<!--	<include name="LFT.class" /> -->
+				<!--	<include name="InitialSanitySteps.class" /> -->
+				<!--<include name="sanity/InitialSanitySteps.class" /> -->
+					<include name="sanity/PermsOnComposePage.class" />	
+
+					<include name="sanity/PermsOnForwardPage.class" />
+					<include name="sanity/PermsOnReplyPage.class" />
+					<include name="sanity/PermsOnReplyToAllPage.class" />
+					<include name="sanity/PermsOnCompose_DraftsPage.class" />
+					<include name="sanity/PermsOnForward_DraftsPage.class" />
+										<include name="sanity/PermsOnReplyP_Drfatsage.class" />
+										<include name="sanity/PermsOnReplyToAll_DraftsPage.class" />
+				
+				
+				
+				
+				</fileset>
+			</batchtest>
+
+		</junit>
+		<!-- Where and how the reports must go-->
+		<junitreport todir="${ant.reports}">
+			<fileset dir="${ant.reports}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report todir="${ant.reports}" />
+		</junitreport>
+	</target>
+</project>

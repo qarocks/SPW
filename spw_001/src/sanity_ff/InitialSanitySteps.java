@@ -23,7 +23,7 @@ import com.thoughtworks.selenium.Selenium;
 
 public class InitialSanitySteps {
 	private WebDriver driver;
-	private String baseUrl="http://192.168.1.129";
+	private String baseUrl=Functions.baseUrl;
 	Selenium selenium;
 	private StringBuffer verificationErrors = new StringBuffer();
 	

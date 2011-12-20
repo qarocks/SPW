@@ -32,7 +32,7 @@ import com.thoughtworks.selenium.Selenium;
 
 public class PermsOnCompose_DraftsPage {
 	private WebDriver driver;
-	private String baseUrl="http://192.168.1.130";
+	private String baseUrl=Functions.baseUrl;
 	Selenium selenium;
 	private StringBuffer verificationErrors = new StringBuffer();
 	String user_allperms="sneha.qa.24@gmail.com",user_noperms="muunni.24@gmail.com",user_onlysecure="snehamtd002@yahoo.com",user_onlylft="snehamtd001@gmail.com";
@@ -126,7 +126,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -195,7 +195,7 @@ public class PermsOnCompose_DraftsPage {
 			Functions.NoErrorMssg(driver, user_onlylft);
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -265,7 +265,7 @@ public class PermsOnCompose_DraftsPage {
 			
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -335,7 +335,7 @@ public class PermsOnCompose_DraftsPage {
 			
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -383,7 +383,7 @@ public class PermsOnCompose_DraftsPage {
 		selenium.typeKeys("//body[@id='tinymce']",subject);
 		driver.switchTo().defaultContent();
 		
-		Functions.WaitForUpload(driver);
+		//Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.findElement(By.linkText("Drafts")).click(); selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
@@ -405,7 +405,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -446,7 +446,7 @@ public class PermsOnCompose_DraftsPage {
 		selenium.typeKeys("//body[@id='tinymce']",subject);
 		driver.switchTo().defaultContent();
 		
-		Functions.WaitForUpload(driver);
+		//Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.findElement(By.linkText("Drafts")).click(); selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
@@ -468,7 +468,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -509,7 +509,7 @@ public class PermsOnCompose_DraftsPage {
 		driver.switchTo().defaultContent();
 		
 		
-		Functions.WaitForUpload(driver);
+		//Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.findElement(By.linkText("Drafts")).click(); selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
@@ -531,7 +531,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -572,7 +572,7 @@ public class PermsOnCompose_DraftsPage {
 		selenium.typeKeys("//body[@id='tinymce']",subject);
 		driver.switchTo().defaultContent();
 		
-		Functions.WaitForUpload(driver);
+		//Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.findElement(By.linkText("Drafts")).click(); selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
@@ -595,7 +595,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -672,7 +672,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -749,7 +749,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -828,7 +828,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -904,7 +904,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -987,7 +987,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1059,7 +1059,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1132,7 +1132,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1206,7 +1206,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1289,7 +1289,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1365,7 +1365,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1440,7 +1440,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1513,7 +1513,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1593,7 +1593,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1668,7 +1668,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1739,7 +1739,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		
@@ -1813,7 +1813,7 @@ public class PermsOnCompose_DraftsPage {
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
-		assertEquals("Successfully sent the email", driver.findElement(By.cssSelector("li.success")).getText());
+		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
 		System.out.println("PASS:Mail successfully sent.");
 		driver.findElement(By.id("logout")).click();
 		

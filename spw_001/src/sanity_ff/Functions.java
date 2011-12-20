@@ -15,6 +15,7 @@ import org.openqa.selenium.WebDriver;
 
 public class Functions{
 	
+	public final static String baseUrl="http://192.168.1.139";
 
 public static void MyWaitfunc(WebDriver driver,String element) throws Exception{
 		
@@ -86,7 +87,7 @@ public static void SecureSend(Selenium selenium,WebDriver driver,String sender,S
     String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
-     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Successfully sent the email")))
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
 			
 		System.out.println("SUCCESS:Mail successfully sent !");
 		else
@@ -137,7 +138,7 @@ public static void SecureSendLessthan25MB(Selenium selenium,WebDriver driver,Str
     String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
-     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Successfully sent the email")))
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
 			
 		System.out.println("SUCCESS:Mail successfully sent !");
 		else
@@ -188,7 +189,7 @@ public static void SecureSendGreaterthan25MB(Selenium selenium,WebDriver driver,
     String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
-     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Successfully sent the email")))
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
 			
 		System.out.println("SUCCESS:Mail successfully sent !");
 		else
@@ -359,7 +360,7 @@ public static void LFTSend(Selenium selenium,WebDriver driver,String sender,Stri
      String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
-     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Successfully sent the email")))
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
 			
 		System.out.println("SUCCESS:Mail successfully sent !");
 		else
@@ -430,7 +431,7 @@ public static void LFTSendGreaterThan25mb(Selenium selenium,WebDriver driver,Str
      String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
-     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Successfully sent the email")))
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
 			
 		System.out.println("SUCCESS:Mail successfully sent !");
 		else

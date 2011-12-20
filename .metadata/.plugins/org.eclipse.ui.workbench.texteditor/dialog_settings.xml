@@ -13,26 +13,26 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="Test" key="selection"/>
+		<item value=".139" key="selection"/>
 		<list key="findhistory">
-			<item value="Ignore"/>
-			<item value="Test"/>
-			<item value="TC--81"/>
-			<item value="TC--80"/>
-			<item value="TC--79"/>
-			<item value="TC--78"/>
-			<item value="TC--77"/>
-			<item value="TC--76"/>
+			<item value=".130"/>
+			<item value=".129"/>
+			<item value="TC--105"/>
+			<item value="TC--104"/>
+			<item value="TC--103"/>
+			<item value="TC--102"/>
+			<item value="TC--101"/>
+			<item value="TC--100"/>
 		</list>
 		<list key="replacehistory">
-			<item value="Test"/>
-			<item value="Ignore"/>
-			<item value="TC--175"/>
-			<item value="TC--176"/>
-			<item value="TC--174"/>
-			<item value="TC--173"/>
-			<item value="TC--172"/>
-			<item value="TC--171"/>
+			<item value=".139"/>
+			<item value="TC--200"/>
+			<item value="TC--199"/>
+			<item value="TC--198"/>
+			<item value="TC--197"/>
+			<item value="TC--196"/>
+			<item value="TC--195"/>
+			<item value="TC--194"/>
 		</list>
 	</section>
 </section>

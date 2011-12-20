@@ -1,26 +1,20 @@
 package trialpkg;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebElement.*;
 import java.util.List;
-import java.util.regex.Pattern;
-import java.util.concurrent.TimeUnit;
-import org.junit.*;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 
 import com.thoughtworks.selenium.Selenium;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class Functions{
-	
+public final static String baseUrl="http://192.168.1.139";	
 
 public static void MyWaitfunc(WebDriver driver,String element) throws Exception{
 		
@@ -31,6 +25,25 @@ public static void MyWaitfunc(WebDriver driver,String element) throws Exception{
 		}	
 		
 	}
+
+public static void WaitForUpload(WebDriver driver) throws Exception{
+	
+	for (int second = 0;; second++) {
+		if (second >= 120) {fail("timeout");}
+		try { 
+			if(driver.findElement(By.cssSelector("span.plupload_total_status")).getText().equalsIgnoreCase("100%"))
+		       {Thread.sleep(2000);break;}
+		
+		else
+		{continue;}
+		
+		} 
+		
+		catch (Exception e) {}
+		Thread.sleep(1000);
+	}	
+	
+}
 
 public static boolean doesWebElementExist(WebDriver driver, By selector) 
 { 
@@ -73,18 +86,223 @@ public static void SecureSend(Selenium selenium,WebDriver driver,String sender,S
     String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
-     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Successfully sent the email")))
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
 			
 		System.out.println("SUCCESS:Mail successfully sent !");
 		else
-			{ System.out.println("FAIL:Mail NOT SENT !"); System.out.println(driver.findElement(By.xpath(success_str_xpath)).getText());Exception e1 = null;
+			{ System.out.println("FAIL:Mail NOT SENT !"); System.out.println(driver.findElement(By.xpath(success_str_xpath)).getText());Exception e1 = new Exception("This case FAILS");
 			throw e1;}
 	
+     driver.findElement(By.id("logout")).click();
+     
 }//end of secureSend method
+
+public static void SecureSendLessthan25MB(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
+	
+	selenium.open(baseUrl);
+	selenium.type("id=id_username", sender);
+	selenium.type("id=id_password", senderPwd);
+	selenium.click("css=input[type=\"submit\"]");
+	
+	selenium.waitForPageToLoad("2000");
+
+	System.out.println("First: The page title is "+selenium.getTitle());
+	// code to upload file
+	driver.findElement(By.linkText("Compose")).click();
+	selenium.waitForPageToLoad("3000");
+    driver.findElement(By.id("secure")).click();
+    driver.findElement(By.id("addrin")).sendKeys(recipient);
+	driver.findElement(By.id("id_subject")).sendKeys(subject);			
+	driver.findElement(By.id("addrsubmit")).click();
+
+	driver.switchTo().frame("id_body_ifr");
+			
+	selenium.typeKeys("//body[@id='tinymce']", emailBody);
+	driver.switchTo().defaultContent();
+	Runtime.getRuntime().exec("C:\\Users\\Sneha\\Desktop\\silver_autoit.exe");
+	
+	
+	
+	Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+	WebElement ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+	Thread.sleep(2000);
+	ele.click();
+	
+	
+	Thread.sleep(3000);
+			
+	driver.findElement(By.id("submitter")).click();
+		
+			
+    String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
+     
+     Functions.MyWaitfunc(driver,success_str_xpath);
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
+			
+		System.out.println("SUCCESS:Mail successfully sent !");
+		else
+			{ System.out.println("FAIL:Mail NOT SENT !"); System.out.println(driver.findElement(By.xpath(success_str_xpath)).getText());Exception e1 = new Exception("This case FAILS");
+			throw e1;}
+	
+     driver.findElement(By.id("logout")).click();
+     
+}//end of secureSendlessthan25MB method
+
+public static void SecureSendGreaterthan25MB(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
+	
+	selenium.open(baseUrl);
+	selenium.type("id=id_username", sender);
+	selenium.type("id=id_password", senderPwd);
+	selenium.click("css=input[type=\"submit\"]");
+	
+	selenium.waitForPageToLoad("2000");
+
+	System.out.println("First: The page title is "+selenium.getTitle());
+	// code to upload file
+	driver.findElement(By.linkText("Compose")).click();
+	selenium.waitForPageToLoad("3000");
+    driver.findElement(By.id("secure")).click();
+    driver.findElement(By.id("addrin")).sendKeys(recipient);
+	driver.findElement(By.id("id_subject")).sendKeys(subject);			
+	driver.findElement(By.id("addrsubmit")).click();
+
+	driver.switchTo().frame("id_body_ifr");
+			
+	selenium.typeKeys("//body[@id='tinymce']", emailBody);
+	driver.switchTo().defaultContent();
+	Runtime.getRuntime().exec("C:\\Users\\Sneha\\Desktop\\silver_autoit_greaterthan25mb.exe");
+	
+	
+	
+	Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+	WebElement ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+	Thread.sleep(2000);
+	ele.click();
+	
+	
+	Thread.sleep(3000);
+			
+	driver.findElement(By.id("submitter")).click();
+		
+			
+    String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
+     
+     Functions.MyWaitfunc(driver,success_str_xpath);
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
+			
+		System.out.println("SUCCESS:Mail successfully sent !");
+		else
+			{ System.out.println("FAIL:Mail NOT SENT !"); System.out.println(driver.findElement(By.xpath(success_str_xpath)).getText());Exception e1 = new Exception("This case FAILS");
+			throw e1;}
+	
+     driver.findElement(By.id("logout")).click();
+     
+}//end of secureSendGreaterthan25MB method
+
+
+
+
+public static String FindIdwithSubject(WebDriver driver,Selenium selenium,String subject)
+{
+	  int flag=0;
+	
+	String EmailId=null;
+	WebElement select = driver.findElement(By.xpath("//*[@id='EmailInbox']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			   List<WebElement> sub_sub_options = sub_sub_option.findElements(By.tagName("td"));
+			   System.out.println("The count for td is "+sub_sub_options.size());
+			   for (WebElement sub_sub_sub_option : sub_sub_options) {
+				   
+				   System.out.println("i was here!");
+				   System.out.println(""+sub_sub_sub_option.getText());
+				   
+				   if(sub_sub_sub_option.getText().contains(subject))
+					   
+				   {
+					   EmailId=sub_sub_option.getAttribute("id");
+					   flag=1;break;
+					   
+				   }
+				   
+				if(flag==1) break;
+				   
+				   
+			   }
+			   
+			   if(flag==1) break; 
+		   }
+		   if(flag==1) break;
+		   }
+		   
+	   
+	
+	return EmailId;
+	
+	
+
+
+}// end of FindIdwithSubject
+
+
+
+public static String DraftsFindIdwithSubject(WebDriver driver,Selenium selenium,String subject)
+{
+	  int flag=0;
+	
+	String EmailId=null;
+	WebElement select = driver.findElement(By.xpath("//*[@id='EmailDrafts']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			   List<WebElement> sub_sub_options = sub_sub_option.findElements(By.tagName("td"));
+			   System.out.println("The count for td is "+sub_sub_options.size());
+			   for (WebElement sub_sub_sub_option : sub_sub_options) {
+				   
+				   System.out.println("i was here!");
+				   System.out.println(""+sub_sub_sub_option.getText());
+				   
+				   if(sub_sub_sub_option.getText().contains(subject))
+					   
+				   {
+					   EmailId=sub_sub_option.getAttribute("id");
+					   flag=1;break;
+					   
+				   }
+				   
+				if(flag==1) break;
+				   
+				   
+			   }
+			   
+			   if(flag==1) break; 
+		   }
+		   if(flag==1) break;
+		   }
+		   
+	   
+	
+	return EmailId;
+	
+	
+
+
+}// end of FindIdwithSubject
+
+
 
 
 public static void LFTSend(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
-
+  
 	selenium.open(baseUrl);
 	selenium.type("id=id_username", sender);
 	selenium.type("id=id_password", senderPwd);
@@ -103,12 +321,15 @@ public static void LFTSend(Selenium selenium,WebDriver driver,String sender,Stri
 		
 		Runtime.getRuntime().exec("C:\\Users\\Sneha\\Desktop\\silver_autoit.exe");
 		
+		
+		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		WebElement ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+		Thread.sleep(2000);
 		ele.click();
 		
 		
-		
+		Thread.sleep(3000);
 		driver.findElement(By.id("addrin")).sendKeys(recipient);
 		
 		
@@ -138,16 +359,95 @@ public static void LFTSend(Selenium selenium,WebDriver driver,String sender,Stri
      String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
-     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Successfully sent the email")))
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
 			
 		System.out.println("SUCCESS:Mail successfully sent !");
 		else
-			{ System.out.println("FAIL:Mail NOT SENT !"); System.out.println(driver.findElement(By.xpath(success_str_xpath)).getText());Exception e1 = null;
+			{ System.out.println("FAIL:Mail NOT SENT !"); System.out.println(driver.findElement(By.xpath(success_str_xpath)).getText());Exception e1 = new Exception("This case FAILS");
 			throw e1;}
 	
-
+     driver.findElement(By.id("logout")).click();
 
 }//end of LFTsend method
+
+
+
+public static void LFTSendGreaterThan25mb(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
+	  
+	selenium.open(baseUrl);
+	selenium.type("id=id_username", sender);
+	selenium.type("id=id_password", senderPwd);
+	selenium.click("css=input[type=\"submit\"]");
+	
+	selenium.waitForPageToLoad("2000");
+
+	System.out.println("First: The page title is "+selenium.getTitle());
+	// code to upload file
+	
+	driver.findElement(By.linkText("Compose")).click();
+	
+		selenium.waitForPageToLoad("3000");
+		
+		
+		
+		Runtime.getRuntime().exec("C:\\Users\\Sneha\\Desktop\\silver_autoit_greaterthan25mb.exe");
+		
+		
+		
+		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+		WebElement ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+		Thread.sleep(2000);
+		ele.click();
+		
+		
+		Thread.sleep(3000);
+		driver.findElement(By.id("addrin")).sendKeys(recipient);
+		
+		
+		driver.findElement(By.id("id_subject")).sendKeys(subject);
+
+		
+		
+		
+		
+						
+			driver.findElement(By.id("addrsubmit")).click();
+		
+			
+			
+			driver.switchTo().frame("id_body_ifr");
+			
+			selenium.typeKeys("//body[@id='tinymce']", "Finally wohoooo!!");
+			 driver.switchTo().defaultContent();
+			
+			driver.findElement(By.id("submitter")).click();
+		
+		
+		
+		
+	// to check if mail was sent successfully
+     
+     String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
+     
+     Functions.MyWaitfunc(driver,success_str_xpath);
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
+			
+		System.out.println("SUCCESS:Mail successfully sent !");
+		else
+			{ System.out.println("FAIL:Mail NOT SENT !"); System.out.println(driver.findElement(By.xpath(success_str_xpath)).getText());Exception e1 = new Exception("This case FAILS");
+			throw e1;}
+	
+     driver.findElement(By.id("logout")).click();
+
+}//end of LFTSendGreaterThan25mb method
+
+
+
+
+
+
+
+
 
 
 public static void CreateLocalUser(WebDriver driver,String baseUrl,Selenium selenium,String adminPwd,String localUsername,String localUserPwd)throws Exception
@@ -155,8 +455,10 @@ public static void CreateLocalUser(WebDriver driver,String baseUrl,Selenium sele
 	
 	driver.get(baseUrl);
 	System.out.println("Now navigating to "+baseUrl);
+	//driver.switchTo().window(driver.getWindowHandle());
 	System.out.println("Now logging in as admin");
-	driver.findElement(By.id("id_username")).clear();
+	Functions.MyWaitfunc(driver, "//*[@id='id_username']");
+	driver.findElement(By.id("id_username")).sendKeys("\n");
 	driver.findElement(By.id("id_username")).sendKeys("admin");
 	driver.findElement(By.id("id_password")).clear();
 	driver.findElement(By.id("id_password")).sendKeys(adminPwd);
@@ -173,7 +475,7 @@ public static void CreateLocalUser(WebDriver driver,String baseUrl,Selenium sele
 	Functions.MyWaitfunc(driver,"//*[@id='id_username']");
 	
 	System.out.println("username field has value: "+driver.findElement(By.id("id_username")).getAttribute("value"));
-	assertEquals("new_user@gmail.com",driver.findElement(By.id("id_username")).getAttribute("value"));
+	assertEquals(localUsername,driver.findElement(By.id("id_username")).getAttribute("value"));
 	
 	System.out.println("Default permission for local user is: "+driver.findElement(By.linkText("domain user")).getText());
 	assertEquals("domain user", driver.findElement(By.linkText("domain user")).getText());
@@ -192,7 +494,7 @@ public static void CreateLocalUser(WebDriver driver,String baseUrl,Selenium sele
 	assertEquals("Settings for the local user "+localUsername+" were saved successfully!", driver.findElement(By.cssSelector("li.success")).getText());
 	System.out.println("The local user was created successfully!!");
 	
-
+	driver.findElement(By.id("logout")).click();
 
 }// end of createLocalUser method
 
@@ -330,9 +632,204 @@ public static void TestLDAPauth(WebDriver driver,Selenium selenium,String baseUr
 		
 		System.out.println("Authenticator and its clone successfully deleted!");
 		
-	   
+		driver.findElement(By.id("logout")).click();
 	
 }//end of CreateLDAPUser method
+
+
+public static void LftErrorMssg(WebDriver driver,String user)
+{
+	WebElement toDelete = null;
+	WebElement select = driver.findElement(By.xpath("//*[@id='toaddrs']"));
+	List<WebElement> options = select.findElements(By.tagName("li"));
 	
+
+	   for (WebElement option : options) {
+		   if(option.getAttribute("addr").contains(user))
+				   {
+			   System.out.println(""+option.getAttribute("addr"));
+			   List<WebElement> sub_options= option.findElements(By.tagName("div"));
+			   for (WebElement sub_option : sub_options) 
+			      {
+				   
+				   List<WebElement> sub_sub_options= sub_option.findElements(By.tagName("span"));
+				 
+				 for (WebElement sub_sub_option : sub_sub_options)   
+				 {   
+				  if(sub_sub_option.getAttribute("info")!=null)
+				   {
+					  
+				   if(sub_sub_option.getAttribute("info").contains("This email is considered a file transfer.  Since you do not have a file transfer license, your recipients are required to."))
+				   
+				   { System.out.println(""+sub_sub_option.getAttribute("info"));
+					assertEquals("true","true");System.out.println("PASS for "+user);
+					}
+					   
+					   else
+					   { System.out.println("FAIL: for "+user);assertEquals("true","false");}
+				   }
+				   
+				   else
+				   {
+					   toDelete=sub_sub_option;
+					   
+					   
+				  }  
+				   }// end of innermost for
+			      
+			           }//end of middle for
+			          
+				   }// end of first if
+			   
+			   
+				   }//end of outermost for
+	 	
+	   toDelete.click();	   
+	   System.out.println("Removed user "+user+" from recipient list");
+	   
+	
+	
+}// end of LftErrorMssg
+
+public static void SecureErrorMssg(WebDriver driver,String user)
+{
+	WebElement toDelete=null;
+	WebElement select = driver.findElement(By.xpath("//*[@id='toaddrs']"));
+	List<WebElement> options = select.findElements(By.tagName("li"));
+	
+
+	   for (WebElement option : options) {
+		   if(option.getAttribute("addr").contains(user))
+				   {
+			   System.out.println(""+option.getAttribute("addr"));
+			   List<WebElement> sub_options= option.findElements(By.tagName("div"));
+			   for (WebElement sub_option : sub_options) 
+			      {
+				   
+				   List<WebElement> sub_sub_options= sub_option.findElements(By.tagName("span"));
+				 for (WebElement sub_sub_option : sub_sub_options)   
+				 {
+				   if(sub_sub_option.getAttribute("info")!=null)
+				   {
+				   if(sub_sub_option.getAttribute("info").contains("This email is considered a secure email.  Since you do not have a secure email license, your recipients are required to."))
+				   
+				   { System.out.println(""+sub_sub_option.getAttribute("info"));
+					assertEquals("true","true");System.out.println("PASS for "+user);
+					}
+					   
+					   else
+					   { System.out.println("FAIL: for "+user);System.out.println(""+sub_sub_option.getAttribute("info"));assertEquals("true","false");}
+				   }
+				   
+				   else
+				   {
+					   toDelete=sub_sub_option;
+					   
+					   
+				  }  
+				   
+				   
+				   }// end of innermost for
+			      
+			           }//end of middle for
+			          
+				   }// end of first if
+			   
+			   
+				   }//end of outermost for	
+	   
+	   toDelete.click();	   
+	   System.out.println("Removed user "+user+" from recipient list");
+}// end of SecureErrorMssg
+
+
+public static void LftAndSecureErrorMssg(WebDriver driver,String user)
+{
+	WebElement toDelete=null;
+	WebElement select = driver.findElement(By.xpath("//*[@id='toaddrs']"));
+	List<WebElement> options = select.findElements(By.tagName("li"));
+	
+
+	   for (WebElement option : options) {
+		   if(option.getAttribute("addr").contains(user))
+				   {
+			   System.out.println(""+option.getAttribute("addr"));
+			   List<WebElement> sub_options= option.findElements(By.tagName("div"));
+			   for (WebElement sub_option : sub_options) 
+			      {
+				   
+				   List<WebElement> sub_sub_options= sub_option.findElements(By.tagName("span"));
+				 for (WebElement sub_sub_option : sub_sub_options)   
+				 {
+				   if(sub_sub_option.getAttribute("info")!=null)
+				   {
+					   System.out.println(""+sub_sub_option.getAttribute("info"));
+				   if(sub_sub_option.getAttribute("info").contains("This email is considered a secure email.  Since you do not have a secure email license, your recipients are required to.  This email is considered a file transfer.  Since you do not have a file transfer license, your recipients are required to."))
+				   
+				   { System.out.println(""+sub_sub_option.getAttribute("info"));
+					assertEquals("true","true");System.out.println("PASS for "+user);
+					}
+					   
+					   else
+					   { System.out.println("FAIL: for "+user);assertEquals("true","false");}
+				   }
+				   else
+				   {
+					   toDelete=sub_sub_option;
+					   
+					   
+				  }  
+				   
+				   }// end of innermost for
+			      
+			           }//end of middle for
+			          
+				   }// end of first if
+			   
+			   
+				   }//end of outermost for	
+	   toDelete.click();	   
+	   System.out.println("Removed user "+user+" from recipient list");
+}// end of LftAndSecureerrorMssg
+
+
+public static void NoErrorMssg(WebDriver driver,String user)
+{
+
+	WebElement select = driver.findElement(By.xpath("//*[@id='toaddrs']"));
+	List<WebElement> options = select.findElements(By.tagName("li"));
+	
+
+	   for (WebElement option : options) {
+		   if(option.getAttribute("addr").contains(user))
+				   {
+			   System.out.println(""+option.getAttribute("addr"));
+			   List<WebElement> sub_options= option.findElements(By.tagName("div"));
+			   for (WebElement sub_option : sub_options) 
+			      {
+				   
+				   List<WebElement> sub_sub_options= sub_option.findElements(By.tagName("span"));
+				 for (WebElement sub_sub_option : sub_sub_options)   
+				 {
+				   
+				   if(sub_sub_option.getAttribute("info")==null)
+				   
+				   { 
+					assertEquals("true","true");System.out.println("PASS for "+user);
+					}
+					   
+					   else
+					   { System.out.println("FAIL: for "+user);assertEquals("true","false");}
+				   
+				   }// end of innermost for
+			      
+			           }//end of middle for
+			          
+				   }// end of first if
+			   
+			   
+				   }//end of outermost for	
+}// end of NoErrorMssg
+
 
 }//end of Functions class
