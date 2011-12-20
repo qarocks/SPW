@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="Rerun sanity_ff.PermsOnComposePage.NonSecureGreater25MB" project="spw_001" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testcase name="NonSecureGreater25MB" classname="sanity_ff.PermsOnComposePage" time="146.153"/>
+</testrun>

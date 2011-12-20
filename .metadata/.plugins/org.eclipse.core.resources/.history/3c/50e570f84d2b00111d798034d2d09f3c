@@ -109,20 +109,18 @@
 				<!--	<include name="InitialSanitySteps.class" /> -->
 				<!--<include name="sanity/InitialSanitySteps.class" /> -->
 					
-					<include name="sanity_ff/PermsOnComposePage.class" />	
+					<!--<include name="sanity_ff/PermsOnComposePage.class" />	
 					<include name="sanity_ff/PermsOnForwardPage.class" />
 					<include name="sanity_ff/PermsOnReplyPage.class" />
 					<include name="sanity_ff/PermsOnReplyToAllPage.class" />
 					
-			
-					<!-- 
+					-->
 					<include name="sanity_ff/PermsOnCompose_DraftsPage.class" />
 					<include name="sanity_ff/PermsOnForward_DraftsPage.class" />
 					<include name="sanity_ff/PermsOnReply_DraftsPage.class" />
 					<include name="sanity_ff/PermsOnReplyToAll_DraftsPage.class" />
-					-->
 				
-					
+				
 				
 				
 				</fileset>

@@ -80,7 +80,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		driver.findElement(By.cssSelector("div.ui-icon.ui-icon-circle-check")).click();// since requirement says no attachments deleting the attachment
@@ -129,7 +129,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		driver.findElement(By.cssSelector("div.ui-icon.ui-icon-circle-check")).click();// since requirement says no attachments deleting the attachment
@@ -182,7 +182,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		driver.findElement(By.cssSelector("div.ui-icon.ui-icon-circle-check")).click();// since requirement says no attachments deleting the attachment
@@ -234,7 +234,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		driver.findElement(By.cssSelector("div.ui-icon.ui-icon-circle-check")).click();// since requirement says no attachments deleting the attachment
@@ -293,7 +293,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//driver.findElement(By.cssSelector("div.ui-icon.ui-icon-circle-check")).click();// since requirement says no attachments deleting the attachment
@@ -337,7 +337,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//driver.findElement(By.cssSelector("div.ui-icon.ui-icon-circle-check")).click();// since requirement says no attachments deleting the attachment
@@ -383,7 +383,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//driver.findElement(By.cssSelector("div.ui-icon.ui-icon-circle-check")).click();// since requirement says no attachments deleting the attachment
@@ -428,7 +428,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//driver.findElement(By.cssSelector("div.ui-icon.ui-icon-circle-check")).click();// since requirement says no attachments deleting the attachment
@@ -480,7 +480,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		assertEquals("47 MB", driver.findElement(By.cssSelector("span.plupload_total_file_size")).getText()); // to make sure that original file is still present
@@ -520,7 +520,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		assertEquals("47 MB", driver.findElement(By.cssSelector("span.plupload_total_file_size")).getText()); // to make sure that original file is still present
@@ -560,7 +560,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		assertEquals("47 MB", driver.findElement(By.cssSelector("span.plupload_total_file_size")).getText()); // to make sure that original file is still present
@@ -600,7 +600,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		assertEquals("47 MB", driver.findElement(By.cssSelector("span.plupload_total_file_size")).getText()); // to make sure that original file is still present
@@ -644,7 +644,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//driver.findElement(By.cssSelector("div.ui-icon.ui-icon-circle-check")).click();// since requirement says no attachments deleting the attachment
@@ -691,7 +691,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//driver.findElement(By.cssSelector("div.ui-icon.ui-icon-circle-check")).click();// since requirement says no attachments deleting the attachment
@@ -739,7 +739,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//driver.findElement(By.cssSelector("div.ui-icon.ui-icon-circle-check")).click();// since requirement says no attachments deleting the attachment
@@ -786,7 +786,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//driver.findElement(By.cssSelector("div.ui-icon.ui-icon-circle-check")).click();// since requirement says no attachments deleting the attachment
@@ -839,7 +839,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		assertEquals("267 KB", driver.findElement(By.cssSelector("span.plupload_total_file_size")).getText()); // to make sure that original file is still present
@@ -879,7 +879,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		assertEquals("267 KB", driver.findElement(By.cssSelector("span.plupload_total_file_size")).getText()); // to make sure that original file is still present
@@ -918,7 +918,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		assertEquals("267 KB", driver.findElement(By.cssSelector("span.plupload_total_file_size")).getText()); // to make sure that original file is still present
@@ -959,7 +959,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		assertEquals("267 KB", driver.findElement(By.cssSelector("span.plupload_total_file_size")).getText()); // to make sure that original file is still present
@@ -1005,7 +1005,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//driver.findElement(By.cssSelector("div.ui-icon.ui-icon-circle-check")).click();// since requirement says no attachments deleting the attachment
@@ -1052,7 +1052,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//driver.findElement(By.cssSelector("div.ui-icon.ui-icon-circle-check")).click();// since requirement says no attachments deleting the attachment
@@ -1099,7 +1099,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//driver.findElement(By.cssSelector("div.ui-icon.ui-icon-circle-check")).click();// since requirement says no attachments deleting the attachment
@@ -1146,7 +1146,7 @@ public class PermsOnForwardPage {
 		emailId=Functions.FindIdwithSubject(driver, selenium,subject);	
 		driver.get(baseUrl+"/transfer/email/view/"+emailId);		
 		assertEquals("Forward", driver.findElement(By.id("forward")).getText());
-		driver.findElement(By.id("forward")).click();
+		driver.findElement(By.id("forward")).click(); selenium.waitForPageToLoad("3000");
 		assertEquals("Forward", driver.findElement(By.id("heading")).getText());
 		assertEquals("Fwd: "+subject, driver.findElement(By.id("id_subject")).getAttribute("value"));
 		//driver.findElement(By.cssSelector("div.ui-icon.ui-icon-circle-check")).click();// since requirement says no attachments deleting the attachment

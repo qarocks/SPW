@@ -115,12 +115,10 @@
 					<include name="sanity_ff/PermsOnReplyToAllPage.class" />
 					
 			
-					<!-- 
-					<include name="sanity_ff/PermsOnCompose_DraftsPage.class" />
+					<!-- <include name="sanity_ff/PermsOnCompose_DraftsPage.class" />
 					<include name="sanity_ff/PermsOnForward_DraftsPage.class" />
 					<include name="sanity_ff/PermsOnReply_DraftsPage.class" />
-					<include name="sanity_ff/PermsOnReplyToAll_DraftsPage.class" />
-					-->
+					<include name="sanity_ff/PermsOnReplyToAll_DraftsPage.class" />-->
 				
 					
 				
