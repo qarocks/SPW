@@ -33,12 +33,18 @@ import com.thoughtworks.selenium.Selenium;
 public class PermsOnReplyToAllPage {
 	private WebDriver driver;
 	private String baseUrl=Functions.baseUrl;
+	
+	private String composeUrl=Functions.compose_url;
+	private String inboxUrl=Functions.inbox_url;
+	private String sentUrl=Functions.sent_url;
+	private String outboxUrl=Functions.outbox_url;
+	
 	Selenium selenium;
 	private StringBuffer verificationErrors = new StringBuffer();
 	String user_allperms="sneha.qa.24@gmail.com",user_noperms="muunni.24@gmail.com",user_onlysecure="snehamtd002@yahoo.com",user_onlylft="snehamtd001@gmail.com";
 	String pwd_allusers="123abc";
-	String pathAutoItScript_lesserthan25mb="C:\\Users\\Sneha\\Desktop\\silver_autoit.exe";
-	String pathAutoItScript_greaterthan25MB="C:\\Users\\Sneha\\Desktop\\silver_autoit_greaterthan25mb.exe";
+	String pathAutoItScript_lesserthan25mb="C:\\Users\\Sneha\\Desktop\\automation files\\silver_autoit.exe";
+	String pathAutoItScript_greaterthan25MB="C:\\Users\\Sneha\\Desktop\\automation files\\silver_autoit_greaterthan25mb.exe";
 	WebElement ele=null;String subject,emailBody;
 	String emailId;
 	

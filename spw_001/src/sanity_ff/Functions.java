@@ -15,7 +15,19 @@ import org.openqa.selenium.WebDriver;
 
 public class Functions{
 	
-	public final static String baseUrl="http://192.168.1.139";
+	public final static String baseUrl="http://192.168.1.9";
+	public final static String compose_url=baseUrl+"/transfer/compose";
+	public final static String inbox_url=baseUrl+"/transfer/inbox";
+	public final static String sent_url=baseUrl+"/transfer/sent";
+	public final static String outbox_url=baseUrl+"/transfer/outbox";
+	public final static String drafts_url=baseUrl+"/transfer/drafts";
+	public final static String baseFileLocation="C:\\Users\\Sneha\\Desktop\\";
+	public final static String topFileLocation="automation files\\";
+	public final static String pathToLessthan25MbFilesScript=baseFileLocation+topFileLocation+"silver_autoit.exe";
+	public final static String pathToGreaterthan25MbFilesScript=baseFileLocation+topFileLocation+"silver_autoit_greaterthan25mb.exe";
+	
+	
+	
 
 public static void MyWaitfunc(WebDriver driver,String element) throws Exception{
 		
@@ -69,7 +81,7 @@ public static void SecureSend(Selenium selenium,WebDriver driver,String sender,S
 
 	System.out.println("First: The page title is "+selenium.getTitle());
 	// code to upload file
-	driver.findElement(By.linkText("Compose")).click();
+	driver.get(compose_url);
 	selenium.waitForPageToLoad("3000");
     driver.findElement(By.id("secure")).click();
     driver.findElement(By.id("addrin")).sendKeys(recipient);
@@ -109,7 +121,7 @@ public static void SecureSendLessthan25MB(Selenium selenium,WebDriver driver,Str
 
 	System.out.println("First: The page title is "+selenium.getTitle());
 	// code to upload file
-	driver.findElement(By.linkText("Compose")).click();
+	driver.get(compose_url);
 	selenium.waitForPageToLoad("3000");
     driver.findElement(By.id("secure")).click();
     driver.findElement(By.id("addrin")).sendKeys(recipient);
@@ -160,7 +172,7 @@ public static void SecureSendGreaterthan25MB(Selenium selenium,WebDriver driver,
 
 	System.out.println("First: The page title is "+selenium.getTitle());
 	// code to upload file
-	driver.findElement(By.linkText("Compose")).click();
+	driver.get(compose_url);
 	selenium.waitForPageToLoad("3000");
     driver.findElement(By.id("secure")).click();
     driver.findElement(By.id("addrin")).sendKeys(recipient);
@@ -314,7 +326,7 @@ public static void LFTSend(Selenium selenium,WebDriver driver,String sender,Stri
 	System.out.println("First: The page title is "+selenium.getTitle());
 	// code to upload file
 	
-	driver.findElement(By.linkText("Compose")).click();
+	driver.get(compose_url);
 	
 		selenium.waitForPageToLoad("3000");
 		
@@ -385,7 +397,7 @@ public static void LFTSendGreaterThan25mb(Selenium selenium,WebDriver driver,Str
 	System.out.println("First: The page title is "+selenium.getTitle());
 	// code to upload file
 	
-	driver.findElement(By.linkText("Compose")).click();
+	driver.get(compose_url);
 	
 		selenium.waitForPageToLoad("3000");
 		

@@ -3,18 +3,19 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="312" key="DIALOG_Y_ORIGIN"/>
-		<item value="894" key="DIALOG_X_ORIGIN"/>
 		<item value="380" key="DIALOG_HEIGHT"/>
-		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="894" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|5|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
 		<item value="driver.findElement(By.id(&quot;reply-all&quot;)).click(); selenium.waitForPageToLoad(&quot;3000&quot;);" key="selection"/>
 		<list key="findhistory">
+			<item value="driver.findElement(By.linkText(&quot;Compose&quot;)).click();"/>
 			<item value="driver.findElement(By.id(&quot;reply-all&quot;)).click();"/>
 			<item value="driver.findElement(By.id(&quot;replytoall&quot;)).click();"/>
 			<item value="driver.findElement(By.id(&quot;reply&quot;)).click();"/>
@@ -22,9 +23,9 @@
 			<item value=".click();"/>
 			<item value=".click()"/>
 			<item value="&quot;http://192.168.1.139&quot;"/>
-			<item value="wait"/>
 		</list>
 		<list key="replacehistory">
+			<item value="driver.get("/>
 			<item value="driver.findElement(By.id(&quot;reply-all&quot;)).click(); selenium.waitForPageToLoad(&quot;3000&quot;);"/>
 			<item value="driver.findElement(By.id(&quot;reply&quot;)).click(); selenium.waitForPageToLoad(&quot;3000&quot;);"/>
 			<item value="driver.findElement(By.id(&quot;forward&quot;)).click(); selenium.waitForPageToLoad(&quot;3000&quot;);"/>
@@ -32,7 +33,6 @@
 			<item value="Functions.baseUrl"/>
 			<item value="Email sent to your outbox and enqueued for delivery."/>
 			<item value=".139"/>
-			<item value="TC--200"/>
 		</list>
 	</section>
 </section>
