@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="spw_001" project="spw_001" tests="58" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="sanity_ie.InitialSanitySteps" incomplete="true">
+    <testcase name="InitialSanityMain" classname="sanity_ie.InitialSanitySteps" incomplete="true"/>
+  </testsuite>
+  <testsuite name="sanity_ff.Expirations" incomplete="true">
+    <testcase name="foo1" classname="sanity_ff.Expirations" incomplete="true"/>
+  </testsuite>
+  <testsuite name="sanity_ff.PermsOnReplyPage" incomplete="true">
+    <testcase name="NonSecureNoattachs" classname="sanity_ff.PermsOnReplyPage" incomplete="true"/>
+    <testcase name="SecureNoattachs" classname="sanity_ff.PermsOnReplyPage" incomplete="true"/>
+    <testcase name="NonSecureGreaterThan25mb" classname="sanity_ff.PermsOnReplyPage" incomplete="true"/>
+    <testcase name="SecureLesserThan25mb" classname="sanity_ff.PermsOnReplyPage" incomplete="true"/>
+    <testcase name="NonSecureLesserThan25mb" classname="sanity_ff.PermsOnReplyPage" incomplete="true"/>
+    <testcase name="SecureGreaterThan25mb" classname="sanity_ff.PermsOnReplyPage" incomplete="true"/>
+  </testsuite>
+  <testsuite name="trialpkg.Secure" incomplete="true">
+    <testcase name="SecureMain" classname="trialpkg.Secure" incomplete="true"/>
+  </testsuite>
+  <testsuite name="trialpkg.ExpirationTrial" incomplete="true">
+    <testcase name="ExpirationTrialMain" classname="trialpkg.ExpirationTrial" incomplete="true"/>
+  </testsuite>
+  <testsuite name="trialpkg.InitialSanitySteps_obs" incomplete="true">
+    <testcase name="InitialSanityMain" classname="trialpkg.InitialSanitySteps_obs" incomplete="true"/>
+  </testsuite>
+  <testsuite name="sanity_ff.PermsOnCompose_DraftsPage" incomplete="true">
+    <testcase name="NonSecureNoattachs" classname="sanity_ff.PermsOnCompose_DraftsPage" incomplete="true"/>
+    <testcase name="SecureNoattachs" classname="sanity_ff.PermsOnCompose_DraftsPage" incomplete="true"/>
+    <testcase name="NonSecureGreater25MB" classname="sanity_ff.PermsOnCompose_DraftsPage" incomplete="true"/>
+    <testcase name="SecureLesser25MB" classname="sanity_ff.PermsOnCompose_DraftsPage" incomplete="true"/>
+    <testcase name="NonSecureLesser25MB" classname="sanity_ff.PermsOnCompose_DraftsPage" incomplete="true"/>
+    <testcase name="SecureGreater25MB" classname="sanity_ff.PermsOnCompose_DraftsPage" incomplete="true"/>
+  </testsuite>
+  <testsuite name="trialpkg.CreateLDAPuser" incomplete="true">
+    <testcase name="CreateLdapMain" classname="trialpkg.CreateLDAPuser" incomplete="true"/>
+  </testsuite>
+  <testsuite name="sanity_ff.PermsOnForwardPage" incomplete="true">
+    <testcase name="NonSecureNoattachs" classname="sanity_ff.PermsOnForwardPage" incomplete="true"/>
+    <testcase name="SecureNoattachs" classname="sanity_ff.PermsOnForwardPage" incomplete="true"/>
+    <testcase name="NonSecureGreater25MB" classname="sanity_ff.PermsOnForwardPage" incomplete="true"/>
+    <testcase name="SecureLesser25MB" classname="sanity_ff.PermsOnForwardPage" incomplete="true"/>
+    <testcase name="NonSecureLesser25MB" classname="sanity_ff.PermsOnForwardPage" incomplete="true"/>
+    <testcase name="SecureGreater25MB" classname="sanity_ff.PermsOnForwardPage" incomplete="true"/>
+  </testsuite>
+  <testsuite name="trialpkg.OnBoardUser" incomplete="true">
+    <testcase name="SecureMain" classname="trialpkg.OnBoardUser" incomplete="true"/>
+  </testsuite>
+  <testsuite name="sanity_ff.PermsOnForward_DraftsPage" incomplete="true">
+    <testcase name="NonSecureNoattachs" classname="sanity_ff.PermsOnForward_DraftsPage" incomplete="true"/>
+    <testcase name="SecureNoattachs" classname="sanity_ff.PermsOnForward_DraftsPage" incomplete="true"/>
+    <testcase name="NonSecureGreater25MB" classname="sanity_ff.PermsOnForward_DraftsPage" incomplete="true"/>
+    <testcase name="SecureLesser25MB" classname="sanity_ff.PermsOnForward_DraftsPage" incomplete="true"/>
+    <testcase name="NonSecureLesser25MB" classname="sanity_ff.PermsOnForward_DraftsPage" incomplete="true"/>
+    <testcase name="SecureGreater25MB" classname="sanity_ff.PermsOnForward_DraftsPage" incomplete="true"/>
+  </testsuite>
+  <testsuite name="sanity_ff.PermsOnReplyToAll_DraftsPage" incomplete="true">
+    <testcase name="NonSecureNoattachs" classname="sanity_ff.PermsOnReplyToAll_DraftsPage" incomplete="true"/>
+    <testcase name="SecureNoattachs" classname="sanity_ff.PermsOnReplyToAll_DraftsPage" incomplete="true"/>
+    <testcase name="NonSecureGreaterThan25mb" classname="sanity_ff.PermsOnReplyToAll_DraftsPage" incomplete="true"/>
+    <testcase name="SecureLesserThan25mb" classname="sanity_ff.PermsOnReplyToAll_DraftsPage" incomplete="true"/>
+    <testcase name="NonSecureLesserThan25mb" classname="sanity_ff.PermsOnReplyToAll_DraftsPage" incomplete="true"/>
+    <testcase name="SecureGreaterThan25mb" classname="sanity_ff.PermsOnReplyToAll_DraftsPage" incomplete="true"/>
+  </testsuite>
+  <testsuite name="trialpkg.LFT" incomplete="true">
+    <testcase name="LFTMain" classname="trialpkg.LFT" incomplete="true"/>
+  </testsuite>
+  <testsuite name="sanity_ff.PermsOnComposePage" incomplete="true">
+    <testcase name="NonSecureNoattachs" classname="sanity_ff.PermsOnComposePage" incomplete="true"/>
+    <testcase name="SecureNoattachs" classname="sanity_ff.PermsOnComposePage" incomplete="true"/>
+    <testcase name="NonSecureGreater25MB" classname="sanity_ff.PermsOnComposePage" incomplete="true"/>
+    <testcase name="SecureLesser25MB" classname="sanity_ff.PermsOnComposePage" incomplete="true"/>
+    <testcase name="NonSecureLesser25MB" classname="sanity_ff.PermsOnComposePage" incomplete="true"/>
+    <testcase name="SecureGreater25MB" classname="sanity_ff.PermsOnComposePage" incomplete="true"/>
+  </testsuite>
+  <testsuite name="sanity_ff.PermsOnReply_DraftsPage" incomplete="true">
+    <testcase name="NonSecureNoattachs" classname="sanity_ff.PermsOnReply_DraftsPage" incomplete="true"/>
+    <testcase name="SecureNoattachs" classname="sanity_ff.PermsOnReply_DraftsPage" incomplete="true"/>
+    <testcase name="NonSecureGreaterThan25mb" classname="sanity_ff.PermsOnReply_DraftsPage" incomplete="true"/>
+    <testcase name="SecureLesserThan25mb" classname="sanity_ff.PermsOnReply_DraftsPage" incomplete="true"/>
+    <testcase name="NonSecureLesserThan25mb" classname="sanity_ff.PermsOnReply_DraftsPage" incomplete="true"/>
+    <testcase name="SecureGreaterThan25mb" classname="sanity_ff.PermsOnReply_DraftsPage" incomplete="true"/>
+  </testsuite>
+  <testsuite name="sanity_ff.InitialSanitySteps" incomplete="true">
+    <testcase name="InitialSanityMain" classname="sanity_ff.InitialSanitySteps" incomplete="true"/>
+  </testsuite>
+  <testsuite name="trialpkg.CreateLocalUser" incomplete="true">
+    <testcase name="CreateLocalMain" classname="trialpkg.CreateLocalUser" incomplete="true"/>
+  </testsuite>
+  <testsuite name="sanity_ff.PermsOnReplyToAllPage" incomplete="true">
+    <testcase name="NonSecureNoattachs" classname="sanity_ff.PermsOnReplyToAllPage" incomplete="true"/>
+    <testcase name="SecureNoattachs" classname="sanity_ff.PermsOnReplyToAllPage" incomplete="true"/>
+    <testcase name="NonSecureGreaterThan25mb" classname="sanity_ff.PermsOnReplyToAllPage" incomplete="true"/>
+    <testcase name="SecureLesserThan25mb" classname="sanity_ff.PermsOnReplyToAllPage" incomplete="true"/>
+    <testcase name="NonSecureLesserThan25mb" classname="sanity_ff.PermsOnReplyToAllPage" incomplete="true"/>
+    <testcase name="SecureGreaterThan25mb" classname="sanity_ff.PermsOnReplyToAllPage" incomplete="true"/>
+  </testsuite>
+</testrun>

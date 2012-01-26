@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="Expirations" project="spw_001" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="sanity_ff.Expirations" time="90.538">
+    <testcase name="foo1" classname="sanity_ff.Expirations" time="90.538"/>
+  </testsuite>
+</testrun>

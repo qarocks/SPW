@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;sanity_ff.Expirations&apos; to &apos;Expirations_suite_001&apos;&#x0D;&#x0A;- Original project: &apos;spw_001&apos;&#x0D;&#x0A;- Original element: &apos;sanity_ff.Expirations&apos;&#x0D;&#x0A;- Renamed element: &apos;sanity_ff.Expirations_suite_001&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Expirations&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;sanity_ff{Expirations.java[Expirations" matchStrategy="1" name="Expirations_suite_001" qualified="false" references="true" similarDeclarations="false" stamp="1327620060616" textual="false" version="1.0"/>
+</session>

@@ -15,7 +15,7 @@ import org.openqa.selenium.WebDriver;
 
 public class Functions{
 	
-	public final static String baseUrl="http://192.168.1.9";
+	public final static String baseUrl="http://192.168.1.7";
 	public final static String compose_url=baseUrl+"/transfer/compose";
 	public final static String inbox_url=baseUrl+"/transfer/inbox";
 	public final static String sent_url=baseUrl+"/transfer/sent";
@@ -42,7 +42,7 @@ public static void MyWaitfunc(WebDriver driver,String element) throws Exception{
 public static void WaitForUpload(WebDriver driver) throws Exception{
 	
 	for (int second = 0;; second++) {
-		if (second >= 120) {fail("timeout");}
+		if (second >= 1020) {fail("timeout");}
 		try { 
 			if(driver.findElement(By.cssSelector("span.plupload_total_status")).getText().equalsIgnoreCase("100%"))
 		       {Thread.sleep(2000);break;}
@@ -96,7 +96,7 @@ public static void SecureSend(Selenium selenium,WebDriver driver,String sender,S
 	driver.findElement(By.id("submitter")).click();
 		
 			
-    String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
+    String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
      if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
@@ -132,7 +132,7 @@ public static void SecureSendLessthan25MB(Selenium selenium,WebDriver driver,Str
 			
 	selenium.typeKeys("//body[@id='tinymce']", emailBody);
 	driver.switchTo().defaultContent();
-	Runtime.getRuntime().exec("C:\\Users\\Sneha\\Desktop\\silver_autoit.exe");
+	Runtime.getRuntime().exec(pathToLessthan25MbFilesScript);
 	
 	
 	
@@ -147,7 +147,7 @@ public static void SecureSendLessthan25MB(Selenium selenium,WebDriver driver,Str
 	driver.findElement(By.id("submitter")).click();
 		
 			
-    String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
+    String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
      if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
@@ -183,7 +183,7 @@ public static void SecureSendGreaterthan25MB(Selenium selenium,WebDriver driver,
 			
 	selenium.typeKeys("//body[@id='tinymce']", emailBody);
 	driver.switchTo().defaultContent();
-	Runtime.getRuntime().exec("C:\\Users\\Sneha\\Desktop\\silver_autoit_greaterthan25mb.exe");
+	Runtime.getRuntime().exec(pathToGreaterthan25MbFilesScript);
 	
 	
 	
@@ -198,7 +198,7 @@ public static void SecureSendGreaterthan25MB(Selenium selenium,WebDriver driver,
 	driver.findElement(By.id("submitter")).click();
 		
 			
-    String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
+    String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
      if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
@@ -215,11 +215,14 @@ public static void SecureSendGreaterthan25MB(Selenium selenium,WebDriver driver,
 
 
 
-public static String FindIdwithSubject(WebDriver driver,Selenium selenium,String subject)
+public static String FindIdwithSubject(WebDriver driver,Selenium selenium,String subject) throws InterruptedException
 {
 	  int flag=0;
 	
 	String EmailId=null;
+	Thread.sleep(5000);
+	driver.get(inbox_url);
+	Thread.sleep(5000);
 	WebElement select = driver.findElement(By.xpath("//*[@id='EmailInbox']"));
 	List<WebElement> options = select.findElements(By.tagName("tbody"));
 	  System.out.println("The count for tbody is "+options.size());
@@ -332,7 +335,7 @@ public static void LFTSend(Selenium selenium,WebDriver driver,String sender,Stri
 		
 		
 		
-		Runtime.getRuntime().exec("C:\\Users\\Sneha\\Desktop\\silver_autoit.exe");
+		Runtime.getRuntime().exec(pathToLessthan25MbFilesScript);
 		
 		
 		
@@ -369,7 +372,7 @@ public static void LFTSend(Selenium selenium,WebDriver driver,String sender,Stri
 		
 	// to check if mail was sent successfully
      
-     String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
+     String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
      if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
@@ -403,7 +406,7 @@ public static void LFTSendGreaterThan25mb(Selenium selenium,WebDriver driver,Str
 		
 		
 		
-		Runtime.getRuntime().exec("C:\\Users\\Sneha\\Desktop\\silver_autoit_greaterthan25mb.exe");
+		Runtime.getRuntime().exec(pathToGreaterthan25MbFilesScript);
 		
 		
 		
@@ -440,7 +443,7 @@ public static void LFTSendGreaterThan25mb(Selenium selenium,WebDriver driver,Str
 		
 	// to check if mail was sent successfully
      
-     String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
+     String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
      if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))

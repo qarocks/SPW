@@ -38,6 +38,7 @@ public class PermsOnReply_DraftsPage {
 	private String inboxUrl=Functions.inbox_url;
 	private String sentUrl=Functions.sent_url;
 	private String outboxUrl=Functions.outbox_url;
+	private String draftsUrl=Functions.drafts_url;
 	
 	Selenium selenium;
 	private StringBuffer verificationErrors = new StringBuffer();
@@ -107,7 +108,7 @@ public class PermsOnReply_DraftsPage {
 		
 		//Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -172,7 +173,7 @@ public class PermsOnReply_DraftsPage {
 		
 		//Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -234,7 +235,7 @@ public class PermsOnReply_DraftsPage {
 		
 		//Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -297,7 +298,7 @@ public class PermsOnReply_DraftsPage {
 		
 		//Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -368,7 +369,7 @@ public class PermsOnReply_DraftsPage {
 		
 		//Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -436,7 +437,7 @@ public class PermsOnReply_DraftsPage {
 		
 		//Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -501,7 +502,7 @@ public class PermsOnReply_DraftsPage {
 		
 		//Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -570,7 +571,7 @@ public class PermsOnReply_DraftsPage {
 		
 		//Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -661,7 +662,7 @@ public class PermsOnReply_DraftsPage {
 		
 		Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -739,7 +740,7 @@ public class PermsOnReply_DraftsPage {
 		
 		Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -817,7 +818,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -893,7 +894,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -978,7 +979,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -1059,7 +1060,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -1137,7 +1138,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -1214,7 +1215,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -1302,7 +1303,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -1385,7 +1386,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -1464,7 +1465,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -1543,7 +1544,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -1627,7 +1628,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -1704,7 +1705,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -1782,7 +1783,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
@@ -1863,7 +1864,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		Functions.WaitForUpload(driver);
 		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
-		driver.findElement(By.linkText("Drafts")).click();selenium.waitForPageToLoad("3000");
+		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
 		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
