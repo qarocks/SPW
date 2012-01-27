@@ -69,7 +69,7 @@ String large_file_expire_date;
 	
 	
 	@Test
-	public void foo1() throws Exception {
+	public void suite_001() throws Exception {
 		
 		
 		//This code will consider the local time zone ,admin settings as files > 1mb will expire in 1 day
@@ -148,7 +148,7 @@ String large_file_expire_date;
 		
 		
 		
-		//here small file is assumed as < 1MB and large files are greater than 1 MB
+		//for ex: here small file is assumed as < 1 MB and large files are greater than 1 MB
 		
 		// Now, to log in as end-user and check these dates on compose page,edit drafts page and forward email pages
 		driver.get(baseUrl);
