@@ -25,7 +25,7 @@ public class Functions{
 	public final static String topFileLocation="automation files\\";
 	public final static String pathToLessthan25MbFilesScript=baseFileLocation+topFileLocation+"silver_autoit.exe";
 	public final static String pathToGreaterthan25MbFilesScript=baseFileLocation+topFileLocation+"silver_autoit_greaterthan25mb.exe";
-	public final static String pathToDownloadFileHandler=baseFileLocation+topFileLocation+"download_handle.exe";
+	
 	
 	
 

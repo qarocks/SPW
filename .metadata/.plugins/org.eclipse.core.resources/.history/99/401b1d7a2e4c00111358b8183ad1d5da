@@ -25,7 +25,7 @@ public class Functions{
 	public final static String topFileLocation="automation files\\";
 	public final static String pathToLessthan25MbFilesScript=baseFileLocation+topFileLocation+"silver_autoit.exe";
 	public final static String pathToGreaterthan25MbFilesScript=baseFileLocation+topFileLocation+"silver_autoit_greaterthan25mb.exe";
-	public final static String pathToDownloadFileHandler=baseFileLocation+topFileLocation+"download_handle.exe";
+	
 	
 	
 
@@ -593,15 +593,10 @@ public static String GetRowIdFromCabinet(WebDriver driver,Selenium selenium,int 
 
 
 }
-public static Integer GetRowCntCabinet(WebDriver driver,Selenium selenium)throws Exception
 
-{
-	
-	String return_cnt=driver.findElement(By.xpath("//html/body/div/div[2]/div[4]/div[2]/div[5]/div/table/tbody/tr/td[3]/div")).getText();
-	return_cnt=return_cnt.substring(15);
-	return Integer.valueOf(return_cnt);
 
-}
+
+
 
 public static String DraftsFindIdwithSubject(WebDriver driver,Selenium selenium,String subject) throws InterruptedException
 {
