@@ -15,7 +15,7 @@ import org.openqa.selenium.WebDriver;
 
 public class Functions{
 	
-	public final static String baseUrl="http://192.168.1.7";
+	public final static String baseUrl="http://192.168.1.9";
 	public final static String compose_url=baseUrl+"/transfer/compose";
 	public final static String inbox_url=baseUrl+"/transfer/inbox";
 	public final static String sent_url=baseUrl+"/transfer/sent";
@@ -502,6 +502,63 @@ public static String FindIdwithSubject(WebDriver driver,Selenium selenium,String
 
 
 
+
+public static String FindIdwithSubjectInOutbox(WebDriver driver,Selenium selenium,String subject) throws InterruptedException
+{
+	  int flag=0;
+	
+	String EmailId=null;
+	Thread.sleep(5000);
+	driver.get(inbox_url);
+	Thread.sleep(10000);
+	driver.get(inbox_url);
+	Thread.sleep(7000);
+	WebElement select = driver.findElement(By.xpath("//*[@id='EmailInbox']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			   List<WebElement> sub_sub_options = sub_sub_option.findElements(By.tagName("td"));
+			   System.out.println("The count for td is "+sub_sub_options.size());
+			   for (WebElement sub_sub_sub_option : sub_sub_options) {
+				   
+				   System.out.println("i was here!");
+				   System.out.println(""+sub_sub_sub_option.getText());
+				   
+				   if(sub_sub_sub_option.getText().contains(subject))
+					   
+				   {
+					   EmailId=sub_sub_option.getAttribute("id");
+					   flag=1;break;
+					   
+				   }
+				   
+				if(flag==1) break;
+				   
+				   
+			   }
+			   
+			   if(flag==1) break; 
+		   }
+		   if(flag==1) break;
+		   }
+		   
+	   
+	
+	return EmailId;
+	
+	
+
+
+}// end of FindIdwithSubject
+
+
+
+
+
 public static String FindIdwithSubjectInSent(WebDriver driver,Selenium selenium,String subject) throws InterruptedException
 {
 	  int flag=0;
@@ -563,9 +620,141 @@ public static String GetRowIdFromCabinet(WebDriver driver,Selenium selenium,int 
 	int flag=0;
 	String return_rowid=null;
  int rowcnt=0;
-	
+ System.out.println("rowcnt is"+ rowcnt+ "row value is" +row);
 	
 	WebElement select = driver.findElement(By.xpath("//*[@id='MyFilesPlusUpload']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			
+					   return_rowid=sub_sub_option.getAttribute("id");
+					  
+					   rowcnt++;
+					   if(rowcnt==row) {System.out.println("After breaking from loop rowcnt is"+rowcnt+ "row value is" +row);flag=1;break;}
+				   }
+				   
+				if(flag==1) break;
+				   
+				   
+			   }
+			   
+			 
+		 
+if(flag==0) assertEquals("0","1");
+		   
+	return return_rowid;
+
+
+}
+
+
+public static String GetRowIdFromCabinetWithLimits(WebDriver driver,Selenium selenium,int row,Integer limits[]) throws Exception
+
+{
+	int flag=0;
+	String return_rowid=null;
+ int rowcnt=limits[0];
+ row=limits[1]+1; // will return the last row id
+ 
+ 
+ System.out.println("rowcnt is"+ rowcnt+ "row value is" +row);
+	
+	WebElement select = driver.findElement(By.xpath("//*[@id='MyFilesPlusUpload']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			
+					   return_rowid=sub_sub_option.getAttribute("id");
+					  
+					   
+					   if(rowcnt==row) {System.out.println("After breaking from loop rowcnt is"+rowcnt+ "row value is" +row);flag=1;break;}
+					   else 
+					   {
+					   
+					   System.out.println("Before breaking from loop rowcnt is"+rowcnt+ "row value is" +row);
+					   rowcnt++;
+					   }
+				   }if(flag==1) break;
+				   
+				if(flag==1) break;
+				   
+				   
+			   }
+			   
+			 
+		 
+if(flag==0) assertEquals("0","1");
+		   
+	return return_rowid;
+
+
+}
+
+public static String GetRowIdFromCabinetWithLimits_SR(WebDriver driver,Selenium selenium,int row,Integer limits[]) throws Exception
+
+{
+	int flag=0;
+	String return_rowid=null;
+ int rowcnt=limits[0];
+ row=limits[1]+1; // will return the last row id
+ 
+ 
+ System.out.println("rowcnt is"+ rowcnt+ "row value is" +row);
+	
+	WebElement select = driver.findElement(By.xpath("//*[@id='MyFilesPlusUploadNoDel']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			
+					   return_rowid=sub_sub_option.getAttribute("id");
+					  
+					   
+					   if(rowcnt==row) {System.out.println("After breaking from loop rowcnt is"+rowcnt+ "row value is" +row);flag=1;break;}
+					   else 
+					   {
+					   
+					   System.out.println("Before breaking from loop rowcnt is"+rowcnt+ "row value is" +row);
+					   rowcnt++;
+					   }
+				   }if(flag==1) break;
+				   
+				if(flag==1) break;
+				   
+				   
+			   }
+			   
+			 
+		 
+if(flag==0) assertEquals("0","1");
+		   
+	return return_rowid;
+
+
+}
+
+
+
+public static String GetRowIdFromCabinet_SR(WebDriver driver,Selenium selenium,int row) throws Exception
+
+{
+	int flag=0;
+	String return_rowid=null;
+ int rowcnt=0;
+	
+	
+	WebElement select = driver.findElement(By.xpath("//*[@id='MyFilesPlusUploadNoDel']"));
 	List<WebElement> options = select.findElements(By.tagName("tbody"));
 	  System.out.println("The count for tbody is "+options.size());
 	   for (WebElement option : options) {
@@ -587,20 +776,42 @@ public static String GetRowIdFromCabinet(WebDriver driver,Selenium selenium,int 
 			   
 			 
 		 
-
+	   if(flag==0) assertEquals("0","1");
 		   
 	return return_rowid;
 
 
 }
+
+
+
 public static Integer GetRowCntCabinet(WebDriver driver,Selenium selenium)throws Exception
 
 {
 	
 	String return_cnt=driver.findElement(By.xpath("//html/body/div/div[2]/div[4]/div[2]/div[5]/div/table/tbody/tr/td[3]/div")).getText();
-	return_cnt=return_cnt.substring(15);
+	System.out.println(return_cnt);
+	String return_cnt_arr[]=return_cnt.split(" ");
+	return_cnt=return_cnt_arr[5];
+	System.out.println(return_cnt);
 	return Integer.valueOf(return_cnt);
 
+}
+
+
+public static Integer[] GetRowCntLimitsCabinet(WebDriver driver,Selenium selenium)throws Exception
+
+{
+	
+	String return_cnt=driver.findElement(By.xpath("//html/body/div/div[2]/div[4]/div[2]/div[5]/div/table/tbody/tr/td[3]/div")).getText();
+	System.out.println(return_cnt);
+	String return_cnt_arr[]=return_cnt.split(" ");
+	return_cnt=return_cnt_arr[5];
+	System.out.println(return_cnt);
+	Integer arr[]= new Integer[2];
+	arr[0]=Integer.parseInt(return_cnt_arr[1]);
+	arr[1]=Integer.parseInt(return_cnt_arr[3]);
+	return arr;
 }
 
 public static String DraftsFindIdwithSubject(WebDriver driver,Selenium selenium,String subject) throws InterruptedException

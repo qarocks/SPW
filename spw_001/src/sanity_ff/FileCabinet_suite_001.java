@@ -10,6 +10,7 @@ package sanity_ff;
 
 
 import java.util.Calendar;
+import sanity_ff.Functions.*;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -21,6 +22,7 @@ import static org.junit.Assert.*;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 
 
 
@@ -40,6 +42,7 @@ public class FileCabinet_suite_001 {
 	Selenium selenium;
 	private StringBuffer verificationErrors = new StringBuffer();
 	String user_allperms="sneha.qa.24@gmail.com",user_noperms="muunni.24@gmail.com",user_onlysecure="snehamtd002@yahoo.com",user_onlylft="snehamtd001@gmail.com";
+	
 	String pwd_allusers="123abc";
 	String pathAutoItScript=Functions.pathToLessthan25MbFilesScript;
 	String pathAutoItScript_greaterthan25MB=Functions.pathToGreaterthan25MbFilesScript;
@@ -57,7 +60,7 @@ public class FileCabinet_suite_001 {
 	String path_sent=baseUrl+"/filesync/my-files/sent/upload";
 	String path_received=baseUrl+"/filesync/my-files/received/upload";
 	String path_allfiles=baseUrl+"/filesync/my-files/all/upload";
-	
+	String path_filesyncfiles=baseUrl+"/filesync/my-files/filesync/upload";
 String [] tmparr; String DraftId,emailBody,emailId,to_check;
 String subject="";
 
@@ -66,7 +69,7 @@ String small_file_expire_date;
 String large_file_expire_date;
 String cab_rowid;
 int get_rowid;
-	
+Integer cabrows,tmpcabrows,row_limits[];	
 	
 	@Before
 	//@Ignore
@@ -85,6 +88,7 @@ int get_rowid;
 	@Test
 	public void suite_001() throws Exception {
 		
+		user_allperms="snehamtd001@gmail.com";
 		
 		driver.get(baseUrl);
 		driver.findElement(By.id("id_username")).clear();
@@ -122,46 +126,267 @@ int get_rowid;
 	
 		
 		System.out.println(Functions.GetRowCntCabinet(driver, selenium));
-*/
+
+	*/
 		
+		
+	
+		
+		//---------------------------------------------------------------------------------
 		// download "sent" files and make sure record count is unchanged
 		
 		
+		//selecting last data row to download
+		driver.get(path_sent);
+		Thread.sleep(5000);
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		tmpcabrows=cabrows;
+		get_rowid=1;
+		System.out.println(Functions.GetRowIdFromCabinet_SR(driver, selenium, (get_rowid+1)));
+		cab_rowid=Functions.GetRowIdFromCabinet_SR(driver, selenium, (get_rowid+1));
+		driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+cab_rowid+"']")).click();
+		Runtime.getRuntime().exec(pathToDownloadHandle+" Opening Save");
+		driver.findElement(By.xpath(more_actions_xpath)).click();
+		driver.findElement(By.xpath(download_file_xpath)).click();
+		Thread.sleep(5000);
+		assertEquals("My Files", driver.findElement(By.cssSelector("li.last > span")).getText());
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		if(tmpcabrows.equals(cabrows))
+		System.out.println("PASS: First record under sent items successfully downloaded ");
+		else
+			System.out.println("FAIL!");
 		
 		
+		driver.get(path_sent);
+		Thread.sleep(5000);
+		for(int i=0;i<13;i++)
+		{
+			Thread.sleep(500);
+			//selenium.waitForFrameToLoad("xpath=//*[@id='content-area']", "3000");
+        selenium.keyPress("xpath=//*[@id='content-area']", "\t");
+		}
+		
+		for(int i=0;i<1000;i++){
+			
+			//Thread.sleep(500);
+			selenium.keyPress("xpath=//*[@id='content-area']", "\\40");
+		}
+		
+		//Thread.sleep(3000);
+		row_limits=Functions.GetRowCntLimitsCabinet(driver, selenium);
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		tmpcabrows=cabrows;
+		get_rowid=cabrows;
+		System.out.println(Functions.GetRowIdFromCabinetWithLimits_SR(driver, selenium, (get_rowid+1),row_limits));
+		cab_rowid=Functions.GetRowIdFromCabinet_SR(driver, selenium, (get_rowid+1));
+		driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+cab_rowid+"']")).click();
+		Runtime.getRuntime().exec(pathToDownloadHandle+" Opening Save");
+		driver.findElement(By.xpath(more_actions_xpath)).click();
+		driver.findElement(By.xpath(download_file_xpath)).click();
+		Thread.sleep(5000);
+		assertEquals("My Files", driver.findElement(By.cssSelector("li.last > span")).getText());
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		if(tmpcabrows.equals(cabrows))
+		System.out.println("PASS: Last record under sent items successfully downloaded ");
+		else
+			System.out.println("FAIL!");
+	
+		
+		
+		
+		//---------------------------------------------------------------------------------	
 		//download "received" files and make sure record count is unchanged
 		
+		
+		
+		driver.get(path_received);
+		Thread.sleep(5000);
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		tmpcabrows=cabrows;
+		get_rowid=1;
+		System.out.println(Functions.GetRowIdFromCabinet_SR(driver, selenium, (get_rowid+1)));
+		cab_rowid=Functions.GetRowIdFromCabinet_SR(driver, selenium, (get_rowid+1));
+		driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+cab_rowid+"']")).click();
+		Runtime.getRuntime().exec(pathToDownloadHandle+" Opening Save");
+		driver.findElement(By.xpath(more_actions_xpath)).click();
+		driver.findElement(By.xpath(download_file_xpath)).click();
+		Thread.sleep(5000);
+		assertEquals("My Files", driver.findElement(By.cssSelector("li.last > span")).getText());
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		if(tmpcabrows.equals(cabrows))
+		System.out.println("PASS: First record under received items successfully downloaded ");
+		else
+			System.out.println("FAIL!");
+		
+		
+		driver.get(path_received);
+		Thread.sleep(5000);
+		for(int i=0;i<13;i++)
+		{
+			Thread.sleep(500);
+			//selenium.waitForFrameToLoad("xpath=//*[@id='content-area']", "3000");
+        selenium.keyPress("xpath=//*[@id='content-area']", "\t");
+		}
+		
+		for(int i=0;i<1000;i++){
+			
+			//Thread.sleep(500);
+			selenium.keyPress("xpath=//*[@id='content-area']", "\\40");
+		}
+		
+		//Thread.sleep(3000);
+		row_limits=Functions.GetRowCntLimitsCabinet(driver, selenium);
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		tmpcabrows=cabrows;
+		get_rowid=cabrows;
+		System.out.println(Functions.GetRowIdFromCabinetWithLimits_SR(driver, selenium, (get_rowid+1),row_limits));
+		cab_rowid=Functions.GetRowIdFromCabinet_SR(driver, selenium, (get_rowid+1));
+		driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+cab_rowid+"']")).click();
+		Runtime.getRuntime().exec(pathToDownloadHandle+" Opening Save");
+		driver.findElement(By.xpath(more_actions_xpath)).click();
+		driver.findElement(By.xpath(download_file_xpath)).click();
+		Thread.sleep(5000);
+		assertEquals("My Files", driver.findElement(By.cssSelector("li.last > span")).getText());
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		if(tmpcabrows.equals(cabrows))
+		System.out.println("PASS: Last record under received items successfully downloaded ");
+		else
+			System.out.println("FAIL!");
+		
+		
+	
+		
+		//---------------------------------------------------------------------------------
 		//download "file sync" files and make sure record count is unchanged
 		
+		driver.get(path_filesyncfiles);
+		Thread.sleep(5000);
 		
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		tmpcabrows=cabrows;
+		get_rowid=1;
+		System.out.println(Functions.GetRowIdFromCabinet(driver, selenium, (get_rowid+1)));
+		cab_rowid=Functions.GetRowIdFromCabinet(driver, selenium, (get_rowid+1));
+		driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUpload_"+cab_rowid+"']")).click();
+		Runtime.getRuntime().exec(pathToDownloadHandle+" Opening Save");
+		driver.findElement(By.xpath(more_actions_xpath)).click();
+		driver.findElement(By.xpath(download_file_xpath)).click();
+		Thread.sleep(5000);
+		assertEquals("My Files", driver.findElement(By.cssSelector("li.last > span")).getText());
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		if(tmpcabrows.equals(cabrows))
+		System.out.println("PASS: First record under file sync items successfully downloaded ");
+		else
+			System.out.println("FAIL!");
+			
+		
+		
+	
+		
+		
+		
+		
+		driver.get(path_filesyncfiles);
+		Thread.sleep(5000);
+		for(int i=0;i<13;i++)
+		{
+			Thread.sleep(500);
+			//selenium.waitForFrameToLoad("xpath=//*[@id='content-area']", "3000");
+        selenium.keyPress("xpath=//*[@id='content-area']", "\t");
+		}
+		
+		for(int i=0;i<1000;i++){
+			
+			//Thread.sleep(500);
+			selenium.keyPress("xpath=//*[@id='content-area']", "\\40");
+		}
+		
+		//Thread.sleep(3000);
+		row_limits=Functions.GetRowCntLimitsCabinet(driver, selenium);
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		tmpcabrows=cabrows;
+		get_rowid=(int)cabrows;
+		System.out.println("row id to find is"+ get_rowid);
+		//System.out.println(Functions.GetRowIdFromCabinet(driver, selenium, (get_rowid+1)));
+		cab_rowid=Functions.GetRowIdFromCabinetWithLimits(driver, selenium, (get_rowid+1),row_limits);
+		System.out.println("id for last row:"+ cab_rowid);
+		driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUpload_"+cab_rowid+"']")).click();
+		Runtime.getRuntime().exec(pathToDownloadHandle+" Opening Save");
+		driver.findElement(By.xpath(more_actions_xpath)).click();
+		driver.findElement(By.xpath(download_file_xpath)).click();
+		Thread.sleep(5000);
+		assertEquals("My Files", driver.findElement(By.cssSelector("li.last > span")).getText());
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		if(tmpcabrows.equals(cabrows))
+		System.out.println("PASS: Last record under file sync items successfully downloaded ");
+		else
+			System.out.println("FAIL!");
+		//Thread.sleep(50000);
+		
+		//---------------------------------------------------------------------------------
 		//add to file sync "received" files and count should increase
+		
+		
+		
+		
+		
+		//---------------------------------------------------------------------------------
 		
 		
 		//add to file sync "sent files" and count should increase
 		
 		
+		
+		
+		
+		
+		//---------------------------------------------------------------------------------
 		//add to file sync "file sync" files and count should increase
 		
 		
+		
+		
+		
+		
+		//---------------------------------------------------------------------------------
 		//delete from file sync "received" files and count should decrease
 		
 		
+		
+		
+		
+		
+		
+		//---------------------------------------------------------------------------------
 	   //delete from file sync "sent files" and count should decrease
 				
 				
+		
+		
+		//---------------------------------------------------------------------------------
 	   //delete from file sync "file sync" files and count should decrease
 		
 		
+		
+		
+		
+		
+		
+		//---------------------------------------------------------------------------------
 		//selecting multiple files for download should disable "download" option
 		
 		
+		
+		
+		
+		//---------------------------------------------------------------------------------
 		//upload files to file sync and count should increase
 		
 		
 		
 		
 		
-		
+		//---------------------------------------------------------------------------------
 		
 		driver.findElement(By.id("logout")).click();
 		

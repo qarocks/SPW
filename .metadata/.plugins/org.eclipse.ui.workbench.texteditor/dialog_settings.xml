@@ -13,16 +13,16 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="alert" key="selection"/>
+		<item value="GetRowCnt" key="selection"/>
 		<list key="findhistory">
+			<item value="getrowcnt"/>
+			<item value="findid\"/>
+			<item value="findid"/>
+			<item value="ENTER"/>
+			<item value="getrow"/>
+			<item value="get"/>
 			<item value="alert"/>
 			<item value="ldap"/>
-			<item value="draft"/>
-			<item value="draftid"/>
-			<item value="drfatid"/>
-			<item value="secure"/>
-			<item value="findid"/>
-			<item value="sent"/>
 		</list>
 		<list key="replacehistory">
 			<item value="//html/body/div/div[2]/div[4]/ul/li"/>
