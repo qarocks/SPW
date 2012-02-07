@@ -72,31 +72,21 @@ private WebDriver driver;
 		subject="outbox fail case";
 		emailBody=subject;
 		
-		driver.findElement(By.id("logout")).click();
 		Functions.SecureSend(selenium, driver, user_allperms, user_allperms, subject, emailBody, pwd_allusers, baseUrl);
-		driver.get(baseUrl);
-		driver.findElement(By.id("id_username")).clear();
-		driver.findElement(By.id("id_username")).sendKeys(user_allperms);
-		driver.findElement(By.id("id_password")).clear();
-		driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
-		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
-		assertEquals("Inbox", driver.findElement(By.id("heading")).getText());
 		String result=Functions.FindIdwithSubjectInOutbox(driver, selenium, subject);
-		driver.findElement(By.id("portal-enduser")).click();
-		driver.findElement(By.id("network")).click();
-		driver.findElement(By.id("relay")).click();
-		driver.findElement(By.id("id_host")).clear();
-		driver.findElement(By.id("id_host")).sendKeys("relaybackup.dnsexit.com");
-		driver.findElement(By.name("submit-primary")).click();
-		assertEquals("New email relay settings were saved successfully.", driver.findElement(By.cssSelector("li.success")).getText());
-		
 		if(result.equals(null))
 		{System.out.println("FAIL"); assertEquals("0","1");}
 		else
 		{System.out.println("PASS");}
 		
 		
-		
+		driver.findElement(By.id("portal-enduser")).click();
+		driver.findElement(By.id("network")).click();
+		driver.findElement(By.id("relay")).click();
+		driver.findElement(By.id("id_host")).clear();
+		driver.findElement(By.id("id_host")).sendKeys("relaybackup.dnsexit.comblahblah");
+		driver.findElement(By.name("submit-primary")).click();
+		assertEquals("New email relay settings were saved successfully.", driver.findElement(By.cssSelector("li.success")).getText());
 		
 		
 		driver.findElement(By.id("logout")).click();

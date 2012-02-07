@@ -15,7 +15,7 @@ import org.openqa.selenium.WebDriver;
 
 public class Functions{
 	
-	public final static String baseUrl="http://192.168.1.129";
+	public final static String baseUrl="http://192.168.1.9";
 	public final static String compose_url=baseUrl+"/transfer/compose";
 	public final static String inbox_url=baseUrl+"/transfer/inbox";
 	public final static String sent_url=baseUrl+"/transfer/sent";
@@ -509,11 +509,11 @@ public static String FindIdwithSubjectInOutbox(WebDriver driver,Selenium seleniu
 	
 	String EmailId=null;
 	Thread.sleep(5000);
-	driver.get(outbox_url);
+	driver.get(inbox_url);
 	Thread.sleep(10000);
-	driver.get(outbox_url);
+	driver.get(inbox_url);
 	Thread.sleep(7000);
-	WebElement select = driver.findElement(By.xpath("//*[@id='EmailOutbox']"));
+	WebElement select = driver.findElement(By.xpath("//*[@id='EmailInbox']"));
 	List<WebElement> options = select.findElements(By.tagName("tbody"));
 	  System.out.println("The count for tbody is "+options.size());
 	   for (WebElement option : options) {

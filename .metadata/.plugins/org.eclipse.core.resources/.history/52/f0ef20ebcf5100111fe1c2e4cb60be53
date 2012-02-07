@@ -509,11 +509,11 @@ public static String FindIdwithSubjectInOutbox(WebDriver driver,Selenium seleniu
 	
 	String EmailId=null;
 	Thread.sleep(5000);
-	driver.get(outbox_url);
+	driver.get(inbox_url);
 	Thread.sleep(10000);
-	driver.get(outbox_url);
+	driver.get(inbox_url);
 	Thread.sleep(7000);
-	WebElement select = driver.findElement(By.xpath("//*[@id='EmailOutbox']"));
+	WebElement select = driver.findElement(By.xpath("//*[@id='EmailInbox']"));
 	List<WebElement> options = select.findElements(By.tagName("tbody"));
 	  System.out.println("The count for tbody is "+options.size());
 	   for (WebElement option : options) {
