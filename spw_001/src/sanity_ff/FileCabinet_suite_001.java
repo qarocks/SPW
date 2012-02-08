@@ -62,13 +62,14 @@ public class FileCabinet_suite_001 {
 	String path_allfiles=baseUrl+"/filesync/my-files/all/upload";
 	String path_filesyncfiles=baseUrl+"/filesync/my-files/filesync/upload";
 String [] tmparr; String DraftId,emailBody,emailId,to_check;
-String subject="";
+String subject="",result;
 
 String default_expire_date;
 String small_file_expire_date;
 String large_file_expire_date;
 String cab_rowid;
 int get_rowid;
+String fname="Oops.jpg.jpg";
 Integer cabrows,tmpcabrows,row_limits[];	
 	
 	@Before
@@ -87,7 +88,7 @@ Integer cabrows,tmpcabrows,row_limits[];
 	
 	@Test
 	public void suite_001() throws Exception {
-		
+		/*	
 		user_allperms="snehamtd001@gmail.com";
 		
 		driver.get(baseUrl);
@@ -102,32 +103,7 @@ Integer cabrows,tmpcabrows,row_limits[];
 		
 		
 		
-		/*  ---- test code------
-		 * 
-		 * 
-		 * 
-		 * 
-		 * get_rowid=2;
-		 
-		System.out.println(Functions.GetRowIdFromCabinet(driver, selenium, (get_rowid+1)));
-		cab_rowid=Functions.GetRowIdFromCabinet(driver, selenium, (get_rowid+1));
-		driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUpload_"+cab_rowid+"']")).click();
-		driver.findElement(By.xpath("//html/body/div/div[2]/div[4]/table/tbody/tr/td[2]/div/div/div/a")).click();
 		
-		Runtime.getRuntime().exec(pathToDownloadHandle+" Opening Save");
-		
-		
-		driver.findElement(By.xpath("//html/body/div/div[2]/div[4]/table/tbody/tr/td[2]/div/div/ul/li/a")).click();
-		
-		Thread.sleep(5000);
-		
-		
-		assertEquals("My Files", driver.findElement(By.cssSelector("li.last > span")).getText());
-	
-		
-		System.out.println(Functions.GetRowCntCabinet(driver, selenium));
-
-	*/
 		
 		
 	
@@ -321,52 +297,233 @@ Integer cabrows,tmpcabrows,row_limits[];
 		System.out.println("PASS: Last record under file sync items successfully downloaded ");
 		else
 			System.out.println("FAIL!");
+		
+		driver.findElement(By.id("logout")).click();
 		//Thread.sleep(50000);
+		
+	
+		
+		
+		
 		
 		//---------------------------------------------------------------------------------
 		//add to file sync "received" files and count should increase
 		
+		   // here we need to first send an email with an attachment. Log in as recipient and then check for the file in the received files list.
 		
-		
-		
-		
+		emailBody="adding files to received file sync files";
+		subject=emailBody;
+		Functions.login(driver, user_onlylft, pwd_allusers);
+		driver.get(path_received);
+		Thread.sleep(3000);
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		driver.findElement(By.id("logout")).click();
+		tmpcabrows=cabrows;
+		Functions.LFTSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody, pwd_allusers, baseUrl);
+		Functions.login(driver, user_onlylft, pwd_allusers);
+		Thread.sleep(5000);
+		driver.get(path_received);
+		Thread.sleep(3000);
+		result=Functions.FindFileFromCabinet_SR(driver, selenium, fname);
+		if(result.equals("null"))
+			assertEquals("0","1");
+		else
+			System.out.println("PASS:file id is : "+result);
+		tmpcabrows++;
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		if(tmpcabrows.equals(cabrows))
+		System.out.println("PASS: file cabinet count increased by one");
+		else
+			System.out.println("FAIL!");
+		driver.findElement(By.id("logout")).click();
 		//---------------------------------------------------------------------------------
-		
+	
 		
 		//add to file sync "sent files" and count should increase
 		
 		
-		
+		emailBody="adding files to received file sync files";
+		subject=emailBody;
+		Functions.login(driver, user_allperms, pwd_allusers);
+		driver.get(path_sent);
+		Thread.sleep(3000);
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		driver.findElement(By.id("logout")).click();
+		tmpcabrows=cabrows;
+		Functions.LFTSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody, pwd_allusers, baseUrl);
+		Functions.login(driver, user_allperms, pwd_allusers);
+		Thread.sleep(5000);
+		driver.get(path_sent);
+		Thread.sleep(3000);
+		result=Functions.FindFileFromCabinet_SR(driver, selenium, fname);
+		if(result.equals("null"))
+			assertEquals("0","1");
+		else
+			System.out.println("PASS:file id is : "+result);
+		tmpcabrows++;
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		if(tmpcabrows.equals(cabrows))
+		System.out.println("PASS: file cabinet count increased by one");
+		else
+			System.out.println("FAIL!");
+		driver.findElement(By.id("logout")).click();
 		
 		
 		
 		//---------------------------------------------------------------------------------
 		//add to file sync "file sync" files and count should increase
 		
+		Functions.login(driver, user_allperms, pwd_allusers);
+		driver.get(path_filesyncfiles);
+		Thread.sleep(3000);
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
 		
+		tmpcabrows=cabrows;
+        Runtime.getRuntime().exec(pathAutoItScript);
 		
+		Thread.sleep(3000);
+		driver.findElement(By.id("cabadd")).click();
+		driver.findElement(By.xpath("//html/body/div[3]/div[2]/div[2]/div/div/div/div[2]/table[2]/tbody/tr/td/div/a/span[2]")).click();
+		Thread.sleep(2000);
+		Functions.WaitForUpload(driver);
+		driver.findElement(By.xpath("//html/body/div[3]/div/a/span")).click();
+		driver.get(path_filesyncfiles);
+		Thread.sleep(3000);
 		
+		result=Functions.FindFileFromCabinet(driver, selenium, fname);
+		if(result.equals("null"))
+			assertEquals("0","1");
+		else
+			System.out.println("PASS:file id is : "+result);
+		tmpcabrows++;
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		if(tmpcabrows.equals(cabrows))
+		System.out.println("PASS: file cabinet count increased by one");
+		else
+			System.out.println("FAIL!");
+		driver.findElement(By.id("logout")).click();
+		
+			
+		
+		//---------------------------------------------------------------------------------
+		//delete from file sync "received" files and delete ption should not be available and count should not decrease
+		
+		emailBody="adding files to received file sync files";
+		subject=emailBody;
+		Functions.login(driver, user_onlylft, pwd_allusers);
+		driver.get(path_received);
+		Thread.sleep(3000);
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		driver.findElement(By.id("logout")).click();
+		tmpcabrows=cabrows;
+		Functions.LFTSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody, pwd_allusers, baseUrl);
+		Functions.login(driver, user_onlylft, pwd_allusers);
+		Thread.sleep(5000);
+		driver.get(path_received);
+		Thread.sleep(3000);
+		result=Functions.FindFileFromCabinet_SR(driver, selenium, fname);
+		if(result.equals("null"))
+			assertEquals("0","1");
+		else
+			System.out.println("PASS:file id is : "+result);
+		tmpcabrows++;
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		if(tmpcabrows.equals(cabrows))
+		System.out.println("PASS: file cabinet count increased by one");
+		else
+			System.out.println("FAIL!");
+		tmpcabrows=cabrows;
+		
+		result=Functions.GetRowIdFromCabinet_SR(driver, selenium,2);
+		driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+result+"']")).click();
+		driver.findElement(By.xpath(more_actions_xpath)).click();
+		
+		try{
+		driver.findElement(By.xpath(delete_xpath)).click();}
+		catch(Exception e)
+		{System.out.println("PASS: delte option not available");}
+	
+		
+			driver.get(path_allfiles);
+			Thread.sleep(3000);
+			result=Functions.GetRowIdFromCabinet(driver, selenium,2);
+			driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUpload_"+result+"']")).click();
+			driver.findElement(By.xpath(more_actions_xpath)).click();
+			Thread.sleep(5000);
+			cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+			if(tmpcabrows.equals(cabrows))
+			System.out.println("PASS: file cabinet count unchanged");
+			else
+				System.out.println("FAIL!");
+			
+		driver.findElement(By.id("logout")).click();
 		
 		
 		//---------------------------------------------------------------------------------
-		//delete from file sync "received" files and count should decrease
-		
-		
-		
-		
-		
-		
-		
-		//---------------------------------------------------------------------------------
-	   //delete from file sync "sent files" and count should decrease
+	   //delete from file sync "sent files" and delete option should not be available and count should be unchanged
 				
-				
+		emailBody="adding files to received file sync files";
+		subject=emailBody;
+		Functions.login(driver, user_allperms, pwd_allusers);
+		driver.get(path_sent);
+		Thread.sleep(3000);
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		driver.findElement(By.id("logout")).click();
+		tmpcabrows=cabrows;
+		Functions.LFTSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody, pwd_allusers, baseUrl);
+		Functions.login(driver, user_allperms, pwd_allusers);
+		Thread.sleep(5000);
+		driver.get(path_sent);
+		Thread.sleep(3000);
+		result=Functions.FindFileFromCabinet_SR(driver, selenium, fname);
+		if(result.equals("null"))
+			assertEquals("0","1");
+		else
+			System.out.println("PASS:file id is : "+result);
+		tmpcabrows++;
+		cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+		if(tmpcabrows.equals(cabrows))
+		System.out.println("PASS: file cabinet count increased by one cnt is "+cabrows);
+		else
+			System.out.println("FAIL!");
+		tmpcabrows=cabrows;
 		
+		result=Functions.GetRowIdFromCabinet_SR(driver, selenium,2);
+		driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+result+"']")).click();
+		driver.findElement(By.xpath(more_actions_xpath)).click();
+		
+		try{
+		driver.findElement(By.xpath(delete_xpath)).click();}
+		catch(Exception e)
+		{System.out.println("PASS: delte option not available");}
+	
+		
+			driver.get(path_allfiles);
+			Thread.sleep(3000);
+			cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+			tmpcabrows=cabrows;
+			result=Functions.GetRowIdFromCabinet(driver, selenium,2);
+			driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUpload_"+result+"']")).click();
+			driver.findElement(By.xpath(more_actions_xpath)).click();
+			Thread.sleep(2000);
+			driver.findElement(By.xpath(delete_xpath)).click();
+			Thread.sleep(5000);
+			cabrows=(Functions.GetRowCntCabinet(driver, selenium));
+			System.out.println("tmpcabrows is "+tmpcabrows+" and cabrows is "+cabrows);
+			if(tmpcabrows.equals(cabrows))
+			System.out.println("PASS: file cabinet count unchanged");
+			else
+				System.out.println("FAIL!");
+			
+		driver.findElement(By.id("logout")).click();
+			
+		*/
 		
 		//---------------------------------------------------------------------------------
 	   //delete from file sync "file sync" files and count should decrease
 		
 		
+
 		
 		
 		
@@ -388,7 +545,7 @@ Integer cabrows,tmpcabrows,row_limits[];
 		
 		//---------------------------------------------------------------------------------
 		
-		driver.findElement(By.id("logout")).click();
+	
 		
 		
 	}

@@ -157,7 +157,17 @@ public static void LFTLessthan25mbNeverExpire(Selenium selenium,WebDriver driver
 
 	}//end of LFTsend method
 
+public static void login(WebDriver driver,String id_username,String pwd_allusers)
+{
+	driver.get(baseUrl);
+	driver.findElement(By.id("id_username")).clear();
+	driver.findElement(By.id("id_username")).sendKeys(id_username);
+	driver.findElement(By.id("id_password")).clear();
+	driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
+	driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+	assertEquals("Inbox", driver.findElement(By.id("heading")).getText());	
 
+}
 
 public static void LFTLessthan25mbCustomExpire(String date,Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
 	  
@@ -744,7 +754,81 @@ if(flag==0) assertEquals("0","1");
 
 }
 
+public static String FindFileFromCabinet_SR(WebDriver driver,Selenium selenium,String fname)
 
+{
+	String name=null;int flag=0;
+	
+	WebElement select = driver.findElement(By.xpath("//*[@id='MyFilesPlusUploadNoDel']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			
+			   
+			   List<WebElement> sub_sub_options = sub_sub_option.findElements(By.tagName("td"));
+			   System.out.println("The count for td is "+sub_options.size());
+			   for (WebElement sub_sub_sub_option : sub_sub_options) {
+				   
+				   name=sub_sub_sub_option.getText();
+				   System.out.println("id is "+name);
+				   if(name.equals(fname))
+				   {flag=1;break;}
+				   
+			   }if(flag==1)break;
+					   
+				   }if(flag==1)break;
+				   
+	   }	
+				   
+				   
+			   
+	if(flag==0)name="null";
+
+	return name;
+
+}
+
+public static String FindFileFromCabinet(WebDriver driver,Selenium selenium,String fname)
+
+{
+	String name=null;int flag=0;
+	
+	WebElement select = driver.findElement(By.xpath("//*[@id='MyFilesPlusUpload']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			
+			   
+			   List<WebElement> sub_sub_options = sub_sub_option.findElements(By.tagName("td"));
+			   System.out.println("The count for td is "+sub_options.size());
+			   for (WebElement sub_sub_sub_option : sub_sub_options) {
+				   
+				   name=sub_sub_sub_option.getText();
+				   System.out.println("id is "+name);
+				   if(name.equals(fname))
+				   {flag=1;break;}
+				   
+			   }if(flag==1)break;
+					   
+				   }if(flag==1)break;
+				   
+	   }	
+				   
+				   
+			   
+	if(flag==0)name="null";
+
+	return name;
+
+}
 
 public static String GetRowIdFromCabinet_SR(WebDriver driver,Selenium selenium,int row) throws Exception
 
@@ -791,6 +875,7 @@ public static Integer GetRowCntCabinet(WebDriver driver,Selenium selenium)throws
 	
 	String return_cnt=driver.findElement(By.xpath("//html/body/div/div[2]/div[4]/div[2]/div[5]/div/table/tbody/tr/td[3]/div")).getText();
 	System.out.println(return_cnt);
+	if(return_cnt.equals("No records to view")) return 0;
 	String return_cnt_arr[]=return_cnt.split(" ");
 	return_cnt=return_cnt_arr[5];
 	System.out.println(return_cnt);

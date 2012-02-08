@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testrun name="OutBoxTest" project="spw_001" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="sanity_ff.OutBoxTest" incomplete="true">
-    <testcase name="InitialSanityMain" classname="sanity_ff.OutBoxTest" incomplete="true"/>
-  </testsuite>
-</testrun>
