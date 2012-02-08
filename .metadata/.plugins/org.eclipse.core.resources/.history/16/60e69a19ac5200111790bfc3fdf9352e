@@ -591,15 +591,13 @@ Integer cabrows,tmpcabrows,row_limits[];
 		
 		System.out.println("PASS: download option not available for multiple files");
 		driver.findElement(By.id("logout")).click();
-		
-		
 		// sent files page
 				Functions.login(driver, user_allperms, pwd_allusers);
 				driver.get(path_sent);
 				Thread.sleep(3000);
 				result=Functions.GetRowIdFromCabinet_SR(driver, selenium, 2);
 				driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+result+"']")).click();
-				result=Functions.GetRowIdFromCabinet_SR(driver, selenium, 3);
+				result=Functions.GetRowIdFromCabinet(driver, selenium, 3);
 				driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+result+"']")).click();
 		        driver.findElement(By.xpath(more_actions_xpath)).click();
 				
@@ -614,8 +612,8 @@ Integer cabrows,tmpcabrows,row_limits[];
 				Thread.sleep(3000);
 				result=Functions.GetRowIdFromCabinet_SR(driver, selenium, 2);
 				driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+result+"']")).click();
-				result=Functions.GetRowIdFromCabinet_SR(driver, selenium, 3);
-				driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+result+"']")).click();
+				result=Functions.GetRowIdFromCabinet(driver, selenium, 3);
+				driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNodel_"+result+"']")).click();
 		        driver.findElement(By.xpath(more_actions_xpath)).click();
 				
 				assertEquals(driver.findElement(By.xpath(download_file_xpath)).getAttribute("class"),"disabled");

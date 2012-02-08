@@ -587,56 +587,19 @@ Integer cabrows,tmpcabrows,row_limits[];
 		driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUpload_"+result+"']")).click();
         driver.findElement(By.xpath(more_actions_xpath)).click();
 		
-		assertEquals(driver.findElement(By.xpath(download_file_xpath)).getAttribute("class"),"disabled");
+		try{
+		driver.findElement(By.xpath(download_file_xpath)).click();}
+		catch(Exception e)
+		{System.out.println("PASS: download option not available for multiple files");}
+	
 		
-		System.out.println("PASS: download option not available for multiple files");
-		driver.findElement(By.id("logout")).click();
 		
 		
-		// sent files page
-				Functions.login(driver, user_allperms, pwd_allusers);
-				driver.get(path_sent);
-				Thread.sleep(3000);
-				result=Functions.GetRowIdFromCabinet_SR(driver, selenium, 2);
-				driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+result+"']")).click();
-				result=Functions.GetRowIdFromCabinet_SR(driver, selenium, 3);
-				driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+result+"']")).click();
-		        driver.findElement(By.xpath(more_actions_xpath)).click();
-				
-				assertEquals(driver.findElement(By.xpath(download_file_xpath)).getAttribute("class"),"disabled");
-				
-				System.out.println("PASS: download option not available for multiple files");
 		
-				driver.findElement(By.id("logout")).click();
-				// received page
-				Functions.login(driver, user_allperms, pwd_allusers);
-				driver.get(path_received);
-				Thread.sleep(3000);
-				result=Functions.GetRowIdFromCabinet_SR(driver, selenium, 2);
-				driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+result+"']")).click();
-				result=Functions.GetRowIdFromCabinet_SR(driver, selenium, 3);
-				driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+result+"']")).click();
-		        driver.findElement(By.xpath(more_actions_xpath)).click();
-				
-				assertEquals(driver.findElement(By.xpath(download_file_xpath)).getAttribute("class"),"disabled");
-				
-				System.out.println("PASS: download option not available for multiple files");
-				driver.findElement(By.id("logout")).click();
-				// file sync files page
-				Functions.login(driver, user_allperms, pwd_allusers);
-				driver.get(path_filesyncfiles);
-				Thread.sleep(3000);
-				result=Functions.GetRowIdFromCabinet(driver, selenium, 2);
-				driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUpload_"+result+"']")).click();
-				result=Functions.GetRowIdFromCabinet(driver, selenium, 3);
-				driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUpload_"+result+"']")).click();
-		        driver.findElement(By.xpath(more_actions_xpath)).click();
-				
-				assertEquals(driver.findElement(By.xpath(download_file_xpath)).getAttribute("class"),"disabled");
-				
-				System.out.println("PASS: download option not available for multiple files");
 		
-				driver.findElement(By.id("logout")).click();
+		
+		
+		
 		
 		//---------------------------------------------------------------------------------
 		

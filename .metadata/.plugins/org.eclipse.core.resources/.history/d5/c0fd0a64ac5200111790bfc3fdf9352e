@@ -615,7 +615,7 @@ Integer cabrows,tmpcabrows,row_limits[];
 				result=Functions.GetRowIdFromCabinet_SR(driver, selenium, 2);
 				driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+result+"']")).click();
 				result=Functions.GetRowIdFromCabinet_SR(driver, selenium, 3);
-				driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+result+"']")).click();
+				driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNodel_"+result+"']")).click();
 		        driver.findElement(By.xpath(more_actions_xpath)).click();
 				
 				assertEquals(driver.findElement(By.xpath(download_file_xpath)).getAttribute("class"),"disabled");
