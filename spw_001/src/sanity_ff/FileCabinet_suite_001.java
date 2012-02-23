@@ -570,7 +570,7 @@ Integer cabrows,tmpcabrows,row_limits[];
 		driver.findElement(By.id("logout")).click();
 
 		
-		*/
+		
 		
 		
 		
@@ -640,8 +640,29 @@ Integer cabrows,tmpcabrows,row_limits[];
 		
 		//---------------------------------------------------------------------------------
 		
-	
+	*/
+		//"email files" functionality - sent files,received files,file sync files
 		
+		//sent files
+		
+		/*subject="email files functionality 001";
+		emailBody=subject;
+		Functions.GenericMailSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody, pwd_allusers, baseUrl, 0, 0, "null", 1, Functions.pathTo25Files, 0);
+		Thread.sleep(5000);
+		*/
+		
+Functions.login(driver, user_allperms, pwd_allusers);
+driver.get(path_sent);
+Thread.sleep(3000);
+for(int i=0;i<15;i++)
+{
+	result=Functions.GetRowIdFromCabinet_SR(driver, selenium, i+2);
+	driver.findElement(By.xpath("//*[@id='jqg_MyFilesPlusUploadNoDel_"+result+"']")).click();
+
+}
+		driver.findElement(By.xpath(email_files_xpath)).click();
+	     selenium.waitForPageToLoad("5000");
+		//Thread.sleep(500000);
 		
 	}
 	

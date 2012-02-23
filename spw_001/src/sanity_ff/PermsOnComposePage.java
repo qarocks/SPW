@@ -91,7 +91,7 @@ public class PermsOnComposePage {
 		selenium.typeKeys("//body[@id='tinymce']","TC--29");
 		driver.switchTo().defaultContent();
 		driver.findElement(By.id("submitter")).click();
-		assertEquals("Large File Transfers must contain atleast one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
+		assertEquals("Large File Transfers must contain at least one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
 		System.out.println("PASS:Permission checking passed for LFT user sending mail with no attachs and non-secure.");
         Runtime.getRuntime().exec(pathAutoItScript);
 		
@@ -139,7 +139,7 @@ public class PermsOnComposePage {
 		driver.switchTo().defaultContent();
        
 		driver.findElement(By.id("submitter")).click();
-		assertEquals("Large File Transfers must contain atleast one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
+		assertEquals("Large File Transfers must contain at least one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
 		
 		 Runtime.getRuntime().exec(pathAutoItScript);
 			
@@ -190,7 +190,7 @@ public class PermsOnComposePage {
 		driver.switchTo().defaultContent();
        
 		driver.findElement(By.id("submitter")).click();
-		assertEquals("Large File Transfers must contain atleast one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
+		assertEquals("Large File Transfers must contain at least one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
 		
 		 Runtime.getRuntime().exec(pathAutoItScript);
 			
@@ -240,7 +240,7 @@ public class PermsOnComposePage {
 		driver.switchTo().defaultContent();
        
 		driver.findElement(By.id("submitter")).click();
-		assertEquals("Large File Transfers must contain atleast one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
+		assertEquals("Large File Transfers must contain at least one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
 		
 		 Runtime.getRuntime().exec(pathAutoItScript);
 			

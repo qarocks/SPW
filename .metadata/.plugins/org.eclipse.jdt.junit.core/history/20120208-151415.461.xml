@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testrun name="FileCabinet_suite_001" project="spw_001" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="sanity_ff.FileCabinet_suite_001" time="61.814">
-    <testcase name="suite_001" classname="sanity_ff.FileCabinet_suite_001" time="61.814"/>
-  </testsuite>
-</testrun>

@@ -102,7 +102,7 @@ public class PermsOnForwardPage {
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		driver.findElement(By.id("submitter")).click();
-		assertEquals("Large File Transfers must contain atleast one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
+		assertEquals("Large File Transfers must contain at least one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
 		System.out.println("PASS:Permission checking passed for LFT user sending mail with no attachs and non-secure.");
         Runtime.getRuntime().exec(pathAutoItScript);
 		
@@ -153,7 +153,7 @@ public class PermsOnForwardPage {
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
 		driver.findElement(By.id("submitter")).click();
-		assertEquals("Large File Transfers must contain atleast one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
+		assertEquals("Large File Transfers must contain at least one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
 		System.out.println("PASS:Permission checking passed for LFT user sending mail with no attachs and non-secure.");
         Runtime.getRuntime().exec(pathAutoItScript);
 		
@@ -206,7 +206,7 @@ public class PermsOnForwardPage {
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
 		driver.findElement(By.id("submitter")).click();
-		assertEquals("Large File Transfers must contain atleast one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
+		assertEquals("Large File Transfers must contain at least one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
 		System.out.println("PASS:Permission checking passed for LFT user sending mail with no attachs and non-secure.");
         Runtime.getRuntime().exec(pathAutoItScript);
 		
@@ -258,7 +258,7 @@ public class PermsOnForwardPage {
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
 		driver.findElement(By.id("submitter")).click();
-		assertEquals("Large File Transfers must contain atleast one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
+		assertEquals("Large File Transfers must contain at least one file attachment.", driver.findElement(By.cssSelector("li.error")).getText());
 		System.out.println("PASS:Permission checking passed for LFT user sending mail with no attachs and non-secure.");
         Runtime.getRuntime().exec(pathAutoItScript);
 		

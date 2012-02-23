@@ -13,18 +13,19 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="SecureSend" key="selection"/>
+		<item value="Generic" key="selection"/>
 		<list key="findhistory">
-			<item value="securesend"/>
-			<item value="secure send"/>
+			<item value="generic"/>
+			<item value="waitfor"/>
+			<item value="LFTSendGreaterThan25mbReturnExpireDate"/>
+			<item value="secure"/>
+			<item value="lftsend"/>
+			<item value="id"/>
+			<item value="getrowcntca"/>
 			<item value="getrowcnt"/>
-			<item value="findid\"/>
-			<item value="findid"/>
-			<item value="ENTER"/>
-			<item value="getrow"/>
-			<item value="get"/>
 		</list>
 		<list key="replacehistory">
+			<item value="name"/>
 			<item value="//html/body/div/div[2]/div[4]/ul/li"/>
 			<item value="//html/body/div/div[2]/div[4]/"/>
 			<item value="pathToGreaterthan25MbFilesScript"/>
@@ -32,7 +33,6 @@
 			<item value="pathToLessthan25MbFilesScript"/>
 			<item value="driver.get(drafts_url);"/>
 			<item value="driver.get("/>
-			<item value="\\Desktop\\automation files"/>
 		</list>
 	</section>
 </section>

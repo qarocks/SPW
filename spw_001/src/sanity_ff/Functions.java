@@ -26,6 +26,7 @@ public class Functions{
 	public final static String pathToLessthan25MbFilesScript=baseFileLocation+topFileLocation+"silver_autoit.exe";
 	public final static String pathToGreaterthan25MbFilesScript=baseFileLocation+topFileLocation+"silver_autoit_greaterthan25mb.exe";
 	public final static String pathToDownloadFileHandler=baseFileLocation+topFileLocation+"download_handle.exe";
+	public final static String pathTo25Files=Functions.baseFileLocation+Functions.topFileLocation+"max file upload.exe";
 	
 	
 
@@ -42,7 +43,8 @@ public static void MyWaitfunc(WebDriver driver,String element) throws Exception{
 public static void WaitForUpload(WebDriver driver) throws Exception{
 	
 	for (int second = 0;; second++) {
-		if (second >= 1020) {fail("timeout");}
+		Thread.sleep(1000);
+		if (second >= 202000) {System.out.println("I fail here!");fail("timeout");}
 		try { 
 			if(driver.findElement(By.cssSelector("span.plupload_total_status")).getText().equalsIgnoreCase("100%"))
 		       {Thread.sleep(2000);break;}
@@ -1093,6 +1095,109 @@ return tmp;
 }//end of LFTsend method
 
 
+public static void GenericMailSend(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl,int secure_flag,int expire_flag,String expire_date,int lft_flag,String lft_path,int notifications) throws Exception {
+	  
+	selenium.open(baseUrl);
+	selenium.type("id=id_username", sender);
+	selenium.type("id=id_password", senderPwd);
+	selenium.click("css=input[type=\"submit\"]");
+	
+	selenium.waitForPageToLoad("2000");
+
+	System.out.println("First: The page title is "+selenium.getTitle());
+	// code to upload file
+	
+	driver.get(compose_url);
+	
+		selenium.waitForPageToLoad("3000");
+		
+		if(notifications==0) // notifications OFF
+		{}
+		else{
+			driver.findElement(By.id("notify")).click();  // notifications ON
+			
+		}
+		
+		if(lft_flag==0) // ONLY secure mail no attachments
+		{}
+		else{
+		// attachments are present
+		
+		Runtime.getRuntime().exec(lft_path);
+		
+		
+		
+		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+		WebElement ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+		Thread.sleep(7000);
+		ele.click();
+		Thread.sleep(3000);
+		
+		
+		}
+		
+		if(expire_flag==0) // default expiration date
+		{}
+		
+		else{
+			// custom expiration date
+			driver.findElement(By.id("statuspicker")).sendKeys(expire_date);
+		}
+		
+		
+		if(secure_flag==0)// non-secure mail
+		{}
+		else
+		{// secure email
+			
+			driver.findElement(By.id("secure")).click();
+		}
+		
+		
+		
+		driver.findElement(By.id("addrin")).sendKeys(recipient);
+		
+		
+		driver.findElement(By.id("id_subject")).sendKeys(subject);
+
+		
+		
+		
+		
+						
+			driver.findElement(By.id("addrsubmit")).click();
+		
+			
+			
+			driver.switchTo().frame("id_body_ifr");
+			
+			selenium.typeKeys("//body[@id='tinymce']", emailBody);
+			 driver.switchTo().defaultContent();
+			
+			 
+			 Functions.WaitForUpload(driver);
+				Thread.sleep(3000);
+			 
+			driver.findElement(By.id("submitter")).click();
+		
+		
+		
+		
+	// to check if mail was sent successfully
+     
+     String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
+     
+     Functions.MyWaitfunc(driver,success_str_xpath);
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
+			
+		System.out.println("SUCCESS:Mail successfully sent !");
+		else
+			{ System.out.println("FAIL:Mail NOT SENT !"); System.out.println(driver.findElement(By.xpath(success_str_xpath)).getText());Exception e1 = new Exception("This case FAILS");
+			throw e1;}
+	
+     driver.findElement(By.id("logout")).click();
+
+}//end of LFTsend method
 
 
 public static void LFTSend(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
