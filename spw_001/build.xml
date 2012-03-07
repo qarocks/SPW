@@ -9,7 +9,7 @@
 	<property name="test.jars" value="C:/Sparkweave-Selenium/JAR" />
 	<property name="test.dest" value="${test.home}/ant_build" />
 	<property name="test.src" value="${test.home}/src" />
-	<property name="ant.reports" value="${test.home}/ant_result" />
+	<property name="ant.reports" value="${test.home}/ant_result_compose_drafts" />
 
 	<path id="testcase.path">
 		<pathelement location="${test.dest}" />
@@ -121,9 +121,9 @@
 					<include name="sanity_ff/PermsOnReply_DraftsPage.class" />
 					<include name="sanity_ff/PermsOnReplyToAll_DraftsPage.class" />
 					-->
-					<include name="sanity_ff/OutBoxTest.class" />
 					
-				
+					
+					<include name="sanity_ff/PermsOnCompose_DraftsPage.class" />
 				
 				</fileset>
 			</batchtest>

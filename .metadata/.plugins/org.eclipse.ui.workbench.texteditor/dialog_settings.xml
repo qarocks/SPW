@@ -2,10 +2,10 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
-		<item value="142" key="DIALOG_Y_ORIGIN"/>
-		<item value="1110" key="DIALOG_X_ORIGIN"/>
+		<item value="534" key="DIALOG_Y_ORIGIN"/>
+		<item value="1120" key="DIALOG_X_ORIGIN"/>
 		<item value="380" key="DIALOG_HEIGHT"/>
-		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|5|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
@@ -13,18 +13,19 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="Generic" key="selection"/>
+		<item value="LFTsend" key="selection"/>
 		<list key="findhistory">
-			<item value="generic"/>
-			<item value="waitfor"/>
-			<item value="LFTSendGreaterThan25mbReturnExpireDate"/>
-			<item value="secure"/>
+			<item value="LFTsend"/>
 			<item value="lftsend"/>
-			<item value="id"/>
-			<item value="getrowcntca"/>
-			<item value="getrowcnt"/>
+			<item value="57"/>
+			<item value="WaitForUpload"/>
+			<item value="waitforupload"/>
+			<item value=" "/>
+			<item value="atleast"/>
+			<item value="generic"/>
 		</list>
 		<list key="replacehistory">
+			<item value="at least"/>
 			<item value="name"/>
 			<item value="//html/body/div/div[2]/div[4]/ul/li"/>
 			<item value="//html/body/div/div[2]/div[4]/"/>
@@ -32,7 +33,6 @@
 			<item value="driver.get(draftsUrl);"/>
 			<item value="pathToLessthan25MbFilesScript"/>
 			<item value="driver.get(drafts_url);"/>
-			<item value="driver.get("/>
 		</list>
 	</section>
 </section>
