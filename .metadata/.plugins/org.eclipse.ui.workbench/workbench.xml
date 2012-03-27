@@ -21,7 +21,7 @@
 <coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.browser.editor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ant.ui.internal.editor.AntEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
@@ -30,31 +30,10 @@
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-<part id="1"/>
-<part id="2"/>
-<part id="3"/>
-</presentation>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.ant.ui.internal.editor.AntEditor" name="build.xml" partName="build.xml" path="C:/Users/Sneha/SPW/spw_001/build.xml" title="build.xml" tooltip="spw_001/build.xml" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/spw_001/build.xml"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4299" selectionTopPixel="1171"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnCompose_DraftsPage.java" partName="PermsOnCompose_DraftsPage.java" path="C:/Users/Sneha/SPW/spw_001/src/sanity_ff/PermsOnCompose_DraftsPage.java" title="PermsOnCompose_DraftsPage.java" tooltip="spw_001/src/sanity_ff/PermsOnCompose_DraftsPage.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/spw_001/src/sanity_ff/PermsOnCompose_DraftsPage.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2256" selectionTopPixel="540"/>
-</editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnReplyPage.java" partName="PermsOnReplyPage.java" path="C:/Users/Sneha/SPW/spw_001/src/sanity_ff/PermsOnReplyPage.java" title="PermsOnReplyPage.java" tooltip="spw_001/src/sanity_ff/PermsOnReplyPage.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/spw_001/src/sanity_ff/PermsOnReplyPage.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="7" selectionOffset="2357" selectionTopPixel="180"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Functions.java" partName="Functions.java" path="C:/Users/Sneha/SPW/spw_001/src/sanity_ff/Functions.java" title="Functions.java" tooltip="spw_001/src/sanity_ff/Functions.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/spw_001/src/sanity_ff/Functions.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="36807" selectionTopPixel="17745"/>
-</editor>
 </editors>
 <views>
 <view id="org.eclipse.jdt.junit.ResultView" partName="JUnit">
@@ -109,7 +88,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -225,188 +204,18 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory>
-<editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/FileCabinet_suite_001.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/Functions.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/PermsOnComposePage.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/spw_001/ant_result/TEST-sanity_ff.PermsOnReplyPage.xml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" path="/spw_001/ant_build/sanity_ff/Functions.class"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" path="/spw_001/ant_build/sanity_ie/Functions.class"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/PermsOnForwardPage.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ant.ui.internal.editor.AntEditor" path="/spw_001/build.xml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/Functions.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ant.ui.internal.editor.AntEditor" path="/spw_001/build.xml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/OutBoxTest.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/Functions.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ant.ui.internal.editor.AntEditor" path="/spw_001/build.xml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/PermsOnComposePage.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/Functions.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/PermsOnCompose_DraftsPage.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/PermsOnForwardPage.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/PermsOnForward_DraftsPage.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/PermsOnReplyPage.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/PermsOnReplyToAllPage.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/OutBoxTest.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/PermsOnReplyPage.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/spw_001/src/sanity_ff/Functions.java"/>
-</editors>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="1934" y="0"/>
-</item>
-<item historyLabel="FileCabinet_suite_001.java" index="0">
-<position info="not_deleted" x="24876" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="35581" y="0"/>
-</item>
-<item historyLabel="FileCabinet_suite_001.java" index="0">
-<position info="not_deleted" x="24176" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="1">
-<position info="not_deleted" x="26860" y="40"/>
-</item>
-<item historyLabel="FileCabinet_suite_001.java" index="0">
-<position info="not_deleted" x="24176" y="0"/>
-</item>
-<item historyLabel="FileCabinet_suite_001.java" index="0">
-<position info="not_deleted" x="25721" y="0"/>
-</item>
-<item historyLabel="FileCabinet_suite_001.java" index="0">
-<position info="not_deleted" x="25785" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="2">
-<position info="not_deleted" x="2133" y="18"/>
-</item>
-<item historyLabel="TEST-sanity_ff.PermsOnReplyPage.xml" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Functions.class" index="4">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Functions.class" index="5">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="PermsOnForwardPage.java" index="6">
-<position info="not_deleted" x="44900" y="68"/>
-</item>
-<item historyLabel="PermsOnForwardPage.java" index="6">
-<position info="not_deleted" x="13669" y="15"/>
-</item>
-<item historyLabel="build.xml" index="7">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="8">
-<position info="not_deleted" x="26860" y="40"/>
-</item>
-<item historyLabel="build.xml" index="9">
-<position info="not_deleted" x="4245" y="0"/>
-</item>
-<item historyLabel="OutBoxTest.java" index="10">
-<position info="not_deleted" x="4" y="0"/>
-</item>
-<item historyLabel="OutBoxTest.java" index="10">
-<position info="not_deleted" x="2959" y="0"/>
-</item>
-<item historyLabel="OutBoxTest.java" index="10">
-<position info="not_deleted" x="979" y="9"/>
-</item>
-<item historyLabel="Functions.java" index="11">
-<position info="not_deleted" x="26860" y="40"/>
-</item>
-<item historyLabel="build.xml" index="12">
-<position info="not_deleted" x="4245" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="13">
-<position info="not_deleted" x="4" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="14">
-<position info="not_deleted" x="954" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="13">
-<position info="not_deleted" x="3513" y="0"/>
-</item>
-<item historyLabel="build.xml" index="12">
-<position/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="13">
-<position info="not_deleted" x="10584" y="8"/>
-</item>
-<item historyLabel="PermsOnCompose_DraftsPage.java" index="15">
-<position info="not_deleted" x="13787" y="0"/>
-</item>
-<item historyLabel="PermsOnForwardPage.java" index="16">
-<position/>
-</item>
-<item historyLabel="PermsOnCompose_DraftsPage.java" index="15">
-<position info="not_deleted" x="13787" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="13">
-<position info="not_deleted" x="10584" y="8"/>
-</item>
-<item historyLabel="PermsOnForward_DraftsPage.java" index="17">
-<position info="not_deleted" x="15861" y="8"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="13">
-<position info="not_deleted" x="10584" y="8"/>
-</item>
-<item historyLabel="PermsOnReplyPage.java" index="18">
-<position info="not_deleted" x="1054" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="13">
-<position info="not_deleted" x="10584" y="8"/>
-</item>
-<item historyLabel="PermsOnReplyToAllPage.java" index="19">
-<position info="not_deleted" x="1608" y="0"/>
-</item>
-<item historyLabel="PermsOnComposePage.java" index="13">
-<position info="not_deleted" x="10584" y="8"/>
-</item>
-<item historyLabel="Functions.java" index="14">
-<position info="not_deleted" x="1971" y="0"/>
-</item>
-<item historyLabel="OutBoxTest.java" index="20">
-<position info="not_deleted" x="3896" y="23"/>
-</item>
-<item historyLabel="PermsOnCompose_DraftsPage.java" index="15">
-<position info="not_deleted" x="3667" y="0"/>
-</item>
-<item historyLabel="PermsOnForwardPage.java" index="16">
-<position info="not_deleted" x="1321" y="0"/>
-</item>
-<item historyLabel="Functions.java" index="14">
-<position info="not_deleted" x="1761" y="13"/>
-</item>
-<item historyLabel="PermsOnCompose_DraftsPage.java" index="15">
-<position info="not_deleted" x="10922" y="0"/>
-</item>
-<item historyLabel="build.xml" index="12">
-<position info="not_deleted" x="4299" y="0"/>
-</item>
-<item historyLabel="PermsOnCompose_DraftsPage.java" index="15">
-<position info="not_deleted" x="10922" y="0"/>
-</item>
-<item historyLabel="PermsOnReplyPage.java" index="21">
-<position info="not_deleted" x="2312" y="2"/>
-</item>
-<item historyLabel="Functions.java" index="22">
-<position info="not_deleted" x="5072" y="7"/>
-</item>
-<item historyLabel="PermsOnReplyPage.java" index="21">
-<position info="not_deleted" x="2357" y="7"/>
-</item>
-<item historyLabel="Functions.java" index="22">
-<position info="not_deleted" x="36807" y="0"/>
-</item>
-<item active="true" historyLabel="PermsOnReplyPage.java" index="21">
-<position info="not_deleted" x="2357" y="7"/>
-</item>
-</navigationHistory>
+<navigationHistory/>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
+<trimArea IMemento.internal.id="16384">
+<trimItem IMemento.internal.id="left"/>
+</trimArea>
+<trimArea IMemento.internal.id="131072">
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@1e885d52"/>
+</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -418,50 +227,50 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Functions.java" tooltip="spw_001/src/sanity_ff/Functions.java">
-<persistable path="/spw_001/src/sanity_ff/Functions.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnReplyToAllPage.java" tooltip="spw_001/src/sanity_ff/backup/PermsOnReplyToAllPage.java">
+<persistable path="/spw_001/src/sanity_ff/backup/PermsOnReplyToAllPage.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnReplyPage.java" tooltip="spw_001/src/sanity_ff/PermsOnReplyPage.java">
-<persistable path="/spw_001/src/sanity_ff/PermsOnReplyPage.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnReplyToAll_DraftsPage.java" tooltip="spw_001/src/sanity_ff/backup/PermsOnReplyToAll_DraftsPage.java">
+<persistable path="/spw_001/src/sanity_ff/backup/PermsOnReplyToAll_DraftsPage.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnForwardPage.java" tooltip="spw_001/src/sanity_ff/PermsOnForwardPage.java">
-<persistable path="/spw_001/src/sanity_ff/PermsOnForwardPage.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnReplyPage.java" tooltip="spw_001/src/sanity_ff/backup/PermsOnReplyPage.java">
+<persistable path="/spw_001/src/sanity_ff/backup/PermsOnReplyPage.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnCompose_DraftsPage.java" tooltip="spw_001/src/sanity_ff/PermsOnCompose_DraftsPage.java">
-<persistable path="/spw_001/src/sanity_ff/PermsOnCompose_DraftsPage.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnReply_DraftsPage.java" tooltip="spw_001/src/sanity_ff/backup/PermsOnReply_DraftsPage.java">
+<persistable path="/spw_001/src/sanity_ff/backup/PermsOnReply_DraftsPage.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="OutBoxTest.java" tooltip="spw_001/src/sanity_ff/OutBoxTest.java">
-<persistable path="/spw_001/src/sanity_ff/OutBoxTest.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnForwardPage.java" tooltip="spw_001/src/sanity_ff/backup/PermsOnForwardPage.java">
+<persistable path="/spw_001/src/sanity_ff/backup/PermsOnForwardPage.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnReplyToAllPage.java" tooltip="spw_001/src/sanity_ff/PermsOnReplyToAllPage.java">
-<persistable path="/spw_001/src/sanity_ff/PermsOnReplyToAllPage.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnForward_DraftsPage.java" tooltip="spw_001/src/sanity_ff/backup/PermsOnForward_DraftsPage.java">
+<persistable path="/spw_001/src/sanity_ff/backup/PermsOnForward_DraftsPage.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnComposePage.java" tooltip="spw_001/src/sanity_ff/backup/PermsOnComposePage.java">
+<persistable path="/spw_001/src/sanity_ff/backup/PermsOnComposePage.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnCompose_DraftsPage.java" tooltip="spw_001/src/sanity_ff/backup/PermsOnCompose_DraftsPage.java">
+<persistable path="/spw_001/src/sanity_ff/backup/PermsOnCompose_DraftsPage.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="OutBoxTest.java" tooltip="spw_001/src/sanity_ff/backup/OutBoxTest.java">
+<persistable path="/spw_001/src/sanity_ff/backup/OutBoxTest.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="InitialSanitySteps.java" tooltip="spw_001/src/sanity_ff/backup/InitialSanitySteps.java">
+<persistable path="/spw_001/src/sanity_ff/backup/InitialSanitySteps.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Functions.java" tooltip="spw_001/src/sanity_ff/backup/Functions.java">
+<persistable path="/spw_001/src/sanity_ff/backup/Functions.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FileCabinet_suite_001.java" tooltip="spw_001/src/sanity_ff/backup/FileCabinet_suite_001.java">
+<persistable path="/spw_001/src/sanity_ff/backup/FileCabinet_suite_001.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Expirations_suite_002.java" tooltip="spw_001/src/sanity_ff/backup/Expirations_suite_002.java">
+<persistable path="/spw_001/src/sanity_ff/backup/Expirations_suite_002.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Expirations_suite_001.java" tooltip="spw_001/src/sanity_ff/backup/Expirations_suite_001.java">
+<persistable path="/spw_001/src/sanity_ff/backup/Expirations_suite_001.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnForward_DraftsPage.java" tooltip="spw_001/src/sanity_ff/PermsOnForward_DraftsPage.java">
 <persistable path="/spw_001/src/sanity_ff/PermsOnForward_DraftsPage.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PermsOnComposePage.java" tooltip="spw_001/src/sanity_ff/PermsOnComposePage.java">
-<persistable path="/spw_001/src/sanity_ff/PermsOnComposePage.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.browser.editorSupport" name="overview-summary.html" tooltip="spw_001/ant_result/overview-summary.html">
-<persistable path="/spw_001/ant_result/overview-summary.html"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.browser.editorSupport" name="alltests-fails.html" tooltip="spw_001/ant_result/alltests-fails.html">
-<persistable path="/spw_001/ant_result/alltests-fails.html"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.browser.editorSupport" name="allclasses-frame.html" tooltip="spw_001/ant_result/allclasses-frame.html">
-<persistable path="/spw_001/ant_result/allclasses-frame.html"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.browser.editorSupport" name="all-tests.html" tooltip="spw_001/ant_result/all-tests.html">
-<persistable path="/spw_001/ant_result/all-tests.html"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.browser.editorSupport" name="index.html" tooltip="spw_001/ant_result/index.html">
-<persistable path="/spw_001/ant_result/index.html"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ant.ui.internal.editor.AntEditor" name="build.xml" tooltip="spw_001/build.xml">
-<persistable path="/spw_001/build.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.junit.JUnitResultEditor" name="TEST-sanity_ff.PermsOnForwardPage.xml" tooltip="spw_001/ant_result/TEST-sanity_ff.PermsOnForwardPage.xml">
-<persistable path="/spw_001/ant_result/TEST-sanity_ff.PermsOnForwardPage.xml"/>
 </file>
 </mruList>
 </workbench>

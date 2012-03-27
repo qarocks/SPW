@@ -12,7 +12,7 @@ snehamtd002@yahoo.com : only SECURE
 */
 
 
-package sanity_ff;
+package sanity_ff.backup;
 
 
 
@@ -30,7 +30,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.thoughtworks.selenium.Selenium;
 
-public class PermsOnReplyToAll_DraftsPage {
+public class PermsOnReplyToAllPage {
 	private WebDriver driver;
 	private String baseUrl=Functions.baseUrl;
 	
@@ -38,7 +38,6 @@ public class PermsOnReplyToAll_DraftsPage {
 	private String inboxUrl=Functions.inbox_url;
 	private String sentUrl=Functions.sent_url;
 	private String outboxUrl=Functions.outbox_url;
-	private String draftsUrl=Functions.drafts_url;
 	
 	Selenium selenium;
 	private StringBuffer verificationErrors = new StringBuffer();
@@ -47,7 +46,7 @@ public class PermsOnReplyToAll_DraftsPage {
 	String pathAutoItScript_lesserthan25mb="C:\\Users\\Sneha\\Desktop\\automation files\\silver_autoit.exe";
 	String pathAutoItScript_greaterthan25MB="C:\\Users\\Sneha\\Desktop\\automation files\\silver_autoit_greaterthan25mb.exe";
 	WebElement ele=null;String subject,emailBody;
-	String emailId;String DraftId;
+	String emailId;
 	
 	
 	
@@ -71,8 +70,8 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 	
 		System.out.println("Testing user with LFT perms only");
-		subject="TC--177";
-		emailBody="TC--177";
+		subject="TC--81";
+		emailBody="TC--81";
 		
 		Functions.LFTSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -103,28 +102,6 @@ public class PermsOnReplyToAll_DraftsPage {
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
-		
-		 //Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			Functions.NoErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
-		
-		
-		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -138,8 +115,8 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		
 		System.out.println("Testing user with SECURE perms only");
-		subject="TC--178";
-		emailBody="TC--178";
+		subject="TC--82";
+		emailBody="TC--82";
 		Functions.LFTSend(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
@@ -169,28 +146,6 @@ public class PermsOnReplyToAll_DraftsPage {
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
-		
-		
-		 //Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			Functions.NoErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
-		
-		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -201,8 +156,8 @@ public class PermsOnReplyToAll_DraftsPage {
 
 		
 		System.out.println("Testing user with ALL perms");
-		subject="TC--179";
-		emailBody="TC--179";
+		subject="TC--83";
+		emailBody="TC--83";
 		Functions.LFTSend(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
@@ -232,29 +187,6 @@ public class PermsOnReplyToAll_DraftsPage {
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
-		
-		
-		
-		 //Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			Functions.NoErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
-		
-		
-		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -266,8 +198,8 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		
 		System.out.println("Testing user with NO perms");
-		subject="TC--180";
-		emailBody="TC--180";
+		subject="TC--84";
+		emailBody="TC--84";
 		Functions.LFTSend(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
 		driver.get(baseUrl);
@@ -297,26 +229,6 @@ public class PermsOnReplyToAll_DraftsPage {
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
-		
-		
-		// Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			Functions.NoErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
-			
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -334,8 +246,8 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		
 		System.out.println("Testing user with LFT perms only");
-		subject="TC--181";
-		emailBody="TC--181";
+		subject="TC--85";
+		emailBody="TC--85";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -368,27 +280,6 @@ public class PermsOnReplyToAll_DraftsPage {
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.SecureErrorMssg(driver, user_onlylft);
 		
-		
-		
-		// Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			Functions.SecureErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.SecureErrorMssg(driver, user_onlylft);
-			
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -401,8 +292,8 @@ public class PermsOnReplyToAll_DraftsPage {
 	
 		
 		System.out.println("Testing user with SECURE perms only");
-		subject="TC--182";
-		emailBody="TC--182";
+		subject="TC--86";
+		emailBody="TC--86";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -435,26 +326,6 @@ public class PermsOnReplyToAll_DraftsPage {
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
-		
-		// Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			Functions.NoErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
-			
-		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -464,8 +335,8 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		//***********************************************************************************
 		System.out.println("Testing user with ALL perms");
-		subject="TC--183";
-		emailBody="TC--183";
+		subject="TC--87";
+		emailBody="TC--87";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -498,26 +369,6 @@ public class PermsOnReplyToAll_DraftsPage {
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
-		
-		
-		// Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			Functions.NoErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
-		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -529,8 +380,8 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		
 		System.out.println("Testing user with NO perms");
-		subject="TC--184";
-		emailBody="TC--184";
+		subject="TC--88";
+		emailBody="TC--88";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -563,25 +414,6 @@ public class PermsOnReplyToAll_DraftsPage {
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.SecureErrorMssg(driver, user_onlylft);
 		
-		
-		// Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			Functions.SecureErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.SecureErrorMssg(driver, user_onlylft);
-		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -603,8 +435,8 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		
 		System.out.println("Testing user with LFT perms only");
-		subject="TC--185";
-		emailBody="TC--185";
+		subject="TC--89";
+		emailBody="TC--89";
 		
 		Functions.LFTSendGreaterThan25mb(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -638,7 +470,7 @@ public class PermsOnReplyToAll_DraftsPage {
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -650,26 +482,6 @@ public class PermsOnReplyToAll_DraftsPage {
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
-		
-		
-		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			Functions.NoErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -682,8 +494,8 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		
 		System.out.println("Testing user with SECURE perms only");
-		subject="TC--186";
-		emailBody="TC--186";
+		subject="TC--90";
+		emailBody="TC--90";
 		
 		Functions.LFTSendGreaterThan25mb(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -715,7 +527,7 @@ public class PermsOnReplyToAll_DraftsPage {
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -727,25 +539,6 @@ public class PermsOnReplyToAll_DraftsPage {
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
-		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			Functions.LftErrorMssg(driver, user_noperms);
-			Functions.LftErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
-			
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -757,8 +550,8 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		
 		System.out.println("Testing user with ALL perms");
-		subject="TC--187";
-		emailBody="TC--187";
+		subject="TC--91";
+		emailBody="TC--91";
 		
 		Functions.LFTSendGreaterThan25mb(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -790,7 +583,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -802,26 +595,6 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
-		
-		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-
-			Functions.NoErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
-		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -832,8 +605,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		//***********************************************************************************
 		
 		System.out.println("Testing user with NO perms");
-		subject="TC--188";
-		emailBody="TC--188";
+		subject="TC--92";
+		emailBody="TC--92";
 		
 		Functions.LFTSendGreaterThan25mb(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -865,7 +638,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -877,25 +650,6 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
-		
-		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			Functions.LftErrorMssg(driver, user_noperms);
-			Functions.LftErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -913,8 +667,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 	
 		
 		System.out.println("Testing user with LFT perms only");
-		subject="TC--189";
-		emailBody="TC--189";
+		subject="TC--93";
+		emailBody="TC--93";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -946,7 +700,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -957,25 +711,6 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.SecureErrorMssg(driver, user_onlylft);
-		
-		
-		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			Functions.SecureErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.SecureErrorMssg(driver, user_onlylft);
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
@@ -990,8 +725,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		System.out.println("Testing user with SECURE perms only");
-		subject="TC--190";
-		emailBody="TC--190";
+		subject="TC--94";
+		emailBody="TC--94";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1023,7 +758,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1035,26 +770,6 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
-		
-		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			Functions.NoErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
-		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -1065,8 +780,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		//***********************************************************************************
 		
 		System.out.println("Testing user with ALL perms");
-		subject="TC--191";
-		emailBody="TC--191";
+		subject="TC--95";
+		emailBody="TC--95";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1098,7 +813,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1110,25 +825,6 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
-		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			Functions.NoErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
-		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -1139,8 +835,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		//***********************************************************************************
 		
 		System.out.println("Testing user with NO perms");
-		subject="TC--192";
-		emailBody="TC--192";
+		subject="TC--96";
+		emailBody="TC--96";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1172,7 +868,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1183,28 +879,6 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.SecureErrorMssg(driver, user_onlylft);
-		
-		
-		
-		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			Functions.SecureErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.SecureErrorMssg(driver, user_onlylft);
-			
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
@@ -1225,8 +899,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		System.out.println("Testing user with LFT perms only");
-		subject="TC--193";
-		emailBody="TC--193";
+		subject="TC--97";
+		emailBody="TC--97";
 		
 		Functions.LFTSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1260,7 +934,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1271,26 +945,6 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
-		
-		
-		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			Functions.NoErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
@@ -1304,8 +958,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		System.out.println("Testing user with secure perms only");
-		subject="TC--194";
-		emailBody="TC--194";
+		subject="TC--98";
+		emailBody="TC--98";
 		
 		Functions.LFTSend(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1339,7 +993,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1351,28 +1005,6 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
-		
-		
-		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			Functions.NoErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
-			
-		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -1382,8 +1014,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		//***********************************************************************************
 		System.out.println("Testing user with ALL perms");
-		subject="TC--195";
-		emailBody="TC--195";
+		subject="TC--99";
+		emailBody="TC--99";
 		
 		Functions.LFTSend(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1417,7 +1049,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1429,26 +1061,6 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
-		
-		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			Functions.NoErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
-		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -1458,8 +1070,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		//***********************************************************************************
 		System.out.println("Testing user with NO perms");
-		subject="TC--196";
-		emailBody="TC--196";
+		subject="TC--100";
+		emailBody="TC--100";
 		
 		Functions.LFTSend(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1493,7 +1105,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1504,28 +1116,6 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
-		
-		
-		
-		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			Functions.NoErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
-			
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
@@ -1544,8 +1134,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		System.out.println("Testing user with LFT perms only");
-		subject="TC--197";
-		emailBody="TC--197";
+		subject="TC--101";
+		emailBody="TC--101";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_onlylft, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1577,7 +1167,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1589,28 +1179,6 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.SecureErrorMssg(driver, user_onlylft);
 		
-		
-		
-		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			
-			Functions.SecureErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.SecureErrorMssg(driver, user_onlylft);
-		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -1621,8 +1189,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		//***********************************************************************************
 		
 		System.out.println("Testing user with SECURE perms only");
-		subject="TC--197";
-		emailBody="TC--197";
+		subject="TC--102";
+		emailBody="TC--102";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_onlysecure, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1654,7 +1222,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1666,27 +1234,6 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
-		
-		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			Functions.LftErrorMssg(driver, user_noperms);
-			Functions.LftErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
-			
-		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
 		assertEquals("Email sent to your outbox and enqueued for delivery.", driver.findElement(By.cssSelector("li.success")).getText());
@@ -1696,8 +1243,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		//***********************************************************************************
 		System.out.println("Testing user with ALL perms");
-		subject="TC--198";
-		emailBody="TC--198";
+		subject="TC--103";
+		emailBody="TC--103";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_allperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1729,7 +1276,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1740,26 +1287,6 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.NoErrorMssg(driver, user_onlylft);
-		
-		
-		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			Functions.NoErrorMssg(driver, user_noperms);
-			Functions.NoErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.NoErrorMssg(driver, user_onlylft);
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");
@@ -1775,8 +1302,8 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		System.out.println("Testing user with NO perms");
-		subject="TC--199";
-		emailBody="TC--199";
+		subject="TC--104";
+		emailBody="TC--104";
 		
 		Functions.SecureSend(selenium, driver, user_allperms, user_noperms, subject, emailBody,pwd_allusers, baseUrl);
 		System.out.println("Navigating to base URL");
@@ -1808,7 +1335,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1819,27 +1346,6 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		Functions.LftErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
 		Functions.SecureErrorMssg(driver, user_onlylft);
-		
-		
-		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
-			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
-			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
-			driver.get(baseUrl+"/transfer/draft/"+DraftId);
-			selenium.waitForPageToLoad("3000");
-			assertEquals("Edit Draft", driver.findElement(By.id("heading")).getText());
-			driver.findElement(By.id("massinsert")).click();
-			driver.findElement(By.id("massintext")).clear();
-			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
-			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
-			
-			Functions.LftAndSecureErrorMssg(driver, user_noperms);
-			Functions.LftErrorMssg(driver, user_onlysecure);
-			Functions.NoErrorMssg(driver, user_allperms);
-			Functions.SecureErrorMssg(driver, user_onlylft);
-			
 		
 		driver.findElement(By.id("submitter")).click();
 		selenium.waitForPageToLoad("3000");

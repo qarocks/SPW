@@ -1,4 +1,4 @@
-package sanity_ff;
+package sanity_ff.backup;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -15,7 +15,7 @@ import org.openqa.selenium.WebDriver;
 
 public class Functions{
 	
-	public final static String baseUrl="http://demo.sparkweave.com";
+	public final static String baseUrl="http://192.168.1.129";
 	public final static String compose_url=baseUrl+"/transfer/compose";
 	public final static String inbox_url=baseUrl+"/transfer/inbox";
 	public final static String sent_url=baseUrl+"/transfer/sent";

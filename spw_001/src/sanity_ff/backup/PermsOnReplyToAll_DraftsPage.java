@@ -12,7 +12,7 @@ snehamtd002@yahoo.com : only SECURE
 */
 
 
-package sanity_ff;
+package sanity_ff.backup;
 
 
 
@@ -105,9 +105,9 @@ public class PermsOnReplyToAll_DraftsPage {
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
 		 //Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -116,7 +116,7 @@ public class PermsOnReplyToAll_DraftsPage {
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			Functions.NoErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
@@ -172,9 +172,9 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		
 		 //Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -183,7 +183,7 @@ public class PermsOnReplyToAll_DraftsPage {
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			Functions.NoErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
@@ -236,9 +236,9 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		
 		 //Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -247,7 +247,7 @@ public class PermsOnReplyToAll_DraftsPage {
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			Functions.NoErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
 			Functions.NoErrorMssg(driver, user_allperms);
@@ -300,9 +300,9 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		
 		// Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -311,7 +311,7 @@ public class PermsOnReplyToAll_DraftsPage {
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			Functions.NoErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
 			Functions.NoErrorMssg(driver, user_allperms);
@@ -371,9 +371,9 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		
 		// Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -382,7 +382,7 @@ public class PermsOnReplyToAll_DraftsPage {
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			Functions.SecureErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
@@ -437,9 +437,9 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		
 		// Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -448,7 +448,7 @@ public class PermsOnReplyToAll_DraftsPage {
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			Functions.NoErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
 			Functions.NoErrorMssg(driver, user_allperms);
@@ -501,9 +501,9 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		
 		// Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -512,7 +512,7 @@ public class PermsOnReplyToAll_DraftsPage {
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			Functions.NoErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
 			Functions.NoErrorMssg(driver, user_allperms);
@@ -565,9 +565,9 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		
 		// Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -576,7 +576,7 @@ public class PermsOnReplyToAll_DraftsPage {
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			Functions.SecureErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
 			Functions.NoErrorMssg(driver, user_allperms);
@@ -638,7 +638,7 @@ public class PermsOnReplyToAll_DraftsPage {
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -653,9 +653,9 @@ public class PermsOnReplyToAll_DraftsPage {
 		
 		
 		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -664,7 +664,7 @@ public class PermsOnReplyToAll_DraftsPage {
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			Functions.NoErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
@@ -715,7 +715,7 @@ public class PermsOnReplyToAll_DraftsPage {
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -728,9 +728,9 @@ public class PermsOnReplyToAll_DraftsPage {
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
 		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -739,7 +739,7 @@ public class PermsOnReplyToAll_DraftsPage {
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			Functions.LftErrorMssg(driver, user_noperms);
 			Functions.LftErrorMssg(driver, user_onlysecure);
@@ -790,7 +790,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -804,9 +804,9 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -815,7 +815,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 
 			Functions.NoErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
@@ -865,7 +865,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -879,9 +879,9 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -890,7 +890,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			Functions.LftErrorMssg(driver, user_noperms);
 			Functions.LftErrorMssg(driver, user_onlysecure);
@@ -946,7 +946,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -960,9 +960,9 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -971,7 +971,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			Functions.SecureErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
 			Functions.NoErrorMssg(driver, user_allperms);
@@ -1023,7 +1023,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1037,9 +1037,9 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -1048,7 +1048,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			Functions.NoErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
@@ -1098,7 +1098,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1111,9 +1111,9 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
 		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -1122,7 +1122,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			Functions.NoErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
@@ -1172,7 +1172,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1187,9 +1187,9 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -1198,7 +1198,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			Functions.SecureErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
@@ -1260,7 +1260,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1274,9 +1274,9 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -1285,7 +1285,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			Functions.NoErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
@@ -1339,7 +1339,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1354,9 +1354,9 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -1365,7 +1365,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			Functions.NoErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
@@ -1417,7 +1417,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1431,9 +1431,9 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -1442,7 +1442,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			Functions.NoErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
@@ -1493,7 +1493,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1508,9 +1508,9 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -1519,7 +1519,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			Functions.NoErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
@@ -1577,7 +1577,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1592,9 +1592,9 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -1603,7 +1603,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			
 			Functions.SecureErrorMssg(driver, user_noperms);
@@ -1654,7 +1654,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1668,9 +1668,9 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -1679,7 +1679,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			Functions.LftErrorMssg(driver, user_noperms);
 			Functions.LftErrorMssg(driver, user_onlysecure);
@@ -1729,7 +1729,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1743,9 +1743,9 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -1754,7 +1754,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			Functions.NoErrorMssg(driver, user_noperms);
 			Functions.NoErrorMssg(driver, user_onlysecure);
@@ -1808,7 +1808,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		ele.click();
 		
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		driver.findElement(By.id("massinsert")).click();
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
@@ -1822,9 +1822,9 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 		
 		
 		 Functions.WaitForUpload(driver);
-			driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+			driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 			driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 			DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 			driver.get(baseUrl+"/transfer/draft/"+DraftId);
 			selenium.waitForPageToLoad("3000");
@@ -1833,7 +1833,7 @@ Runtime.getRuntime().exec(pathAutoItScript_greaterthan25MB);
 			driver.findElement(By.id("massintext")).clear();
 			driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 			driver.findElement(By.xpath("//button[@type='button']")).click();
-			Thread.sleep(6000); // time for illegal recipients to show up in red
+			Thread.sleep(3000); // time for illegal recipients to show up in red
 			
 			Functions.LftAndSecureErrorMssg(driver, user_noperms);
 			Functions.LftErrorMssg(driver, user_onlysecure);

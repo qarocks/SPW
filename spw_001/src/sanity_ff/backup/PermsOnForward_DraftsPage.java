@@ -12,7 +12,7 @@ snehamtd002@yahoo.com : only SECURE
 */
 
 
-package sanity_ff;
+package sanity_ff.backup;
 
 
 
@@ -105,7 +105,7 @@ public class PermsOnForward_DraftsPage {
 		System.out.println("PASS:Permission checking passed for LFT user sending mail with no attachs and non-secure.");
         Runtime.getRuntime().exec(pathAutoItScript);
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
@@ -113,9 +113,9 @@ public class PermsOnForward_DraftsPage {
 		Thread.sleep(2000);
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -124,7 +124,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		
 		Functions.NoErrorMssg(driver, user_noperms);
@@ -178,7 +178,7 @@ public class PermsOnForward_DraftsPage {
 		System.out.println("PASS:Permission checking passed for LFT user sending mail with no attachs and non-secure.");
         Runtime.getRuntime().exec(pathAutoItScript);
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
@@ -187,9 +187,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -198,7 +198,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		
 		Functions.LftErrorMssg(driver, user_noperms);
@@ -254,7 +254,7 @@ public class PermsOnForward_DraftsPage {
 		System.out.println("PASS:Permission checking passed for LFT user sending mail with no attachs and non-secure.");
         Runtime.getRuntime().exec(pathAutoItScript);
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
@@ -262,9 +262,9 @@ public class PermsOnForward_DraftsPage {
 		Thread.sleep(2000);
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -273,7 +273,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		Functions.NoErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
@@ -325,7 +325,7 @@ public class PermsOnForward_DraftsPage {
 		System.out.println("PASS:Permission checking passed for LFT user sending mail with no attachs and non-secure.");
         Runtime.getRuntime().exec(pathAutoItScript);
 		
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		
 		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
 		ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
@@ -334,9 +334,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -345,7 +345,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		Functions.LftErrorMssg(driver, user_noperms);
 		Functions.LftErrorMssg(driver, user_onlysecure);
@@ -406,9 +406,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		//Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -417,7 +417,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		Functions.SecureErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
@@ -472,9 +472,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		//Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -483,7 +483,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		Functions.NoErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
@@ -539,9 +539,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		//Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -550,7 +550,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		
 		Functions.NoErrorMssg(driver, user_noperms);
@@ -605,9 +605,9 @@ public class PermsOnForward_DraftsPage {
 		Functions.SecureErrorMssg(driver, user_onlylft);
 		
 		//Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -616,7 +616,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		Functions.SecureErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
@@ -675,9 +675,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -686,7 +686,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		Functions.LftErrorMssg(driver, user_noperms);
 		Functions.LftErrorMssg(driver, user_onlysecure);
@@ -735,9 +735,9 @@ public class PermsOnForward_DraftsPage {
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -746,7 +746,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		Functions.LftErrorMssg(driver, user_noperms);
 		Functions.LftErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
@@ -795,9 +795,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -806,7 +806,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		Functions.NoErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
@@ -856,9 +856,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -867,7 +867,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		Functions.LftErrorMssg(driver, user_noperms);
 		Functions.LftErrorMssg(driver, user_onlysecure);
@@ -926,9 +926,9 @@ public class PermsOnForward_DraftsPage {
 		Functions.SecureErrorMssg(driver, user_onlylft);
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -937,7 +937,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		Functions.SecureErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
@@ -992,9 +992,9 @@ public class PermsOnForward_DraftsPage {
 		Functions.NoErrorMssg(driver, user_onlylft);
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -1003,7 +1003,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		Functions.NoErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
@@ -1060,9 +1060,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -1071,7 +1071,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		Functions.NoErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
@@ -1127,9 +1127,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -1138,7 +1138,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		Functions.SecureErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
@@ -1194,9 +1194,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -1205,7 +1205,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		Functions.LftErrorMssg(driver, user_noperms);
 		Functions.LftErrorMssg(driver, user_onlysecure);
@@ -1255,9 +1255,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -1266,7 +1266,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		Functions.LftErrorMssg(driver, user_noperms);
 		Functions.LftErrorMssg(driver, user_onlysecure);
@@ -1314,9 +1314,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -1325,7 +1325,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		Functions.NoErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
 		Functions.NoErrorMssg(driver, user_allperms);
@@ -1376,9 +1376,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -1387,7 +1387,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		Functions.LftErrorMssg(driver, user_noperms);
 		Functions.LftErrorMssg(driver, user_onlysecure);
@@ -1449,9 +1449,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -1460,7 +1460,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		Functions.SecureErrorMssg(driver, user_noperms);
 		Functions.NoErrorMssg(driver, user_onlysecure);
@@ -1517,9 +1517,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -1528,7 +1528,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		Functions.LftErrorMssg(driver, user_noperms);
 		Functions.LftErrorMssg(driver, user_onlysecure);
@@ -1585,9 +1585,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -1596,7 +1596,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		
 		Functions.NoErrorMssg(driver, user_noperms);
@@ -1653,9 +1653,9 @@ public class PermsOnForward_DraftsPage {
 		
 		
 		Functions.WaitForUpload(driver);
-		driver.findElement(By.id("saver")).click();Thread.sleep(6000);
+		driver.findElement(By.id("saver")).click();Thread.sleep(3000);
 		driver.get(draftsUrl);selenium.waitForPageToLoad("3000");
-		Thread.sleep(6000);
+		Thread.sleep(3000);
 		DraftId=Functions.DraftsFindIdwithSubject(driver, selenium, subject);
 		driver.get(baseUrl+"/transfer/draft/"+DraftId);
 		selenium.waitForPageToLoad("3000");
@@ -1664,7 +1664,7 @@ public class PermsOnForward_DraftsPage {
 		driver.findElement(By.id("massintext")).clear();
 		driver.findElement(By.id("massintext")).sendKeys(user_allperms+","+user_noperms+","+user_onlysecure+","+user_onlylft);
 		driver.findElement(By.xpath("//button[@type='button']")).click();
-		Thread.sleep(6000); // time for illegal recipients to show up in red
+		Thread.sleep(3000); // time for illegal recipients to show up in red
 		
 		
 		Functions.LftAndSecureErrorMssg(driver, user_noperms);
