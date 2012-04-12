@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -49,13 +49,13 @@ public class OnBoarding {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		selenium = new WebDriverBackedSelenium(driver, baseUrl);
 	}
-	@Test
+	@Ignore
 	public void PersonalizedSecure()throws Exception { // personalized option ON sending Secure with attachs
 	sender=user_allperms;
 	recipient=user_noperms;
 	subject="Personalized secure onboard";
 	emailBody=subject;
-	Functions.DeleteFirstThreeRowsGmail(driver, selenium);
+    
 		Functions.SecureSendGreaterthan25MB(selenium, driver, sender, recipient, subject, emailBody,pwd_allusers,baseUrl);
 		
 		
@@ -97,14 +97,12 @@ public class OnBoarding {
 		
 	}
 
-	@Test
+	@Ignore
 	public void PersonalizedLFT()throws Exception { // personalized option ON sending LFT
 	sender=user_allperms;
 	recipient=user_noperms;
 	subject="Personalized LFT onboard";
 	emailBody=subject;
-	
-	Functions.DeleteFirstThreeRowsGmail(driver, selenium);
  Functions.LFTSendGreaterThan25mb(selenium, driver,sender, recipient, subject, emailBody, pwd_allusers, baseUrl);
 		
  driver.get("http://www.gmail.com");
@@ -148,7 +146,7 @@ public class OnBoarding {
 	}
 	
 	
-	@Test
+	@Ignore
 	public void GenericSecure()throws Exception { // Generic option ON sending Secure
 		
 		sender=user_allperms;
@@ -165,7 +163,7 @@ public class OnBoarding {
 	driver.findElement(By.id("id_invitation_1")).click();
 	driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 	Functions.Logout(driver);
-	Functions.DeleteFirstThreeRowsGmail(driver, selenium);
+		
 			Functions.SecureSendGreaterthan25MB(selenium, driver, sender, recipient, subject, emailBody,pwd_allusers,baseUrl);
 			
 			
@@ -239,7 +237,7 @@ public class OnBoarding {
 	}
 	
 	
-	@Test
+	@Ignore
 	public void GenericLFT()throws Exception { // Generic option ON sending LFT
 		
 		sender=user_allperms;
@@ -256,7 +254,7 @@ public class OnBoarding {
 	driver.findElement(By.id("id_invitation_1")).click();
 	driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 	Functions.Logout(driver);
-	Functions.DeleteFirstThreeRowsGmail(driver, selenium);
+		
 			Functions.LFTSendGreaterThan25mb(selenium, driver, sender, recipient, subject, emailBody,pwd_allusers,baseUrl);
 			
 			
@@ -331,7 +329,7 @@ public class OnBoarding {
 	
 	// confirmation sON section.
 	
-	@Test
+	@Ignore
 	public void ConfONPersonalizedSecure()throws Exception { // personalized option ON sending Secure with attachs
 	sender=user_allperms;
 	recipient=user_noperms;
@@ -346,7 +344,7 @@ public class OnBoarding {
 	driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 	Thread.sleep(10000);
 	Functions.Logout(driver);
-	Functions.DeleteFirstThreeRowsGmail(driver, selenium);
+    
 		Functions.SecureSendGreaterthan25MB(selenium, driver, sender, recipient, subject, emailBody,pwd_allusers,baseUrl);
 		
 		
@@ -409,7 +407,7 @@ public class OnBoarding {
 		
 	}
 	
-	@Test
+	@Ignore
 	public void ConfONPersonalizedLFT()throws Exception { // personalized option ON sending LFT with attachs
 	sender=user_allperms;
 	recipient=user_noperms;
@@ -417,7 +415,7 @@ public class OnBoarding {
 	emailBody=subject;
 	
 
-	Functions.DeleteFirstThreeRowsGmail(driver, selenium);
+    
 		Functions.LFTSendGreaterThan25mb(selenium, driver, sender, recipient, subject, emailBody,pwd_allusers,baseUrl);
 		
 		
@@ -481,7 +479,7 @@ public class OnBoarding {
 	}
 	
 	
-	@Test
+	@Ignore
 	public void ConfONGenericSecure()throws Exception { // Generic option ON sending Secure
 		
 		sender=user_allperms;
@@ -490,7 +488,7 @@ public class OnBoarding {
 		emailBody=subject;
 	    
 		
-		Functions.DeleteFirstThreeRowsGmail(driver, selenium);
+
 		
 			Functions.SecureSendGreaterthan25MB(selenium, driver, sender, recipient, subject, emailBody,pwd_allusers,baseUrl);
 			
@@ -593,9 +591,9 @@ public class OnBoarding {
 		emailBody=subject;
 	    
 		
-Functions.DeleteFirstThreeRowsGmail(driver, selenium);
+
 		
-			Functions.LFTSendGreaterThan25mb(selenium, driver, sender, recipient, subject, emailBody,pwd_allusers,baseUrl);
+			Functions.SecureSendGreaterthan25MB(selenium, driver, sender, recipient, subject, emailBody,pwd_allusers,baseUrl);
 			
 			
 			driver.get("http://www.gmail.com");

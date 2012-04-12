@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testrun name="OnBoarding" project="spw_001" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="sanity_ff.OnBoarding" time="72.377">
-    <testcase name="PersonalizedSecure" classname="sanity_ff.OnBoarding" time="57.73"/>
-    <testcase name="DeleteUser" classname="sanity_ff.OnBoarding" time="14.647"/>
-  </testsuite>
-</testrun>

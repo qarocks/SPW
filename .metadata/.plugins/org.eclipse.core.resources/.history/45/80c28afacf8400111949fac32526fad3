@@ -177,11 +177,7 @@ public static void DeleteFirstThreeRowsGmail(WebDriver driver,Selenium selenium)
 	driver.findElement(By.xpath("//html/body/table[2]/tbody/tr/td[2]/table/tbody/tr/td[2]/form/table[2]/tbody/tr/td/input")).click();
 	driver.findElement(By.xpath("//html/body/table[2]/tbody/tr/td[2]/table/tbody/tr/td[2]/form/table[2]/tbody/tr[2]/td/input")).click();
 	driver.findElement(By.xpath("//html/body/table[2]/tbody/tr/td[2]/table/tbody/tr/td[2]/form/table[2]/tbody/tr[3]/td/input")).click();
-	driver.findElement(By.xpath("//html/body/table[2]/tbody/tr/td[2]/table/tbody/tr/td[2]/form/table[2]/tbody/tr[4]/td/input")).click();
-	driver.findElement(By.xpath("//html/body/table[2]/tbody/tr/td[2]/table/tbody/tr/td[2]/form/table[2]/tbody/tr[5]/td/input")).click();
-	driver.findElement(By.name("nvp_a_tr")).click();
-	selenium.waitForPageToLoad("10000");
-	driver.findElement(By.partialLinkText("Sign out")).click();
+	
 		}
 
 

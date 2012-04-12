@@ -160,31 +160,6 @@ public static void LFTLessthan25mbNeverExpire(Selenium selenium,WebDriver driver
 
 	}//end of LFTsend method
 
-
-public static void DeleteFirstThreeRowsGmail(WebDriver driver,Selenium selenium)throws Exception
-		{
-	
-	driver.get("http://www.gmail.com");
-	selenium.waitForPageToLoad("3000");
-	driver.findElement(By.id("Email")).click();
-	driver.findElement(By.id("Email")).clear();
-	driver.findElement(By.id("Email")).sendKeys("muunni.24");
-	driver.findElement(By.id("Passwd")).clear();
-	driver.findElement(By.id("Passwd")).sendKeys("123sneha_24");
-	driver.findElement(By.id("signIn")).click();
-	Thread.sleep(20000);
-	selenium.refresh();
-	driver.findElement(By.xpath("//html/body/table[2]/tbody/tr/td[2]/table/tbody/tr/td[2]/form/table[2]/tbody/tr/td/input")).click();
-	driver.findElement(By.xpath("//html/body/table[2]/tbody/tr/td[2]/table/tbody/tr/td[2]/form/table[2]/tbody/tr[2]/td/input")).click();
-	driver.findElement(By.xpath("//html/body/table[2]/tbody/tr/td[2]/table/tbody/tr/td[2]/form/table[2]/tbody/tr[3]/td/input")).click();
-	driver.findElement(By.xpath("//html/body/table[2]/tbody/tr/td[2]/table/tbody/tr/td[2]/form/table[2]/tbody/tr[4]/td/input")).click();
-	driver.findElement(By.xpath("//html/body/table[2]/tbody/tr/td[2]/table/tbody/tr/td[2]/form/table[2]/tbody/tr[5]/td/input")).click();
-	driver.findElement(By.name("nvp_a_tr")).click();
-	selenium.waitForPageToLoad("10000");
-	driver.findElement(By.partialLinkText("Sign out")).click();
-		}
-
-
 public static void login(WebDriver driver,String id_username,String pwd_allusers)
 {
 	driver.get(baseUrl);

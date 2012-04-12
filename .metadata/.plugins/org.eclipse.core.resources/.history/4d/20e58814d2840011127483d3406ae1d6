@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -49,7 +49,7 @@ public class OnBoarding {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		selenium = new WebDriverBackedSelenium(driver, baseUrl);
 	}
-	@Test
+	@Ignore
 	public void PersonalizedSecure()throws Exception { // personalized option ON sending Secure with attachs
 	sender=user_allperms;
 	recipient=user_noperms;
@@ -97,7 +97,7 @@ public class OnBoarding {
 		
 	}
 
-	@Test
+	@Ignore
 	public void PersonalizedLFT()throws Exception { // personalized option ON sending LFT
 	sender=user_allperms;
 	recipient=user_noperms;
@@ -148,7 +148,7 @@ public class OnBoarding {
 	}
 	
 	
-	@Test
+	@Ignore
 	public void GenericSecure()throws Exception { // Generic option ON sending Secure
 		
 		sender=user_allperms;
@@ -239,7 +239,7 @@ public class OnBoarding {
 	}
 	
 	
-	@Test
+	@Ignore
 	public void GenericLFT()throws Exception { // Generic option ON sending LFT
 		
 		sender=user_allperms;
@@ -331,7 +331,7 @@ public class OnBoarding {
 	
 	// confirmation sON section.
 	
-	@Test
+	@Ignore
 	public void ConfONPersonalizedSecure()throws Exception { // personalized option ON sending Secure with attachs
 	sender=user_allperms;
 	recipient=user_noperms;
@@ -409,7 +409,7 @@ public class OnBoarding {
 		
 	}
 	
-	@Test
+	@Ignore
 	public void ConfONPersonalizedLFT()throws Exception { // personalized option ON sending LFT with attachs
 	sender=user_allperms;
 	recipient=user_noperms;
@@ -481,7 +481,7 @@ public class OnBoarding {
 	}
 	
 	
-	@Test
+	@Ignore
 	public void ConfONGenericSecure()throws Exception { // Generic option ON sending Secure
 		
 		sender=user_allperms;
