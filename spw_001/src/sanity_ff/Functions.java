@@ -10,12 +10,13 @@ import com.thoughtworks.selenium.Selenium;
 
 import org.openqa.selenium.By;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class Functions{
 	
-	public final static String baseUrl="http://demo.sparkweave.com";
+	public final static String baseUrl="http://192.168.1.13";
 	public final static String compose_url=baseUrl+"/transfer/compose";
 	public final static String inbox_url=baseUrl+"/transfer/inbox";
 	public final static String sent_url=baseUrl+"/transfer/sent";
@@ -355,6 +356,13 @@ public static void SecureSend(Selenium selenium,WebDriver driver,String sender,S
      
 }//end of secureSend method
 
+
+public static void Logout(WebDriver driver)
+{   
+	System.out.println("User now logging out");
+	driver.findElement(By.id("logout")).click();
+	}
+
 public static void SecureSendLessthan25MB(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
 	
 	selenium.open(baseUrl);
@@ -457,6 +465,37 @@ public static void SecureSendGreaterthan25MB(Selenium selenium,WebDriver driver,
      
 }//end of secureSendGreaterthan25MB method
 
+public static void DeleteUser(WebDriver driver,Selenium selenium,String user)throws Exception
+{
+	
+	driver.get(baseUrl);
+	driver.findElement(By.id("id_username")).clear();
+	driver.findElement(By.id("id_username")).sendKeys("admin");
+	driver.findElement(By.id("id_password")).clear();
+	driver.findElement(By.id("id_password")).sendKeys("123abc");
+	driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+	driver.findElement(By.id("users")).click();
+	driver.findElement(By.id("local")).click();
+	assertEquals("muunni.24@gmail.com", driver.findElement(By.xpath("//tr[@id='muunni.24@gmail.com']/td")).getText());
+    driver.findElement((By.xpath("//html/body/div/div[2]/div[4]/div/div[3]/div[3]/div/table/tbody/tr[2]/td[4]/form/input[2]"))).click();
+    Thread.sleep(5000);
+    Alert alert=driver.switchTo().alert();
+    alert.accept();
+    
+	
+
+
+}
+
+public static void AdminLogin(WebDriver driver)
+{
+	driver.get(baseUrl);
+	driver.findElement(By.id("id_username")).clear();
+	driver.findElement(By.id("id_username")).sendKeys("admin");
+	driver.findElement(By.id("id_password")).clear();
+	driver.findElement(By.id("id_password")).sendKeys("123abc");
+	driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();	
+}
 
 
 

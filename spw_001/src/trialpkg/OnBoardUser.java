@@ -26,7 +26,7 @@ public class OnBoardUser {
 	String sender="sneha.qa.24@gmail.com";
 	String recipient="muunni.24@gmail.com";
 	String non_related="qatest@lutsendata.com";
-	private String baseUrl="http://192.168.1.129";
+	private String baseUrl="http://192.168.1.13";
 	String senderPwd="123abc";
 	private StringBuffer verificationErrors = new StringBuffer();
 	
@@ -39,7 +39,7 @@ public class OnBoardUser {
 	public void setUp() throws Exception {
 		
 		
-		System.setProperty("webdriver.firefox.bin","C:\\Mozilla Firefox\\firefox.exe");
+		System.setProperty("webdriver.firefox.bin","C:\\6.0.2\\Mozilla Firefox\\firefox.exe");
 		driver = new FirefoxDriver();
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		selenium = new WebDriverBackedSelenium(driver, baseUrl);
@@ -76,7 +76,8 @@ public class OnBoardUser {
 	    
 	    //selenium.keyPress("xpath=//div[@class = 'y6']/span[contains(.,'come on board')]","\13");
 		//selenium.waitForFrameToLoad("canvas_frame", "3000");
-		
+		Thread.sleep(10000);
+		selenium.refresh();
 		WebElement myele= driver.findElement(By.partialLinkText("come on board"));
 		myele.click();
 		myele.sendKeys(Keys.ENTER);

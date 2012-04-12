@@ -13,16 +13,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="LFTsend" key="selection"/>
+		<item value="FindId" key="selection"/>
 		<list key="findhistory">
-			<item value="LFTsend"/>
-			<item value="lftsend"/>
-			<item value="57"/>
-			<item value="WaitForUpload"/>
-			<item value="waitforupload"/>
-			<item value=" "/>
-			<item value="atleast"/>
-			<item value="generic"/>
+			<item value="findid"/>
+			<item value="local"/>
+			<item value="find"/>
+			<item value="finduser"/>
+			<item value="find&apos;"/>
+			<item value="securesend"/>
+			<item value="secure send"/>
+			<item value="testnode"/>
 		</list>
 		<list key="replacehistory">
 			<item value="at least"/>

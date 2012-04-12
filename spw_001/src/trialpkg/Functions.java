@@ -14,7 +14,21 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class Functions{
-public final static String baseUrl="http://192.168.1.139";	
+	
+	public final static String baseUrl="http://192.168.1.13";
+	public final static String compose_url=baseUrl+"/transfer/compose";
+	public final static String inbox_url=baseUrl+"/transfer/inbox";
+	public final static String sent_url=baseUrl+"/transfer/sent";
+	public final static String outbox_url=baseUrl+"/transfer/outbox";
+	public final static String drafts_url=baseUrl+"/transfer/drafts";
+	public final static String baseFileLocation="C:\\Users\\Sneha\\Desktop\\";
+	public final static String topFileLocation="automation files\\";
+	public final static String pathToLessthan25MbFilesScript=baseFileLocation+topFileLocation+"silver_autoit.exe";
+	public final static String pathToGreaterthan25MbFilesScript=baseFileLocation+topFileLocation+"silver_autoit_greaterthan25mb.exe";
+	public final static String pathToDownloadFileHandler=baseFileLocation+topFileLocation+"download_handle.exe";
+	public final static String pathTo25Files=Functions.baseFileLocation+Functions.topFileLocation+"max file upload.exe";
+	
+	
 
 public static void MyWaitfunc(WebDriver driver,String element) throws Exception{
 		
@@ -29,7 +43,8 @@ public static void MyWaitfunc(WebDriver driver,String element) throws Exception{
 public static void WaitForUpload(WebDriver driver) throws Exception{
 	
 	for (int second = 0;; second++) {
-		if (second >= 120) {fail("timeout");}
+		Thread.sleep(1000);
+		if (second >= 202000) {System.out.println("I fail here!");fail("timeout");}
 		try { 
 			if(driver.findElement(By.cssSelector("span.plupload_total_status")).getText().equalsIgnoreCase("100%"))
 		       {Thread.sleep(2000);break;}
@@ -55,6 +70,249 @@ public static boolean doesWebElementExist(WebDriver driver, By selector)
        } 
 }   
 
+public static void setExpirationToNever(WebDriver driver)
+{
+	
+	driver.findElement(By.id("statuspicker")).clear();
+	String to_check=driver.findElement(By.id("statuspicker")).getAttribute("class");
+	assertEquals(to_check,"hasDatepicker custom");
+	
+	
+}
+
+public static void setCustomExpiration(WebDriver driver, String date)
+{
+	
+	driver.findElement(By.id("statuspicker")).clear();
+	driver.findElement(By.id("statuspicker")).sendKeys(date);
+	
+	
+	
+}
+
+public static void LFTLessthan25mbNeverExpire(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
+	  
+		selenium.open(baseUrl);
+		selenium.type("id=id_username", sender);
+		selenium.type("id=id_password", senderPwd);
+		selenium.click("css=input[type=\"submit\"]");
+		
+		selenium.waitForPageToLoad("2000");
+
+		System.out.println("First: The page title is "+selenium.getTitle());
+		// code to upload file
+		
+		driver.get(compose_url);
+		
+			selenium.waitForPageToLoad("3000");
+			
+			
+			
+			Runtime.getRuntime().exec(pathToLessthan25MbFilesScript);
+			
+			
+			
+			Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+			WebElement ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+			Thread.sleep(2000);
+			ele.click();
+			
+			
+			Thread.sleep(3000);
+			driver.findElement(By.id("addrin")).sendKeys(recipient);
+			
+			
+			driver.findElement(By.id("id_subject")).sendKeys(subject);
+
+			
+			setExpirationToNever(driver);
+			
+			
+							
+				driver.findElement(By.id("addrsubmit")).click();
+			
+				
+				
+				driver.switchTo().frame("id_body_ifr");
+				
+				selenium.typeKeys("//body[@id='tinymce']", "Finally wohoooo!!");
+				 driver.switchTo().defaultContent();
+				
+				driver.findElement(By.id("submitter")).click();
+			
+			
+			
+			
+		// to check if mail was sent successfully
+	     
+	     String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
+	     
+	     Functions.MyWaitfunc(driver,success_str_xpath);
+	     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
+				
+			System.out.println("SUCCESS:Mail successfully sent !");
+			else
+				{ System.out.println("FAIL:Mail NOT SENT !"); System.out.println(driver.findElement(By.xpath(success_str_xpath)).getText());Exception e1 = new Exception("This case FAILS");
+				throw e1;}
+		
+	     driver.findElement(By.id("logout")).click();
+
+	}//end of LFTsend method
+
+public static void login(WebDriver driver,String id_username,String pwd_allusers)
+{
+	driver.get(baseUrl);
+	driver.findElement(By.id("id_username")).clear();
+	driver.findElement(By.id("id_username")).sendKeys(id_username);
+	driver.findElement(By.id("id_password")).clear();
+	driver.findElement(By.id("id_password")).sendKeys(pwd_allusers);
+	driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+	assertEquals("Inbox", driver.findElement(By.id("heading")).getText());	
+
+}
+
+public static void LFTLessthan25mbCustomExpire(String date,Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
+	  
+	selenium.open(baseUrl);
+	selenium.type("id=id_username", sender);
+	selenium.type("id=id_password", senderPwd);
+	selenium.click("css=input[type=\"submit\"]");
+	
+	selenium.waitForPageToLoad("2000");
+
+	System.out.println("First: The page title is "+selenium.getTitle());
+	// code to upload file
+	
+	driver.get(compose_url);
+	
+		selenium.waitForPageToLoad("3000");
+		
+		
+		
+		Runtime.getRuntime().exec(pathToLessthan25MbFilesScript);
+		
+		
+		
+		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+		WebElement ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+		Thread.sleep(2000);
+		ele.click();
+		
+		
+		Thread.sleep(3000);
+		driver.findElement(By.id("addrin")).sendKeys(recipient);
+		
+		
+		driver.findElement(By.id("id_subject")).sendKeys(subject);
+
+		
+		setCustomExpiration(driver, date);
+		
+		
+						
+			driver.findElement(By.id("addrsubmit")).click();
+		
+			
+			
+			driver.switchTo().frame("id_body_ifr");
+			
+			selenium.typeKeys("//body[@id='tinymce']", "Finally wohoooo!!");
+			 driver.switchTo().defaultContent();
+			
+			driver.findElement(By.id("submitter")).click();
+		
+		
+		
+		
+	// to check if mail was sent successfully
+     
+     String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
+     
+     Functions.MyWaitfunc(driver,success_str_xpath);
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
+			
+		System.out.println("SUCCESS:Mail successfully sent !");
+		else
+			{ System.out.println("FAIL:Mail NOT SENT !"); System.out.println(driver.findElement(By.xpath(success_str_xpath)).getText());Exception e1 = new Exception("This case FAILS");
+			throw e1;}
+	
+     driver.findElement(By.id("logout")).click();
+
+}//end of LFTsend method
+
+
+
+
+
+public static void LFTGreaterThan25mbNeverExpire(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
+	
+	
+	
+	
+	selenium.open(baseUrl);
+	selenium.type("id=id_username", sender);
+	selenium.type("id=id_password", senderPwd);
+	selenium.click("css=input[type=\"submit\"]");
+	
+	selenium.waitForPageToLoad("2000");
+
+	System.out.println("First: The page title is "+selenium.getTitle());
+	// code to upload file
+	
+	driver.get(compose_url);
+	
+		selenium.waitForPageToLoad("3000");
+		
+		
+		
+		Runtime.getRuntime().exec(pathToGreaterthan25MbFilesScript);
+		
+		
+		
+		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+		WebElement ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+		Thread.sleep(2000);
+		ele.click();
+		
+		
+		Thread.sleep(3000);
+		driver.findElement(By.id("addrin")).sendKeys(recipient);
+		
+		
+		driver.findElement(By.id("id_subject")).sendKeys(subject);	
+		setExpirationToNever(driver);				
+			driver.findElement(By.id("addrsubmit")).click();
+		
+			
+			
+			driver.switchTo().frame("id_body_ifr");
+			
+			selenium.typeKeys("//body[@id='tinymce']", "Finally wohoooo!!");
+			 driver.switchTo().defaultContent();
+			
+			driver.findElement(By.id("submitter")).click();
+		
+		
+		
+		
+	// to check if mail was sent successfully
+     
+     String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
+     
+     Functions.MyWaitfunc(driver,success_str_xpath);
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
+			
+		System.out.println("SUCCESS:Mail successfully sent !");
+		else
+			{ System.out.println("FAIL:Mail NOT SENT !"); System.out.println(driver.findElement(By.xpath(success_str_xpath)).getText());Exception e1 = new Exception("This case FAILS");
+			throw e1;}
+	
+     driver.findElement(By.id("logout")).click();
+
+}//end of LFTSendGreaterThan25mb method
+
+
+
 
 
 public static void SecureSend(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
@@ -68,7 +326,7 @@ public static void SecureSend(Selenium selenium,WebDriver driver,String sender,S
 
 	System.out.println("First: The page title is "+selenium.getTitle());
 	// code to upload file
-	driver.findElement(By.linkText("Compose")).click();
+	driver.get(compose_url);
 	selenium.waitForPageToLoad("3000");
     driver.findElement(By.id("secure")).click();
     driver.findElement(By.id("addrin")).sendKeys(recipient);
@@ -83,7 +341,7 @@ public static void SecureSend(Selenium selenium,WebDriver driver,String sender,S
 	driver.findElement(By.id("submitter")).click();
 		
 			
-    String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
+    String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
      if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
@@ -97,6 +355,11 @@ public static void SecureSend(Selenium selenium,WebDriver driver,String sender,S
      
 }//end of secureSend method
 
+
+public static void Logout(WebDriver driver)
+{   driver.findElement(By.id("logout")).click();
+	}
+
 public static void SecureSendLessthan25MB(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
 	
 	selenium.open(baseUrl);
@@ -108,7 +371,7 @@ public static void SecureSendLessthan25MB(Selenium selenium,WebDriver driver,Str
 
 	System.out.println("First: The page title is "+selenium.getTitle());
 	// code to upload file
-	driver.findElement(By.linkText("Compose")).click();
+	driver.get(compose_url);
 	selenium.waitForPageToLoad("3000");
     driver.findElement(By.id("secure")).click();
     driver.findElement(By.id("addrin")).sendKeys(recipient);
@@ -119,7 +382,7 @@ public static void SecureSendLessthan25MB(Selenium selenium,WebDriver driver,Str
 			
 	selenium.typeKeys("//body[@id='tinymce']", emailBody);
 	driver.switchTo().defaultContent();
-	Runtime.getRuntime().exec("C:\\Users\\Sneha\\Desktop\\silver_autoit.exe");
+	Runtime.getRuntime().exec(pathToLessthan25MbFilesScript);
 	
 	
 	
@@ -134,7 +397,7 @@ public static void SecureSendLessthan25MB(Selenium selenium,WebDriver driver,Str
 	driver.findElement(By.id("submitter")).click();
 		
 			
-    String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
+    String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
      if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
@@ -159,7 +422,7 @@ public static void SecureSendGreaterthan25MB(Selenium selenium,WebDriver driver,
 
 	System.out.println("First: The page title is "+selenium.getTitle());
 	// code to upload file
-	driver.findElement(By.linkText("Compose")).click();
+	driver.get(compose_url);
 	selenium.waitForPageToLoad("3000");
     driver.findElement(By.id("secure")).click();
     driver.findElement(By.id("addrin")).sendKeys(recipient);
@@ -170,7 +433,7 @@ public static void SecureSendGreaterthan25MB(Selenium selenium,WebDriver driver,
 			
 	selenium.typeKeys("//body[@id='tinymce']", emailBody);
 	driver.switchTo().defaultContent();
-	Runtime.getRuntime().exec("C:\\Users\\Sneha\\Desktop\\silver_autoit_greaterthan25mb.exe");
+	Runtime.getRuntime().exec(pathToGreaterthan25MbFilesScript);
 	
 	
 	
@@ -185,7 +448,7 @@ public static void SecureSendGreaterthan25MB(Selenium selenium,WebDriver driver,
 	driver.findElement(By.id("submitter")).click();
 		
 			
-    String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
+    String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
      if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
@@ -202,11 +465,16 @@ public static void SecureSendGreaterthan25MB(Selenium selenium,WebDriver driver,
 
 
 
-public static String FindIdwithSubject(WebDriver driver,Selenium selenium,String subject)
+public static String FindIdwithSubject(WebDriver driver,Selenium selenium,String subject) throws InterruptedException
 {
 	  int flag=0;
 	
 	String EmailId=null;
+	Thread.sleep(5000);
+	driver.get(inbox_url);
+	Thread.sleep(10000);
+	driver.get(inbox_url);
+	Thread.sleep(7000);
 	WebElement select = driver.findElement(By.xpath("//*[@id='EmailInbox']"));
 	List<WebElement> options = select.findElements(By.tagName("tbody"));
 	  System.out.println("The count for tbody is "+options.size());
@@ -251,12 +519,18 @@ public static String FindIdwithSubject(WebDriver driver,Selenium selenium,String
 
 
 
-public static String DraftsFindIdwithSubject(WebDriver driver,Selenium selenium,String subject)
+
+public static String FindIdwithSubjectInOutbox(WebDriver driver,Selenium selenium,String subject) throws InterruptedException
 {
 	  int flag=0;
 	
 	String EmailId=null;
-	WebElement select = driver.findElement(By.xpath("//*[@id='EmailDrafts']"));
+	Thread.sleep(5000);
+	driver.get(outbox_url);
+	Thread.sleep(10000);
+	driver.get(outbox_url);
+	Thread.sleep(7000);
+	WebElement select = driver.findElement(By.xpath("//*[@id='EmailOutbox']"));
 	List<WebElement> options = select.findElements(By.tagName("tbody"));
 	  System.out.println("The count for tbody is "+options.size());
 	   for (WebElement option : options) {
@@ -301,6 +575,636 @@ public static String DraftsFindIdwithSubject(WebDriver driver,Selenium selenium,
 
 
 
+
+public static String FindIdwithSubjectInSent(WebDriver driver,Selenium selenium,String subject) throws InterruptedException
+{
+	  int flag=0;
+	
+	String EmailId=null;
+	Thread.sleep(5000);
+	driver.get(sent_url);
+	Thread.sleep(10000);
+	driver.get(sent_url);
+	Thread.sleep(7000);
+	WebElement select = driver.findElement(By.xpath("//*[@id='EmailSentMail']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			   List<WebElement> sub_sub_options = sub_sub_option.findElements(By.tagName("td"));
+			   System.out.println("The count for td is "+sub_sub_options.size());
+			   for (WebElement sub_sub_sub_option : sub_sub_options) {
+				   
+				   System.out.println("i was here!");
+				   System.out.println(""+sub_sub_sub_option.getText());
+				   
+				   if(sub_sub_sub_option.getText().contains(subject))
+					   
+				   {
+					   EmailId=sub_sub_option.getAttribute("id");
+					   flag=1;break;
+					   
+				   }
+				   
+				if(flag==1) break;
+				   
+				   
+			   }
+			   
+			   if(flag==1) break; 
+		   }
+		   if(flag==1) break;
+		   }
+		   
+	   
+	
+	return EmailId;
+	
+	
+
+
+}// end of FindIdwithSubjectInSent
+
+
+
+
+public static String GetRowIdFromCabinet(WebDriver driver,Selenium selenium,int row) throws Exception
+
+{
+	int flag=0;
+	String return_rowid=null;
+ int rowcnt=0;
+ System.out.println("rowcnt is"+ rowcnt+ "row value is" +row);
+	
+	WebElement select = driver.findElement(By.xpath("//*[@id='MyFilesPlusUpload']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			
+					   return_rowid=sub_sub_option.getAttribute("id");
+					  
+					   rowcnt++;
+					   if(rowcnt==row) {System.out.println("After breaking from loop rowcnt is"+rowcnt+ "row value is" +row);flag=1;break;}
+				   }
+				   
+				if(flag==1) break;
+				   
+				   
+			   }
+			   
+			 
+		 
+if(flag==0) assertEquals("0","1");
+		   
+	return return_rowid;
+
+
+}
+
+
+public static String GetRowIdFromCabinetWithLimits(WebDriver driver,Selenium selenium,int row,Integer limits[]) throws Exception
+
+{
+	int flag=0;
+	String return_rowid=null;
+ int rowcnt=limits[0];
+ row=limits[1]+1; // will return the last row id
+ 
+ 
+ System.out.println("rowcnt is"+ rowcnt+ "row value is" +row);
+	
+	WebElement select = driver.findElement(By.xpath("//*[@id='MyFilesPlusUpload']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			
+					   return_rowid=sub_sub_option.getAttribute("id");
+					  
+					   
+					   if(rowcnt==row) {System.out.println("After breaking from loop rowcnt is"+rowcnt+ "row value is" +row);flag=1;break;}
+					   else 
+					   {
+					   
+					   System.out.println("Before breaking from loop rowcnt is"+rowcnt+ "row value is" +row);
+					   rowcnt++;
+					   }
+				   }if(flag==1) break;
+				   
+				if(flag==1) break;
+				   
+				   
+			   }
+			   
+			 
+		 
+if(flag==0) assertEquals("0","1");
+		   
+	return return_rowid;
+
+
+}
+
+public static String GetRowIdFromCabinetWithLimits_SR(WebDriver driver,Selenium selenium,int row,Integer limits[]) throws Exception
+
+{
+	int flag=0;
+	String return_rowid=null;
+ int rowcnt=limits[0];
+ row=limits[1]+1; // will return the last row id
+ 
+ 
+ System.out.println("rowcnt is"+ rowcnt+ "row value is" +row);
+	
+	WebElement select = driver.findElement(By.xpath("//*[@id='MyFilesPlusUploadNoDel']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			
+					   return_rowid=sub_sub_option.getAttribute("id");
+					  
+					   
+					   if(rowcnt==row) {System.out.println("After breaking from loop rowcnt is"+rowcnt+ "row value is" +row);flag=1;break;}
+					   else 
+					   {
+					   
+					   System.out.println("Before breaking from loop rowcnt is"+rowcnt+ "row value is" +row);
+					   rowcnt++;
+					   }
+				   }if(flag==1) break;
+				   
+				if(flag==1) break;
+				   
+				   
+			   }
+			   
+			 
+		 
+if(flag==0) assertEquals("0","1");
+		   
+	return return_rowid;
+
+
+}
+
+public static String FindFileFromCabinet_SR(WebDriver driver,Selenium selenium,String fname)
+
+{
+	String name=null;int flag=0;
+	
+	WebElement select = driver.findElement(By.xpath("//*[@id='MyFilesPlusUploadNoDel']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			
+			   
+			   List<WebElement> sub_sub_options = sub_sub_option.findElements(By.tagName("td"));
+			   System.out.println("The count for td is "+sub_options.size());
+			   for (WebElement sub_sub_sub_option : sub_sub_options) {
+				   
+				   name=sub_sub_sub_option.getText();
+				   System.out.println("id is "+name);
+				   if(name.equals(fname))
+				   {flag=1;break;}
+				   
+			   }if(flag==1)break;
+					   
+				   }if(flag==1)break;
+				   
+	   }	
+				   
+				   
+			   
+	if(flag==0)name="null";
+
+	return name;
+
+}
+
+public static String FindFileFromCabinet(WebDriver driver,Selenium selenium,String fname)
+
+{
+	String name=null;int flag=0;
+	
+	WebElement select = driver.findElement(By.xpath("//*[@id='MyFilesPlusUpload']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			
+			   
+			   List<WebElement> sub_sub_options = sub_sub_option.findElements(By.tagName("td"));
+			   System.out.println("The count for td is "+sub_options.size());
+			   for (WebElement sub_sub_sub_option : sub_sub_options) {
+				   
+				   name=sub_sub_sub_option.getText();
+				   System.out.println("id is "+name);
+				   if(name.equals(fname))
+				   {flag=1;break;}
+				   
+			   }if(flag==1)break;
+					   
+				   }if(flag==1)break;
+				   
+	   }	
+				   
+				   
+			   
+	if(flag==0)name="null";
+
+	return name;
+
+}
+
+public static String GetRowIdFromCabinet_SR(WebDriver driver,Selenium selenium,int row) throws Exception
+
+{
+	int flag=0;
+	String return_rowid=null;
+ int rowcnt=0;
+	
+	
+	WebElement select = driver.findElement(By.xpath("//*[@id='MyFilesPlusUploadNoDel']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			
+					   return_rowid=sub_sub_option.getAttribute("id");
+					  
+					   rowcnt++;
+					   if(rowcnt==row) {flag=1;break;}
+				   }
+				   
+				if(flag==1) break;
+				   
+				   
+			   }
+			   
+			 
+		 
+	   if(flag==0) assertEquals("0","1");
+		   
+	return return_rowid;
+
+
+}
+
+
+
+public static Integer GetRowCntCabinet(WebDriver driver,Selenium selenium)throws Exception
+
+{
+	
+	String return_cnt=driver.findElement(By.xpath("//html/body/div/div[2]/div[4]/div[2]/div[5]/div/table/tbody/tr/td[3]/div")).getText();
+	System.out.println(return_cnt);
+	if(return_cnt.equals("No records to view")) return 0;
+	String return_cnt_arr[]=return_cnt.split(" ");
+	return_cnt=return_cnt_arr[5];
+	System.out.println(return_cnt);
+	return Integer.valueOf(return_cnt);
+
+}
+
+
+public static Integer[] GetRowCntLimitsCabinet(WebDriver driver,Selenium selenium)throws Exception
+
+{
+	
+	String return_cnt=driver.findElement(By.xpath("//html/body/div/div[2]/div[4]/div[2]/div[5]/div/table/tbody/tr/td[3]/div")).getText();
+	System.out.println(return_cnt);
+	String return_cnt_arr[]=return_cnt.split(" ");
+	return_cnt=return_cnt_arr[5];
+	System.out.println(return_cnt);
+	Integer arr[]= new Integer[2];
+	arr[0]=Integer.parseInt(return_cnt_arr[1]);
+	arr[1]=Integer.parseInt(return_cnt_arr[3]);
+	return arr;
+}
+
+public static String DraftsFindIdwithSubject(WebDriver driver,Selenium selenium,String subject) throws InterruptedException
+{
+	  int flag=0;
+	
+	String EmailId=null;
+	driver.get(drafts_url);
+	Thread.sleep(5000);
+	WebElement select = driver.findElement(By.xpath("//*[@id='EmailDrafts']"));
+	List<WebElement> options = select.findElements(By.tagName("tbody"));
+	  System.out.println("The count for tbody is "+options.size());
+	   for (WebElement option : options) {
+		 
+		   List<WebElement> sub_options = option.findElements(By.tagName("tr"));
+		   System.out.println("The count for tr is "+sub_options.size());
+		   for (WebElement sub_sub_option : sub_options) {
+			   List<WebElement> sub_sub_options = sub_sub_option.findElements(By.tagName("td"));
+			   System.out.println("The count for td is "+sub_sub_options.size());
+			   for (WebElement sub_sub_sub_option : sub_sub_options) {
+				   
+				   System.out.println("i was here!");
+				   System.out.println(""+sub_sub_sub_option.getText());
+				   
+				   if(sub_sub_sub_option.getText().contains(subject))
+					   
+				   {
+					   EmailId=sub_sub_option.getAttribute("id");
+					   flag=1;break;
+					   
+				   }
+				   
+				if(flag==1) break;
+				   
+				   
+			   }
+			   
+			   if(flag==1) break; 
+		   }
+		   if(flag==1) break;
+		   }
+		   
+	   
+	
+	return EmailId;
+	
+	
+
+
+}// end of FindIdwithSubject
+
+
+public static String LFTSendGreaterThan25mbReturnExpireDate(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
+	  
+	selenium.open(baseUrl);
+	selenium.type("id=id_username", sender);
+	selenium.type("id=id_password", senderPwd);
+	selenium.click("css=input[type=\"submit\"]");
+	
+	selenium.waitForPageToLoad("2000");
+
+	System.out.println("First: The page title is "+selenium.getTitle());
+	// code to upload file
+	
+	driver.get(compose_url);
+	
+		selenium.waitForPageToLoad("3000");
+		
+		
+		
+		Runtime.getRuntime().exec(pathToGreaterthan25MbFilesScript);
+		
+		
+		
+		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+		WebElement ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+		Thread.sleep(2000);
+		ele.click();
+		
+		
+		Thread.sleep(3000);
+		driver.findElement(By.id("addrin")).sendKeys(recipient);
+		
+		
+		driver.findElement(By.id("id_subject")).sendKeys(subject);
+
+		
+		
+		
+		
+						
+			driver.findElement(By.id("addrsubmit")).click();
+		
+			String tmp=driver.findElement(By.id("statuspicker")).getAttribute("value");
+			
+			driver.switchTo().frame("id_body_ifr");
+			
+			selenium.typeKeys("//body[@id='tinymce']", "Finally wohoooo!!");
+			 driver.switchTo().defaultContent();
+			
+			driver.findElement(By.id("submitter")).click();
+		
+		
+		
+		
+	// to check if mail was sent successfully
+     
+     String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
+     
+     Functions.MyWaitfunc(driver,success_str_xpath);
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
+			
+		System.out.println("SUCCESS:Mail successfully sent !");
+		else
+			{ System.out.println("FAIL:Mail NOT SENT !"); System.out.println(driver.findElement(By.xpath(success_str_xpath)).getText());Exception e1 = new Exception("This case FAILS");
+			throw e1;}
+	
+     driver.findElement(By.id("logout")).click();
+
+     
+     return tmp;
+     
+}//end of LFTSendGreaterThan25mb method
+
+public static String LFTSendReturnExpireDate(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
+	  
+	selenium.open(baseUrl);
+	selenium.type("id=id_username", sender);
+	selenium.type("id=id_password", senderPwd);
+	selenium.click("css=input[type=\"submit\"]");
+	
+	selenium.waitForPageToLoad("2000");
+
+	System.out.println("First: The page title is "+selenium.getTitle());
+	// code to upload file
+	
+	driver.get(compose_url);
+	
+		selenium.waitForPageToLoad("3000");
+		
+		
+		
+		Runtime.getRuntime().exec(pathToLessthan25MbFilesScript);
+		
+		
+		
+		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+		WebElement ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+		Thread.sleep(2000);
+		ele.click();
+		
+		
+		Thread.sleep(3000);
+		driver.findElement(By.id("addrin")).sendKeys(recipient);
+		
+		
+		driver.findElement(By.id("id_subject")).sendKeys(subject);
+
+		
+		
+		
+		
+						
+			driver.findElement(By.id("addrsubmit")).click();
+		
+			
+			
+			driver.switchTo().frame("id_body_ifr");
+			
+			selenium.typeKeys("//body[@id='tinymce']", "Finally wohoooo!!");
+			 driver.switchTo().defaultContent();
+			 
+			 String tmp=driver.findElement(By.id("statuspicker")).getAttribute("value");
+			
+			driver.findElement(By.id("submitter")).click();
+		
+		
+		
+		
+	// to check if mail was sent successfully
+     
+     String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
+     
+     Functions.MyWaitfunc(driver,success_str_xpath);
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
+			
+		System.out.println("SUCCESS:Mail successfully sent !");
+		else
+			{ System.out.println("FAIL:Mail NOT SENT !"); System.out.println(driver.findElement(By.xpath(success_str_xpath)).getText());Exception e1 = new Exception("This case FAILS");
+			throw e1;}
+	
+     driver.findElement(By.id("logout")).click();
+return tmp;
+}//end of LFTsend method
+
+
+public static void GenericMailSend(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl,int secure_flag,int expire_flag,String expire_date,int lft_flag,String lft_path,int notifications) throws Exception {
+	  
+	selenium.open(baseUrl);
+	selenium.type("id=id_username", sender);
+	selenium.type("id=id_password", senderPwd);
+	selenium.click("css=input[type=\"submit\"]");
+	
+	selenium.waitForPageToLoad("2000");
+
+	System.out.println("First: The page title is "+selenium.getTitle());
+	// code to upload file
+	
+	driver.get(compose_url);
+	
+		selenium.waitForPageToLoad("3000");
+		
+		if(notifications==0) // notifications OFF
+		{}
+		else{
+			driver.findElement(By.id("notify")).click();  // notifications ON
+			
+		}
+		
+		if(lft_flag==0) // ONLY secure mail no attachments
+		{}
+		else{
+		// attachments are present
+		
+		Runtime.getRuntime().exec(lft_path);
+		
+		
+		
+		Functions.MyWaitfunc(driver,"//*[@id='uploader_browse']");
+		WebElement ele=driver.findElement(By.xpath("//*[@id='uploader_browse']"));
+		Thread.sleep(7000);
+		ele.click();
+		Thread.sleep(3000);
+		
+		
+		}
+		
+		if(expire_flag==0) // default expiration date
+		{}
+		
+		else{
+			// custom expiration date
+			driver.findElement(By.id("statuspicker")).sendKeys(expire_date);
+		}
+		
+		
+		if(secure_flag==0)// non-secure mail
+		{}
+		else
+		{// secure email
+			
+			driver.findElement(By.id("secure")).click();
+		}
+		
+		
+		
+		driver.findElement(By.id("addrin")).sendKeys(recipient);
+		
+		
+		driver.findElement(By.id("id_subject")).sendKeys(subject);
+
+		
+		
+		
+		
+						
+			driver.findElement(By.id("addrsubmit")).click();
+		
+			
+			
+			driver.switchTo().frame("id_body_ifr");
+			
+			selenium.typeKeys("//body[@id='tinymce']", emailBody);
+			 driver.switchTo().defaultContent();
+			
+			 
+			 Functions.WaitForUpload(driver);
+				Thread.sleep(3000);
+			 
+			driver.findElement(By.id("submitter")).click();
+		
+		
+		
+		
+	// to check if mail was sent successfully
+     
+     String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
+     
+     Functions.MyWaitfunc(driver,success_str_xpath);
+     if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
+			
+		System.out.println("SUCCESS:Mail successfully sent !");
+		else
+			{ System.out.println("FAIL:Mail NOT SENT !"); System.out.println(driver.findElement(By.xpath(success_str_xpath)).getText());Exception e1 = new Exception("This case FAILS");
+			throw e1;}
+	
+     driver.findElement(By.id("logout")).click();
+
+}//end of LFTsend method
+
+
 public static void LFTSend(Selenium selenium,WebDriver driver,String sender,String recipient,String subject,String emailBody,String senderPwd,String baseUrl) throws Exception {
   
 	selenium.open(baseUrl);
@@ -313,13 +1217,13 @@ public static void LFTSend(Selenium selenium,WebDriver driver,String sender,Stri
 	System.out.println("First: The page title is "+selenium.getTitle());
 	// code to upload file
 	
-	driver.findElement(By.linkText("Compose")).click();
+	driver.get(compose_url);
 	
 		selenium.waitForPageToLoad("3000");
 		
 		
 		
-		Runtime.getRuntime().exec("C:\\Users\\Sneha\\Desktop\\silver_autoit.exe");
+		Runtime.getRuntime().exec(pathToLessthan25MbFilesScript);
 		
 		
 		
@@ -356,7 +1260,7 @@ public static void LFTSend(Selenium selenium,WebDriver driver,String sender,Stri
 		
 	// to check if mail was sent successfully
      
-     String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
+     String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
      if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))
@@ -384,13 +1288,13 @@ public static void LFTSendGreaterThan25mb(Selenium selenium,WebDriver driver,Str
 	System.out.println("First: The page title is "+selenium.getTitle());
 	// code to upload file
 	
-	driver.findElement(By.linkText("Compose")).click();
+	driver.get(compose_url);
 	
 		selenium.waitForPageToLoad("3000");
 		
 		
 		
-		Runtime.getRuntime().exec("C:\\Users\\Sneha\\Desktop\\silver_autoit_greaterthan25mb.exe");
+		Runtime.getRuntime().exec(pathToGreaterthan25MbFilesScript);
 		
 		
 		
@@ -427,7 +1331,7 @@ public static void LFTSendGreaterThan25mb(Selenium selenium,WebDriver driver,Str
 		
 	// to check if mail was sent successfully
      
-     String success_str_xpath="//html/body/div/div[2]/div[3]/ul/li";
+     String success_str_xpath="//html/body/div/div[2]/div[4]/ul/li";
      
      Functions.MyWaitfunc(driver,success_str_xpath);
      if((Functions.doesWebElementExist(driver,By.xpath(success_str_xpath))) && (driver.findElement(By.xpath(success_str_xpath)).getText().contains("Email sent to your outbox and enqueued for delivery.")))

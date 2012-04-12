@@ -1,0 +1,74 @@
+package sanity_ff;
+
+import static org.junit.Assert.*;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverBackedSelenium;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import com.thoughtworks.selenium.Selenium;
+
+public class OnBoarding {
+	private WebDriver driver;
+
+	Selenium selenium;
+	private StringBuffer verificationErrors = new StringBuffer();
+	private String baseUrl=Functions.baseUrl;
+	private String composeUrl=Functions.compose_url;
+	private String inboxUrl=Functions.inbox_url;
+	private String sentUrl=Functions.sent_url;
+	private String outboxUrl=Functions.outbox_url;
+	private String draftsUrl=Functions.drafts_url;
+	String pwd_allusers="123abc";
+	String pathAutoItScript=Functions.pathToLessthan25MbFilesScript;
+	String pathAutoItScript_greaterthan25MB=Functions.pathToGreaterthan25MbFilesScript;
+	String pathToDownloadHandle=Functions.pathToDownloadFileHandler;
+	String subject,emailBody;
+	String user_noperms="userno4@lab.sparkweave.com"; // AD user used for onboarding test cases
+	String user_allperms="sneha.qa.24@gmail.com",user_onlysecure="snehamtd002@yahoo.com",user_onlylft="snehamtd001@gmail.com";
+
+	
+	@Before
+	public void setUp() throws Exception {
+		
+		System.setProperty("webdriver.firefox.bin","C:\\6.0.2\\Mozilla Firefox\\firefox.exe");
+		driver = new FirefoxDriver();
+		
+		
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		selenium = new WebDriverBackedSelenium(driver, baseUrl);
+	}
+	@Test
+	public void PersonalizedLft()throws Exception { // personalized option ON sending LFT
+	
+		Functions.login(driver,user_allperms,pwd_allusers);
+		subject="personalized LFT";
+		emailBody=subject;
+		//Functions.LFTSend(selenium, driver, user_allperms, user_noperms, subject, emailBody, pwd_allusers, baseUrl);
+		Functions.Logout(driver);
+		driver.get("https://192.168.1.32/owa");
+		driver.findElement(By.id("username")).clear();
+		driver.findElement(By.id("username")).sendKeys("userno4");
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("123");
+		driver.findElement(By.ByClassName.className("btnOnMseDwn")).click();
+		
+		
+		
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		driver.quit();
+		String verificationErrorString = verificationErrors.toString();
+		if (!"".equals(verificationErrorString)) {
+			fail(verificationErrorString);
+		}
+	}//end of tearDown
+}
